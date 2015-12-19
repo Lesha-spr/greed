@@ -1,3 +1,4 @@
+var argv = require('optimist').argv;
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -11,8 +12,10 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var gulpCopy = require('gulp-copy');
 
+var src = argv.admin ? 'admin' : 'app';
+
 gulp.task('sass', function() {
-    gulp.src('public/src/app.scss')
+    gulp.src('public/src/' + src + '.scss')
         .pipe(inject(gulp.src(['./components/**/*.scss'], {read: false, cwd: 'public/src/'}), {
             starttag: '/* inject:imports */',
             endtag: '/* endinject */',
@@ -28,10 +31,10 @@ gulp.task('sass', function() {
 });
 
 gulp.task('compress', function() {
-    var b = browserify('public/src/app.jsx').transform('babelify', {presets: ['es2015', 'react']});
+    var b = browserify('public/src/' + src + '.jsx').transform('babelify', {presets: ['es2015', 'react']});
 
     return b.bundle()
-        .pipe(source('./app.js'))
+        .pipe(source('./' + src + '.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
