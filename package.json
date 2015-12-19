@@ -9,6 +9,10 @@
     "test": "jest",
     "postinstall": "gulp build"
   },
+  "engines": {
+    "node": "5.2.0",
+    "npm": "3.5.2"
+  },
   "dependencies": {
     "basic-auth": "^1.0.3",
     "body-parser": "~1.13.2",
