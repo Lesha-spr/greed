@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "jest",
-    "postinstall": "npm install && gulp build"
+    "postinstall": "gulp build"
   },
   "dependencies": {
     "basic-auth": "^1.0.3",
