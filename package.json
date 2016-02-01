@@ -10,8 +10,8 @@
     "postinstall": "gulp build"
   },
   "engines": {
-    "node": "5.2.0",
-    "npm": "3.5.2"
+    "node": "4.2.6",
+    "npm": "2.14.12"
   },
   "dependencies": {
     "basic-auth": "^1.0.3",
