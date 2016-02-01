@@ -10,7 +10,7 @@
     "postinstall": "gulp build"
   },
   "engines": {
-    "node": "5.2.0",
+    "node": "4.2.6",
     "npm": "3.5.2"
   },
   "dependencies": {
