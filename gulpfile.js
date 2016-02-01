@@ -44,6 +44,36 @@ gulp.task('compress', function() {
         .pipe(gulp.dest('public/build'));
 });
 
+gulp.task('sass-admin', function() {
+    gulp.src('public/src/admin.scss')
+        .pipe(inject(gulp.src(['./components/**/*.scss'], {read: false, cwd: 'public/src/'}), {
+            starttag: '/* inject:imports */',
+            endtag: '/* endinject */',
+            transform: function (filepath) {
+                return '@import ".' + filepath + '";';
+            }
+        }))
+        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(autoprefixer({
+            browsers: ['last 3 versions']
+        }))
+        .pipe(gulp.dest('./public/build'));
+});
+
+gulp.task('compress-admin', function() {
+    var b = browserify('public/src/admin.jsx').transform('babelify', {presets: ['es2015', 'react']});
+
+    return b.bundle()
+        .pipe(source('./admin.js'))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        // Add transformation tasks to the pipeline here.
+        .pipe(uglify())
+        .on('error', gutil.log)
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('public/build'));
+});
+
 gulp.task('copy', function() {
     return gulp.src('./public/src/images/**/*')
         .pipe(gulpCopy('./public/build', {prefix: 2}));
@@ -55,5 +85,5 @@ gulp.task('watch', function() {
     gulp.watch('./public/src/**/*.js*', ['compress']);
 });
 
-gulp.task('build', ['copy', 'sass', 'compress']);
+gulp.task('build', ['copy', 'sass', 'compress', 'sass-admin', 'compress-admin']);
 gulp.task('default', ['copy', 'sass', 'compress', 'watch']);
