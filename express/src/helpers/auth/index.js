@@ -1,10 +1,11 @@
-var auth = require('basic-auth');
+import auth from 'basic-auth';
 
-var authorization = function (req, res, next) {
-    var user = auth(req);
+export default (req, res, next) => {
+    let user = auth(req);
 
     function unauthorized(res) {
         res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+
         return res.sendStatus(401);
     }
 
@@ -19,5 +20,3 @@ var authorization = function (req, res, next) {
         return unauthorized(res);
     }
 };
-
-module.exports = authorization;

@@ -1,7 +1,7 @@
 var mongoose = require('./../db/mongoose');
 var Schema = mongoose.Schema;
 
-var schema = new Schema({
+const schema = new Schema({
     title:  {
         type: String,
         required: true
@@ -24,4 +24,4 @@ var schema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Item', schema);
+export const Item = mongoose.model('Item', schema);
