@@ -1,6 +1,5 @@
 import multiparty from 'multiparty';
 import fs from 'fs';
-import Promise from 'promise';
 
 export const parseForm = (req) => {
     let form = new multiparty.Form();
