@@ -1,3 +1,17 @@
 @import "./../../node_modules/foundation-sites/scss/foundation";
+@import "./../../node_modules/foundation-sites/scss/global";
+@import "common/settings";
 
 @include foundation-everything;
+
+@import "./../../node_modules/susy/sass/susy";
+
+@import "common/mixins";
+@import "common/vars";
+@import "common/common";
+@import "common/ui";
+
+// NOTE: following comment need to handle inject
+
+/* inject:imports */
+/* endinject */

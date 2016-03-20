@@ -1,9 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import AsyncStore from './../../stores/async/async.store.js';
+import {Link} from 'react-router';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Immutable from 'immutable';
 
-class Root extends Component {
+export class NavLink extends Component {
     constructor(props) {
         super(props);
 
@@ -11,10 +10,8 @@ class Root extends Component {
     }
 
     render() {
-        return <div>
-            Greed
-        </div>;
+        return <Link className='ui-link' activeClassName='ui-link_state_active' {...this.props}>{this.props.children}</Link>;
     }
 }
 
-export default Root;
+export default NavLink;

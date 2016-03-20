@@ -4,10 +4,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var nodemon = require('gulp-nodemon');
 var babel = require('gulp-babel');
 
-gulp.task('watchServer', function() {
-    gulp.watch('./express/src/**/*', ['views', 'express']);
-});
-
 gulp.task('express', function() {
     return gulp.src('./express/src/**/*.js')
         .pipe(sourcemaps.init())

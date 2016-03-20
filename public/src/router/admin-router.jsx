@@ -1,14 +1,17 @@
 import React from 'react';
-import {Route, IndexRoute} from 'react-router';
-import Menu from './../components/menu/menu.react.jsx';
+import {Route, IndexRedirect} from 'react-router';
 
 // Route Handlers
+import App from './../components/app/app.react.jsx';
 import AdminRoot from './../components/admin-root/admin-root.react.jsx';
+import Products from './../components/products/products.react.jsx';
 
-const routes = (
-    <Route path='admin' component={AdminRoot}>
-
+export const routes = (
+    <Route path='/admin' component={App}>
+        <IndexRedirect to='/admin/start'/>
+        <Route path='start' component={AdminRoot}>
+            <Route path='products' component={Products}/>
+            <Route path='boxes' component={Products}/>
+        </Route>
     </Route>
 );
-
-export default routes;

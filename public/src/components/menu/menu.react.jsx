@@ -1,16 +1,11 @@
 import React, {Component, PropTypes} from 'react';
+import {Link} from 'react-router';
 
 class Menu extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
-        return <ul className="menu">
-            <li><a href="#">One</a></li>
-            <li><a href="#">Two</a></li>
-            <li><a href="#">Three</a></li>
-            <li><a href="#">Four</a></li>
+        return <ul className="menu vertical">
+            <li><Link to='/admin/start/products' activeClassName='active'>Products</Link></li>
+            <li><Link to='/admin/start/boxes' activeClassName='active'>Boxes</Link></li>
         </ul>;
     }
 }

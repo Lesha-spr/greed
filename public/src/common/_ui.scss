@@ -1,0 +1,28 @@
+.ui-link {
+  @extend a;
+
+  &_state_active {
+    color: #000;
+  }
+}
+
+.ui-control-holder {
+  .input-group-label + & {
+    position: relative;
+  }
+}
+
+.ui-error-hint {
+  position: relative;
+  top: -$input-prefix-padding;
+  color: $alert-color;
+
+  .input-group-label + .ui-control-holder & {
+    position: absolute;
+    top: 100%;
+  }
+}
+
+.ReactModal__Content {
+  @extend .row;
+}

@@ -1,6 +1,6 @@
-jest.dontMock('./../roll.js');
+jest.unmock('./../roll.js');
 
-var roll, rolls, chest, hits, key, error;
+let roll, rolls, chest, hits, key, error;
 
 describe('roll', function() {
     roll = require('./../roll');
@@ -48,7 +48,7 @@ describe('roll', function() {
     });
 
     it('should roll by percentages', function() {
-        for (var i = 0; i < rolls; i++) {
+        for (let i = 0; i < rolls; i++) {
             hits[roll(chest, key)].count++;
         }
 

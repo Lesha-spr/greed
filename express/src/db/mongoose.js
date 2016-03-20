@@ -1,8 +1,6 @@
-var mongoose = require('mongoose');
-var config = require('./../config');
-
-mongoose.Promise = global.Promise;
+import mongoose from 'mongoose';
+import config from './../config';
 
 mongoose.connect(config.mongoose.uri, config.mongoose.options);
 
-module.exports = mongoose;
+export default mongoose;

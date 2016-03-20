@@ -1,13 +1,8 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import {Item} from './../models/item';
+import {Router} from 'express';
+import * as routers from './../services';
 
-let serviceRouter = express.Router();
+let router = Router();
 
-serviceRouter.get('/items', (req, res, next) => {
-    Item.find().then(items => {
-        res.json(items);
-    });
-});
+router.use('/products', routers.productsRouter);
 
-export default serviceRouter;
+export default router;
