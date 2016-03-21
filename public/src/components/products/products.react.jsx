@@ -33,7 +33,7 @@ class Products extends Component {
             <h3>Products</h3>
             <button type='button' className='button' onClick={ProductsActions.upsertProduct}>Add product</button>
             <ProductsEdit isOpenModal={this.props.isOpenModal} product={this.props.product}/>
-            <section className='row medium-unstack'>
+            <section className='row'>
                 {this.props.products.map(product => <ProductsItem key={product._id} product={product}/>)}
             </section>
         </div>;

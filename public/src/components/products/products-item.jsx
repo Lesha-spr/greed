@@ -10,7 +10,7 @@ class ProductsItem extends Component {
     }
 
     render() {
-        return <article className='small-2 large-4 columns'>
+        return <article className='small-12 large-6 columns'>
             <h5>{this.props.product.title}</h5>
             <hr/>
             <button className='button' onClick={ProductsActions.upsertProduct.bind(ProductsActions, this.props.product)}>Edit product</button>
