@@ -31,7 +31,7 @@ class Products extends Component {
     render() {
         return <div>
             <h3>Products</h3>
-            <button type='button' className='button' onClick={ProductsActions.upsertProduct.bind(ProductsActions)}>Add product</button>
+            <button type='button' className='button' onClick={ProductsActions.upsertProduct}>Add product</button>
             <ProductsEdit isOpenModal={this.props.isOpenModal} product={this.props.product}/>
             <section className='row medium-unstack'>
                 {this.props.products.map(product => <ProductsItem key={product._id} product={product}/>)}
