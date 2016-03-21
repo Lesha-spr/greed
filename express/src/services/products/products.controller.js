@@ -39,45 +39,62 @@ export class ProductController {
         });
     }
 
-    _serveMultipartForm(req, pathToSave) {
+    _serveMultipartForm(req) {
         return new Promise((resolve, reject) => {
             parseForm(req).then(data => {
                 let formData = Object.assign({}, data.fields);
 
                 Object.keys(data.files).forEach(name => {
-                    let readPromises = [];
-                    let files = [];
+                    let {promises, files} = this._getReadData(data, name, formData);
 
-                    data.files[name].forEach(file => {
-                        formData[name] = [];
+                    Promise.all(promises).then(buffers => {
+                        let {promises} = this._getWriteData(buffers, files, name, formData);
 
-                        if (file.size) {
-                            files.push(file);
-                            readPromises.push(fsp.readFile(file.path));
-                        }
-                    });
-
-                    Promise.all(readPromises).then(buffers => {
-                        let writePromises = [];
-
-                        buffers.forEach((buffer, index) => {
-                            let output;
-
-                            formData[name].push(`${config.outputImagePath}${files[index].originalFilename}`);
-
-                            mkdirp.sync(config.imagePath);
-                            output = path.join(root, pathToSave, files[index].originalFilename);
-
-                            writePromises.push(fsp.writeFile(output, buffer));
-                        });
-
-                        Promise.all(writePromises).then(() => {
+                        Promise.all(promises).then(() => {
                             resolve(formData);
                         });
                     });
                 });
             });
         });
+    }
+
+    _getReadData(data, name, formData) {
+        let promises = [];
+        let files = [];
+
+        data.files[name].forEach(file => {
+            formData[name] = [];
+
+            if (file.size) {
+                files.push(file);
+                promises.push(fsp.readFile(file.path));
+            }
+        });
+
+        return {
+            promises,
+            files
+        };
+    }
+
+    _getWriteData(buffers, files, name, formData) {
+        let promises = [];
+
+        buffers.forEach((buffer, index) => {
+            let output;
+
+            formData[name].push(`${config.outputImagePath}${files[index].originalFilename}`);
+
+            mkdirp.sync(config.imagePath);
+            output = path.join(root, config.imagePath, files[index].originalFilename);
+
+            promises.push(fsp.writeFile(output, buffer));
+        });
+
+        return {
+            promises
+        };
     }
 
     _prepareData(data) {

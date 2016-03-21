@@ -5,9 +5,22 @@ import Immutable from 'immutable';
 import WrappedProductsStore, {ProductsStore as UnwrappedProductsStore} from './../products.store.js';
 import ProductsActions from './../../../actions/products/products.actions.js';
 
+const initialState = {
+    products: [],
+    product: {},
+    isOpenModal: false,
+    shouldFetch: true
+};
+const staticState = {
+    products: [],
+    product: {},
+    isOpenModal: false,
+    shouldFetch: false
+};
+
 describe('ProductsStore', () => {
     it('should initialize with default state', () => {
-        expect(WrappedProductsStore.getState().toJS()).toEqual({products: [], shouldFetch: true});
+        expect(WrappedProductsStore.getState().toJS()).toEqual(initialState);
     });
 
     it('should listen for a fetch action', () => {
@@ -15,11 +28,11 @@ describe('ProductsStore', () => {
         let data = [{product: 1}, {product: 2}];
 
         alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS()).toEqual({products: [{product: 1}, {product: 2}], shouldFetch: false});
+        expect(WrappedProductsStore.getState().toJS()).toEqual({products: [{product: 1}, {product: 2}], product: {}, isOpenModal: false, shouldFetch: false});
 
         data = [];
         alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS()).toEqual({products: [], shouldFetch: false});
+        expect(WrappedProductsStore.getState().toJS()).toEqual(staticState);
     });
 
     it('should listen for a post action', () => {
@@ -27,7 +40,7 @@ describe('ProductsStore', () => {
         let data = {};
 
         alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS()).toEqual({products: [], shouldFetch: true});
+        expect(WrappedProductsStore.getState().toJS()).toEqual(initialState);
     });
 
     it('should listen for a put action', () => {
@@ -35,6 +48,6 @@ describe('ProductsStore', () => {
         let data = {};
 
         alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS()).toEqual({products: [], shouldFetch: true});
+        expect(WrappedProductsStore.getState().toJS()).toEqual(initialState);
     });
 });

@@ -2,6 +2,21 @@ import alt from './../../alt';
 import {API} from './../../APIs/products/products.api.js';
 
 class ProductsActions {
+    toggleModal(isOpen) {
+        return dispatch => {
+            dispatch(isOpen);
+        }
+    }
+
+    upsertProduct(product = {}) {
+        return dispatch => {
+            dispatch({
+                product,
+                isOpenModal: true
+            });
+        }
+    }
+
     fetch() {
         return dispatch => {
             API.request().then(response => response.json()).then(data => {

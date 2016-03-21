@@ -1,12 +1,10 @@
 import React, {Component, PropTypes} from 'react';
+import ProductsActions from './../../actions/products/products.actions.js';
 import Modal from 'react-modal';
 import {Form, Input, Select, Button} from 'react-validation';
 import serialize from 'form-serialize';
 import config from './../../../../express/src/config';
-import ProductsActions from './../../actions/products/products.actions.js';
-import ProductsStore from './../../stores/products/products.store.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Immutable from 'immutable';
 import noop from 'lodash.noop';
 
 class ProductsEdit extends Component {
@@ -19,7 +17,6 @@ class ProductsEdit extends Component {
 
         this.boundedMethods = {
             onChangeFile: this.onChangeFile.bind(this),
-            closeModal: this.closeModal.bind(this),
             onSubmit: this.onSubmit.bind(this)
         };
 
@@ -39,25 +36,24 @@ class ProductsEdit extends Component {
             image: ''
         });
 
-        this.props.closeModal();
+        ProductsActions.toggleModal(false);
     }
 
     onSubmit(event) {
+        let formData = new FormData(event.target);
+        let data = serialize(event.target, {hash: true});
+        let method = this.props.product._id ? 'put' : 'post';
+
         event.preventDefault();
 
-        if (this.props.product._id) {
-            ProductsActions.put(new FormData(event.target), serialize(event.target, {hash: true}));
-        } else {
-            ProductsActions.post(new FormData(event.target));
-        }
-
-        this.props.closeModal();
+        ProductsActions[method](formData, data);
+        ProductsActions.toggleModal(false);
     }
 
     render() {
-        let id = this.props.product._id ? <input type='hidden' name='_id' value={this.props.product._id}/> : '';
+        let id = this.props.product._id ? <input type='hidden' name='_id' value={this.props.product._id}/> : null;
 
-        return <Modal onRequestClose={this.props.closeModal} isOpen={this.props.isOpenModal} style={{content: {bottom: 'auto'}}}>
+        return <Modal onRequestClose={ProductsActions.toggleModal.bind(ProductsActions, false)} isOpen={this.props.isOpenModal} style={{content: {bottom: 'auto'}}}>
             <h3>Add Product</h3>
             <Form onSubmit={this.boundedMethods.onSubmit} encType='multipart/form-data'>
                 <div className='row'>
@@ -96,7 +92,7 @@ class ProductsEdit extends Component {
                     <div className='medium-6 columns'>
                         <div className='button-group'>
                             <Button className='success button' type='submit' value='Submit'/>
-                            <button className='alert button' type='reset' onClick={this.boundedMethods.closeModal}>Cancel</button>
+                            <button className='alert button' type='reset' onClick={ProductsActions.toggleModal.bind(ProductsActions, false)}>Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -106,9 +102,6 @@ class ProductsEdit extends Component {
 }
 
 ProductsEdit.defaultProps = {
-    openModal: noop,
-    closeModal: noop,
-    isOpenModal: false,
     product: {
         _id: '',
         title: '',

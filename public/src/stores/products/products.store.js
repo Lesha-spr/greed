@@ -7,9 +7,21 @@ export class ProductsStore {
     constructor() {
         this.state = Immutable.Map({
             products: Immutable.List(),
-            shouldFetch: true
+            shouldFetch: true,
+            isOpenModal: false,
+            product: {}
         });
         this.bindActions(ProductsActions);
+    }
+
+    onToggleModal(isOpenModal) {
+        this.setState(this.state.set('isOpenModal', isOpenModal));
+    }
+
+    onUpsertProduct(data) {
+        let {product, isOpenModal} = data;
+
+        this.setState(this.state.set('product', product).set('isOpenModal', isOpenModal));
     }
 
     onFetch(products) {

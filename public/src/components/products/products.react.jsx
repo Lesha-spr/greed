@@ -4,79 +4,46 @@ import ProductsEdit from './products-edit.js';
 import ProductsActions from './../../actions/products/products.actions.js';
 import ProductsStore from './../../stores/products/products.store.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import connectToStores from 'alt-utils/lib/connectToStores';
 import Immutable from 'immutable';
 
 class Products extends Component {
+    static getStores(props) {
+        return [ProductsStore];
+    }
+
+    static getPropsFromStores(props) {
+        let nextProps = ProductsStore.getState().toJS();
+
+        if (nextProps.shouldFetch) {
+            ProductsActions.fetch();
+        }
+
+        return nextProps;
+    }
+
     constructor(props) {
         super(props);
-
-        this.boundedMethods = {
-            updateState: this.updateState.bind(this)
-        };
-
-        this.state = Object.assign(ProductsStore.getState().toJS(), {
-            isOpenModal: false,
-            product: {}}
-        );
 
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     componentDidMount() {
-        ProductsStore.listen(this.boundedMethods.updateState);
-        ProductsActions.fetch();
-    }
-
-    componentWillUnmount() {
-        ProductsStore.unlisten(this.boundedMethods.updateState);
-    }
-
-    openModal() {
-        this.setState({
-            isOpenModal: true
-        });
-    }
-
-    closeModal() {
-        this.setState({
-            isOpenModal: false
-        });
-    }
-
-    changeProduct(product) {
-        this.setState({
-            product: product,
-            isOpenModal: true
-        });
-    }
-
-    createProduct() {
-        this.setState({
-            product: {},
-            isOpenModal: true
-        });
-    }
-
-    updateState(immutableState) {
-        let state = immutableState.toJS();
-
-        if (state.shouldFetch) {
-            ProductsActions.fetch();
-        }
-
-        this.setState(state);
+        //ProductsActions.fetch();
     }
 
     render() {
         return <div>
             <h3>Products</h3>
-            <button type='button' className='button' onClick={this.createProduct.bind(this)}>Add product</button>
-            <ProductsEdit isOpenModal={this.state.isOpenModal} openModal={this.openModal.bind(this)} closeModal={this.closeModal.bind(this)} product={this.state.product}/>
+            <button type='button' className='button' onClick={ProductsActions.upsertProduct.bind(ProductsActions)}>Add product</button>
+            <ProductsEdit isOpenModal={this.props.isOpenModal} product={this.props.product}/>
             <section className='row medium-unstack'>
-                {this.state.products.map(product => <ProductsItem key={product._id} updateProduct={this.changeProduct.bind(this, product)} product={product}/>)}
+                {this.props.products.map(product => <ProductsItem key={product._id} product={product}/>)}
             </section>
         </div>;
     }
 }
+
+Products = connectToStores(Products);
 
 export default Products;
