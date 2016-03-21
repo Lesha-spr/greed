@@ -3,7 +3,6 @@ import {parseForm} from './../../helpers/multipartyPromise/multipartyPromise.js'
 import mkdirp from 'mkdirp';
 import multiparty from 'multiparty';
 import path from 'path';
-import fs from 'fs';
 import fsp from 'fs-promise';
 import config from './../../config';
 import {path as root} from 'app-root-path';
@@ -19,10 +18,23 @@ export class ProductController {
 
     post(req, res, next) {
         this._serveMultipartForm(req, config.imagePath).then(data => {
-            let product = new Product(this._prepareData(data));
+            let product;
+            data = this._prepareData(data);
+
+            product = new Product(data);
 
             product.save().then(data => {
-                res.json({});
+                res.json(data);
+            });
+        });
+    }
+
+    put(req, res, next) {
+        this._serveMultipartForm(req, config.imagePath).then(data => {
+            data = this._prepareData(data);
+
+            Product.update({_id: data._id}, data).then(data => {
+                res.json(data);
             });
         });
     }
@@ -39,8 +51,10 @@ export class ProductController {
                     data.files[name].forEach(file => {
                         formData[name] = [];
 
-                        files.push(file);
-                        readPromises.push(fsp.readFile(file.path));
+                        if (file.size) {
+                            files.push(file);
+                            readPromises.push(fsp.readFile(file.path));
+                        }
                     });
 
                     Promise.all(readPromises).then(buffers => {
@@ -70,10 +84,12 @@ export class ProductController {
         let formData = {};
 
         Object.keys(data).forEach(name => {
-            formData[name] = data[name][0];
+            if (data[name][0]) {
+                formData[name] = data[name][0];
+            }
         });
 
-        formData.link = `/admin/start/products/${formData._id}`;
+        formData.link = `/admin/start/products/${formData.title}`;
 
         return formData;
     }

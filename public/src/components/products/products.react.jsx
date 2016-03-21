@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import ProductsAdd from './products-add.react.jsx';
+import ProductsItem from './products-item.jsx';
+import ProductsEdit from './products-edit.js';
 import ProductsActions from './../../actions/products/products.actions.js';
 import ProductsStore from './../../stores/products/products.store.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -9,10 +10,15 @@ class Products extends Component {
     constructor(props) {
         super(props);
 
-        this.state = ProductsStore.getState().toJS();
         this.boundedMethods = {
             updateState: this.updateState.bind(this)
         };
+
+        this.state = Object.assign(ProductsStore.getState().toJS(), {
+            isOpenModal: false,
+            product: {}}
+        );
+
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
@@ -23,6 +29,32 @@ class Products extends Component {
 
     componentWillUnmount() {
         ProductsStore.unlisten(this.boundedMethods.updateState);
+    }
+
+    openModal() {
+        this.setState({
+            isOpenModal: true
+        });
+    }
+
+    closeModal() {
+        this.setState({
+            isOpenModal: false
+        });
+    }
+
+    changeProduct(product) {
+        this.setState({
+            product: product,
+            isOpenModal: true
+        });
+    }
+
+    createProduct() {
+        this.setState({
+            product: {},
+            isOpenModal: true
+        });
     }
 
     updateState(immutableState) {
@@ -38,14 +70,11 @@ class Products extends Component {
     render() {
         return <div>
             <h3>Products</h3>
-            <ProductsAdd/>
-            <ul className='row medium-unstack'>
-                {this.state.products.map(product => <li key={product._id} className='columns'>
-                    <h4>{product._id}</h4>
-                    <h5>{product.price}</h5>
-                    <img src={product.image} alt={product._id}/>
-                </li>)}
-            </ul>
+            <button type='button' className='button' onClick={this.createProduct.bind(this)}>Add product</button>
+            <ProductsEdit isOpenModal={this.state.isOpenModal} openModal={this.openModal.bind(this)} closeModal={this.closeModal.bind(this)} product={this.state.product}/>
+            <section className='row medium-unstack'>
+                {this.state.products.map(product => <ProductsItem key={product._id} updateProduct={this.changeProduct.bind(this, product)} product={product}/>)}
+            </section>
         </div>;
     }
 }

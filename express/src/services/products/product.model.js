@@ -3,7 +3,10 @@ import mongoose from './../../db/mongoose';
 let Schema = mongoose.Schema;
 
 const schema = new Schema({
-    _id: String,
+    title: {
+        type: String,
+        required: true
+    },
     image: {
         type: String,
         required: true

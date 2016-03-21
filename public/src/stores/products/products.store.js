@@ -19,6 +19,10 @@ export class ProductsStore {
     onPost() {
         this.setState(this.state.set('shouldFetch', true));
     }
+
+    onPut() {
+        this.setState(this.state.set('shouldFetch', true));
+    }
 }
 
 export default alt.createStore(immutable(ProductsStore), 'ProductsStore');

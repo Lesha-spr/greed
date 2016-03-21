@@ -10,12 +10,28 @@ class ProductsActions {
         }
     }
 
-    post(product) {
+    post(formData) {
         return dispatch => {
             API.request({
                 init: {
                     method: 'post',
-                    body: product
+                    body: formData
+                }
+            }).then(response => response.json()).then(data => {
+                dispatch(data);
+            });
+        }
+    }
+
+    put(formData, product) {
+        return dispatch => {
+            API.request({
+                params: {
+                    id: product._id
+                },
+                init: {
+                    method: 'put',
+                    body: formData
                 }
             }).then(response => response.json()).then(data => {
                 dispatch(data);

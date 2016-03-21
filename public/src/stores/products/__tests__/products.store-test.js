@@ -29,4 +29,12 @@ describe('ProductsStore', () => {
         alt.dispatcher.dispatch({action, data});
         expect(WrappedProductsStore.getState().toJS()).toEqual({products: [], shouldFetch: true});
     });
+
+    it('should listen for a put action', () => {
+        let action = ProductsActions.PUT;
+        let data = {};
+
+        alt.dispatcher.dispatch({action, data});
+        expect(WrappedProductsStore.getState().toJS()).toEqual({products: [], shouldFetch: true});
+    });
 });

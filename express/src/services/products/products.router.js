@@ -7,7 +7,6 @@ const productsCtrl = new ProductController();
 router
     .get('/', productsCtrl.get.bind(productsCtrl))
     .post('/', productsCtrl.post.bind(productsCtrl))
-    .post('/:id', productsCtrl.post.bind(productsCtrl))
-    .get('/:id', productsCtrl.get.bind(productsCtrl));
+    .put('/:id', productsCtrl.put.bind(productsCtrl));
 
 export {router};
