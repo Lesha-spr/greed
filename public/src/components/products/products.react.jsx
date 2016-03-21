@@ -28,10 +28,6 @@ class Products extends Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
-    componentDidMount() {
-        //ProductsActions.fetch();
-    }
-
     render() {
         return <div>
             <h3>Products</h3>
