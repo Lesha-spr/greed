@@ -7,7 +7,7 @@ export class ProductsStore {
     constructor() {
         this.state = Immutable.Map({
             products: Immutable.List(),
-            shouldFetch: true,
+            shouldFetch: false,
             isOpenModal: false,
             product: {}
         });

@@ -1,11 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import ProductsActions from './../../actions/products/products.actions.js';
-import Modal from 'react-modal';
 import {Form, Input, Select, Button} from 'react-validation';
 import serialize from 'form-serialize';
 import config from './../../../../express/src/config';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import noop from 'lodash.noop';
 
 class ProductsEdit extends Component {
     constructor(props) {
@@ -15,10 +13,8 @@ class ProductsEdit extends Component {
             image: ''
         };
 
-        this.boundedMethods = {
-            onChangeFile: this.onChangeFile.bind(this),
-            onSubmit: this.onSubmit.bind(this)
-        };
+        this.onChangeFile = this.onChangeFile.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
@@ -29,14 +25,6 @@ class ProductsEdit extends Component {
         this.setState({
             image
         });
-    }
-
-    closeModal() {
-        this.setState({
-            image: ''
-        });
-
-        ProductsActions.toggleModal(false);
     }
 
     onSubmit(event) {
@@ -53,9 +41,9 @@ class ProductsEdit extends Component {
     render() {
         let id = this.props.product._id ? <input type='hidden' name='_id' value={this.props.product._id}/> : null;
 
-        return <Modal onRequestClose={ProductsActions.toggleModal.bind(ProductsActions, false)} isOpen={this.props.isOpenModal} style={{content: {bottom: 'auto'}}}>
+        return <div>
             <h3>Add Product</h3>
-            <Form onSubmit={this.boundedMethods.onSubmit} encType='multipart/form-data'>
+            <Form className='products__upsert' onSubmit={this.onSubmit} encType='multipart/form-data'>
                 <div className='row'>
                     <div className='medium-6 columns'>
                         <label>Title
@@ -85,7 +73,7 @@ class ProductsEdit extends Component {
                     <div className='medium-6 columns'>
                         <label htmlFor='file'>{this.state.image || (this.props.product.image && this.props.product.image.replace(config.outputImagePath, '')) || 'Choose Product Image'}</label>
                         <label htmlFor='file' className='button'>Upload file</label>
-                        <Input name='image' onChange={this.boundedMethods.onChangeFile} type='file' id='file' className='show-for-sr'/>
+                        <Input name='image' onChange={this.onChangeFile} type='file' id='file' className='show-for-sr'/>
                     </div>
                 </div>
                 <div className='row'>
@@ -97,7 +85,7 @@ class ProductsEdit extends Component {
                     </div>
                 </div>
             </Form>
-        </Modal>;
+        </div>;
     }
 }
 

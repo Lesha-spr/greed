@@ -1,0 +1,16 @@
+.app {
+  height: 100%;
+}
+
+.app {
+  &_state_pending {
+    filter: blur(3px);
+
+    &:after {
+      content: '';
+      position: fixed;
+      @include trbl;
+      z-index: susy-get(root, $z);
+    }
+  }
+}

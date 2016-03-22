@@ -9,7 +9,7 @@ const initialState = {
     products: [],
     product: {},
     isOpenModal: false,
-    shouldFetch: true
+    shouldFetch: false
 };
 
 describe('ProductsStore', () => {

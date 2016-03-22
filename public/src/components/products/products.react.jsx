@@ -1,11 +1,11 @@
 import React, {Component, PropTypes} from 'react';
-import ProductsItem from './products-item.jsx';
-import ProductsEdit from './products-edit.js';
+import Modal from 'react-modal';
+import ProductsItem from './products-item.react.jsx';
+import ProductsEdit from './products-edit.react.jsx';
 import ProductsActions from './../../actions/products/products.actions.js';
 import ProductsStore from './../../stores/products/products.store.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import connectToStores from 'alt-utils/lib/connectToStores';
-import Immutable from 'immutable';
 
 class Products extends Component {
     static getStores(props) {
@@ -28,11 +28,17 @@ class Products extends Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
+    componentDidMount() {
+        ProductsActions.fetch();
+    }
+
     render() {
-        return <div>
+        return <div className='products'>
             <h3>Products</h3>
             <button type='button' className='button' onClick={ProductsActions.upsertProduct}>Add product</button>
-            <ProductsEdit isOpenModal={this.props.isOpenModal} product={this.props.product}/>
+            <Modal onRequestClose={ProductsActions.toggleModal.bind(ProductsActions, false)} isOpen={this.props.isOpenModal} style={{content: {bottom: 'auto'}}}>
+                <ProductsEdit product={this.props.product}/>
+            </Modal>
             <section className='row'>
                 {this.props.products.map(product => <ProductsItem key={product._id} product={product}/>)}
             </section>
