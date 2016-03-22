@@ -8,6 +8,7 @@
 
 .ReactModal__Content {
   @extend .reveal;
+  @extend .large;
 
   .ReactModal__Body--open & {
     display: block;

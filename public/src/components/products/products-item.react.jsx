@@ -11,11 +11,13 @@ class ProductsItem extends Component {
 
     render() {
         return <section className='column'>
-            <h5>{this.props.product.title}</h5>
-            <hr/>
-            <button className='button' onClick={ProductsActions.upsertProduct.bind(ProductsActions, this.props.product)}>Edit product</button>
-            <h6>{this.props.product.price} &#8381;</h6>
-            <img className='thumbnail' src={this.props.product.image} alt={this.props.product.title}/>
+            <div className='callout'>
+                <h5>{this.props.product.title}</h5>
+                <button className='button' onClick={ProductsActions.upsertProduct.bind(ProductsActions, this.props.product)}>Edit product</button>
+                <div className='stat'>{this.props.product.price} &#8381;</div>
+                <hr/>
+                <img className='thumbnail' src={this.props.product.image} alt={this.props.product.title}/>
+            </div>
         </section>;
     }
 }
