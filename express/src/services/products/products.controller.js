@@ -1,6 +1,5 @@
 import {Product} from './product.model.js';
 import {parseForm} from './../../helpers/multipartyPromise/multipartyPromise.js';
-import mkdirp from 'mkdirp';
 import multiparty from 'multiparty';
 import path from 'path';
 import fsp from 'fs-promise';
@@ -86,7 +85,6 @@ export class ProductController {
 
             formData[name].push(`${config.outputImagePath}${files[index].originalFilename}`);
 
-            mkdirp.sync(config.imagePath);
             output = path.join(root, config.imagePath, files[index].originalFilename);
 
             promises.push(fsp.writeFile(output, buffer));
