@@ -4,7 +4,7 @@ import favicon from 'serve-favicon';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import morgan from './morgan/morgan.js';
+//import morgan from './morgan/morgan.js';
 import router from './routes/';
 import {path as root} from 'app-root-path';
 
