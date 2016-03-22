@@ -13,7 +13,7 @@ class ProductsItem extends Component {
         return <section className='column'>
             <div className='callout'>
                 <h5>{this.props.product.title}</h5>
-                <button className='button' onClick={ProductsActions.upsertProduct.bind(ProductsActions, this.props.product)}>Edit product</button>
+                <button className='hollow button' onClick={ProductsActions.upsertProduct.bind(ProductsActions, this.props.product)}>Edit product</button>
                 <div className='stat'>{this.props.product.price} &#8381;</div>
                 <hr/>
                 <img className='thumbnail' src={this.props.product.image} alt={this.props.product.title}/>
