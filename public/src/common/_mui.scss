@@ -1,0 +1,10 @@
+.mui-zoom {
+  &-enter, &-appear {
+    @include mui-zoom($state: in, $from: 0.85, $to: 1, $duration: 100ms);
+    @extend .mui-enter;
+
+    &-active {
+      @extend .mui-enter-active;
+    }
+  }
+}

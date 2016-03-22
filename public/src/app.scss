@@ -1,10 +1,14 @@
 @import "./../../node_modules/foundation-sites/scss/global";
 @import "./../../node_modules/susy/sass/susy";
+@import "./../../node_modules/motion-ui/motion-ui";
 @import "libs/scss/normalize";
 
 @import "common/mixins";
 @import "common/vars";
 @import "common/common";
+
+@include motion-ui-transitions;
+@include motion-ui-animations;
 
 // NOTE: following comment need to handle inject
 

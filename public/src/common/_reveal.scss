@@ -1,0 +1,15 @@
+.ReactModal__Overlay {
+  @extend .reveal-overlay;
+
+  .ReactModal__Body--open & {
+    display: block;
+  }
+}
+
+.ReactModal__Content {
+  @extend .reveal;
+
+  .ReactModal__Body--open & {
+    display: block;
+  }
+}

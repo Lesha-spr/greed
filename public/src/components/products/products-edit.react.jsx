@@ -85,6 +85,9 @@ class ProductsEdit extends Component {
                     </div>
                 </div>
             </Form>
+            <button className='close-button' type='button' onClick={ProductsActions.toggleModal.bind(ProductsActions, false)}>
+                <span aria-hidden='true'>&times;</span>
+            </button>
         </div>;
     }
 }

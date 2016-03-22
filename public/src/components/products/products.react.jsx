@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Modal from 'react-modal';
+import modalStyles from './modalStyles.js';
 import ProductsItem from './products-item.react.jsx';
 import ProductsEdit from './products-edit.react.jsx';
 import ProductsActions from './../../actions/products/products.actions.js';
@@ -36,12 +38,12 @@ class Products extends Component {
         return <div className='products'>
             <h3>Products</h3>
             <button type='button' className='button' onClick={ProductsActions.upsertProduct}>Add product</button>
-            <Modal onRequestClose={ProductsActions.toggleModal.bind(ProductsActions, false)} isOpen={this.props.isOpenModal} style={{content: {bottom: 'auto'}}}>
+            <Modal onRequestClose={ProductsActions.toggleModal.bind(ProductsActions, false)} isOpen={this.props.isOpenModal} style={modalStyles}>
                 <ProductsEdit product={this.props.product}/>
             </Modal>
-            <section className='row'>
+            <ReactCSSTransitionGroup className='row small-up-1 medium-up-2 large-up-3' transitionName="mui-zoom" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={300}>
                 {this.props.products.map(product => <ProductsItem key={product._id} product={product}/>)}
-            </section>
+            </ReactCSSTransitionGroup>
         </div>;
     }
 }

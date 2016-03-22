@@ -1,5 +1,6 @@
 import {Product} from './product.model.js';
 import {parseForm} from './../../helpers/multipartyPromise/multipartyPromise.js';
+import {upload} from './../../helpers/cloudinaryUploaderPromise/cloudinaryUploaderPromise.js';
 import multiparty from 'multiparty';
 import path from 'path';
 import fsp from 'fs-promise';
@@ -42,57 +43,41 @@ export class ProductController {
         return new Promise((resolve, reject) => {
             parseForm(req).then(data => {
                 let formData = Object.assign({}, data.fields);
+                let uploadPromises = [];
 
                 Object.keys(data.files).forEach(name => {
-                    let {promises, files} = this._getReadData(data, name, formData);
+                    uploadPromises.push(Promise.all(this._uploadFiles(data, name, formData)));
+                });
 
-                    Promise.all(promises).then(buffers => {
-                        let {promises} = this._getWriteData(buffers, files, name, formData);
-
-                        Promise.all(promises).then(() => {
-                            resolve(formData);
-                        });
-                    });
+                Promise.all(uploadPromises).then(results => {
+                    resolve(formData);
                 });
             });
         });
     }
 
-    _getReadData(data, name, formData) {
+    _uploadFiles(data, name, formData) {
         let promises = [];
-        let files = [];
+
+        formData[name] = [];
 
         data.files[name].forEach(file => {
-            formData[name] = [];
-
-            if (file.size) {
-                files.push(file);
-                promises.push(fsp.readFile(file.path));
-            }
+            promises.push(this._uploadSingeFile(formData, name, file));
         });
 
-        return {
-            promises,
-            files
-        };
+        return promises;
     }
 
-    _getWriteData(buffers, files, name, formData) {
-        let promises = [];
+    _uploadSingeFile(formData, name, file) {
+        return new Promise((resolve, reject) => {
+            if (file.size) {
+                upload(file.path).then(result => {
+                    formData[name].push(result.secure_url);
 
-        buffers.forEach((buffer, index) => {
-            let output;
-
-            formData[name].push(`${config.outputImagePath}${files[index].originalFilename}`);
-
-            output = path.join(root, config.imagePath, files[index].originalFilename);
-
-            promises.push(fsp.writeFile(output, buffer));
+                    resolve(result);
+                });
+            }
         });
-
-        return {
-            promises
-        };
     }
 
     _prepareData(data) {
