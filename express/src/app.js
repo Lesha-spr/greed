@@ -8,7 +8,8 @@ import morgan from './morgan/morgan.js';
 import router from './routes/';
 import {path as root} from 'app-root-path';
 
-import './helpers/mkdirs/mkdirs.js';
+// FIXME: uncomment on prod
+//import './helpers/mkdirs/mkdirs.js';
 
 const app = express();
 
@@ -18,7 +19,8 @@ app.set('view engine', 'jade');
 
 app.use(favicon(`${root}/public/favicon.png`));
 app.use(logger('dev'));
-app.use(morgan);
+// FIXME: uncomment on prod
+//app.use(morgan);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
