@@ -9,7 +9,7 @@ import ProductsStore from './../../stores/products/products.store.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import connectToStores from 'alt-utils/lib/connectToStores';
 
-class Products extends Component {
+export class ProductsUnwrapped extends Component {
     static getStores(props) {
         return [ProductsStore];
     }
@@ -60,6 +60,6 @@ class Products extends Component {
     }
 }
 
-Products = connectToStores(Products);
+let Products = connectToStores(ProductsUnwrapped);
 
 export default Products;

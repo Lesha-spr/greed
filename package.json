@@ -88,7 +88,8 @@
       "<rootDir>/node_modules/alt",
       "<rootDir>/public/src/alt",
       "<rootDir>/node_modules/alt-utils",
-      "<rootDir>/node_modules/immutable"
+      "<rootDir>/node_modules/immutable",
+      "<rootDir>/node_modules/classnames"
     ]
   }
 }

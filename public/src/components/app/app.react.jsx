@@ -7,7 +7,7 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 import Immutable from 'immutable';
 import classNames from 'classnames';
 
-class App extends Component {
+export class AppUnwrapped extends Component {
     static getStores(props) {
         return [AsyncStore];
     }
@@ -32,6 +32,6 @@ class App extends Component {
     }
 }
 
-App = connectToStores(App);
+let App = connectToStores(AppUnwrapped);
 
 export default App;
