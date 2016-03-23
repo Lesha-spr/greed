@@ -6,17 +6,15 @@
   }
 }
 
+
 .ReactModal__Content {
-  position: relative;
-  @include reveal-modal-base;
-  @include reveal-modal-width(90%);
+  @extend .reveal;
 
   .ReactModal__Body--open & {
     display: block;
   }
 
-  @include breakpoint(small only) {
-    margin-top: 0;
-    @include reveal-modal-fullscreen;
+  @include breakpoint(small) {
+    @extend .reveal.large;
   }
 }
