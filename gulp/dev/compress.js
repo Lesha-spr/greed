@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var rename = require('gulp-rename');
 var glob = require('glob');
 var es = require('event-stream');
 var source = require('vinyl-source-stream');
@@ -15,20 +14,14 @@ gulp.task('compress', function() {
         if(err) throw err;
 
         var tasks = files.map(function(entry) {
-            return browserify({entries: [entry]})
+            return browserify({entries: [entry], debug: true})
                 .transform('babelify', {presets: ['es2015', 'react']})
                 .bundle()
-                .pipe(source(entry))
+                .pipe(source(entry.replace('./public/src/', '').replace('jsx', 'js')))
                 .pipe(buffer())
                 .pipe(sourcemaps.init({loadMaps: true}))
                 .pipe(uglify())
                 .on('error', gutil.log)
-                .pipe(rename(function(path) {
-                    path.dirname = '';
-                    path.extname = '.js';
-
-                    return path;
-                }))
                 .pipe(sourcemaps.write('./'))
                 .pipe(gulp.dest('public/build/'));
         });

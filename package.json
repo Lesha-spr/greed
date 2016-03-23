@@ -52,7 +52,6 @@
     "gulp-flatten": "^0.2.0",
     "gulp-inject": "^3.0.0",
     "gulp-nodemon": "^2.0.6",
-    "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.1",
     "gulp-sass-glob": "^1.0.5",
     "gulp-sourcemaps": "^1.6.0",
