@@ -1,5 +1,5 @@
 .ReactModal__Overlay {
-  @extend .reveal-overlay;
+  @include reveal-overlay;
 
   .ReactModal__Body--open & {
     display: block;
@@ -7,10 +7,16 @@
 }
 
 .ReactModal__Content {
-  @extend .reveal;
-  @extend .large;
+  position: relative;
+  @include reveal-modal-base;
+  @include reveal-modal-width(90%);
 
   .ReactModal__Body--open & {
     display: block;
+  }
+
+  @include breakpoint(small only) {
+    margin-top: 0;
+    @include reveal-modal-fullscreen;
   }
 }
