@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var inject = require('gulp-inject');
 var sass = require('gulp-sass');
 var sassGlob = require('gulp-sass-glob');
 var sourcemaps = require('gulp-sourcemaps');
