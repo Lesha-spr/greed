@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "jest",
-    "postinstall": "gulp build:client && gulp build:server"
+    "postinstall": "gulp build:client"
   },
   "engines": {
     "node": "4.2.6",
