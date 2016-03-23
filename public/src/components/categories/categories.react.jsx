@@ -26,7 +26,13 @@ class Categories extends Component {
     render() {
         return <div>
             <h3>Categories</h3>
-            <button type='button' className='button' >Add category</button>
+            <div className='top-bar'>
+                <div className='top-bar-left'>
+                    <ul className='menu' role='menubar'>
+                        <li><button type='button' className='button' >Add category</button></li>
+                    </ul>
+                </div>
+            </div>
             <section className='row'>
                 {this.props.categories.map(category => <article>{category}</article>)}
             </section>
