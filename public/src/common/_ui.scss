@@ -2,7 +2,7 @@
   @extend a;
 
   &_state_active {
-    &, &:hover {
+    &, &:hover, &:focus {
       color: #000;
     }
   }

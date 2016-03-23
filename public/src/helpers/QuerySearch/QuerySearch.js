@@ -1,6 +1,14 @@
 import objectSort from 'object-sort';
 
-let matches = (query, value, match, schemaKey, queryKey) => {
+const querySearch = (query, schema, collection) => {
+    var ret = [];
+
+    rec(query, schema, collection, ret);
+
+    return ret;
+};
+
+const matches = (query, value, match, schemaKey, queryKey) => {
     if (match.indexOf(value) === -1) {
         if (typeof value[schemaKey] === 'object') {
             return JSON.stringify(objectSort(value[schemaKey])) === JSON.stringify(objectSort(query[queryKey]))
@@ -12,7 +20,7 @@ let matches = (query, value, match, schemaKey, queryKey) => {
     return false;
 };
 
-let rec = (query, schema, collection, match) => {
+const rec = (query, schema, collection, match) => {
     Object.keys(schema).forEach(schemaKey => {
         Object.keys(query).forEach(queryKey => {
             if (schema[queryKey]) {
@@ -34,16 +42,4 @@ let rec = (query, schema, collection, match) => {
     });
 };
 
-export default class QuerySearch {
-    constructor(schema) {
-        this.schema = schema;
-    }
-
-    search(query, collection) {
-        var ret = [];
-
-        rec(query, this.schema, collection, ret);
-
-        return ret;
-    }
-}
+export default querySearch;

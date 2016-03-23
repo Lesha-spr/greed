@@ -24,12 +24,12 @@ class Categories extends Component {
     }
 
     render() {
-        return <div>
+        return <div className='categories'>
             <h3>Categories</h3>
             <div className='top-bar'>
                 <div className='top-bar-left'>
                     <ul className='menu' role='menubar'>
-                        <li><button type='button' className='button' >Add category</button></li>
+                        <li><a><i className='fi-plus'></i> Add category</a></li>
                     </ul>
                 </div>
             </div>

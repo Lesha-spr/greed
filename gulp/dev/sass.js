@@ -1,20 +1,18 @@
 var gulp = require('gulp');
 var inject = require('gulp-inject');
 var sass = require('gulp-sass');
+var sassGlob = require('gulp-sass-glob');
+var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('sass', function() {
     gulp.src('public/src/**/*.scss')
-        .pipe(inject(gulp.src(['./components/**/*.scss'], {read: false, cwd: 'public/src/'}), {
-            starttag: '/* inject:imports */',
-            endtag: '/* endinject */',
-            transform: function (filepath) {
-                return '@import ".' + filepath + '";';
-            }
-        }))
-        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(sassGlob())
+        .pipe(sourcemaps.init())
+        .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 3 versions']
         }))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./public/build'));
 });
