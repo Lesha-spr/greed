@@ -43,7 +43,7 @@ export class ProductsUnwrapped extends Component {
             <Modal onRequestClose={ProductsActions.toggleModal.bind(ProductsActions, false)} isOpen={this.props.isOpenModal} style={modalStyles}>
                 <ProductsEdit product={this.props.product}/>
             </Modal>
-            <ReactCSSTransitionGroup className='row small-up-1 medium-up-2 large-up-3' transitionName='mui-zoom' transitionEnterTimeout={0} transitionLeaveTimeout={300}>
+            <ReactCSSTransitionGroup className='row small-up-1 medium-up-2 large-up-3' transitionName='mui-zoom' transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={300}>
                 {this.props.products.map(product => <ProductsItem key={product._id} product={product}/>)}
             </ReactCSSTransitionGroup>
         </div>;

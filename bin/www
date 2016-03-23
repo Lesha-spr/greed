@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../express/build/app');
+var app = require('../express/app');
 var debug = require('debug')('greed:server');
 var http = require('http');
 
