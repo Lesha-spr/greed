@@ -78,6 +78,8 @@ module.exports = class ProductController {
 
                     resolve(result);
                 });
+            } else {
+                resolve();
             }
         });
     }
