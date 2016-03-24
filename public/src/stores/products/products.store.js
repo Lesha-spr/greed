@@ -1,4 +1,5 @@
 import alt from './../../alt';
+import querySearch from './../../helpers/querySearch/querySearch.js';
 import ProductsActions from './../../actions/products/products.actions.js';
 import immutable from 'alt-utils/lib/ImmutableUtil';
 import Immutable from 'immutable';
@@ -34,6 +35,10 @@ export class ProductsStore {
 
     onPut() {
         this.setState(this.state.set('shouldFetch', true));
+    }
+
+    onQuerySearch(query) {
+        console.log(query);
     }
 }
 

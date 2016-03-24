@@ -6,11 +6,16 @@ class ProductsSearchUnwrapped extends Component {
     constructor(props) {
         super(props);
 
+        this.onChange = this.onChange.bind(this);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
+    onChange(event) {
+
+    }
+
     render() {
-        return <input type='search' placeholder='Search'/>;
+        return <input type='search' onChange={this.onChange} placeholder='Search'/>;
     }
 }
 

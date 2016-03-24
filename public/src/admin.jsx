@@ -4,6 +4,8 @@ import {render} from 'react-dom';
 import {Router, browserHistory} from 'react-router';
 import {routes} from './router/admin-router.jsx';
 
+import './admin.scss';
+
 render(
     <Router history={browserHistory}>
         {routes}

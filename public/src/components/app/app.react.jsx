@@ -6,6 +6,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import Immutable from 'immutable';
 import classNames from 'classnames';
+import './_app.scss';
 
 export class AppUnwrapped extends Component {
     static getStores(props) {

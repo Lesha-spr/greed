@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
+import './_menu.scss';
 
 class Menu extends Component {
     render() {
