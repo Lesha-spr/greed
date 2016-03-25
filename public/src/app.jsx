@@ -5,6 +5,7 @@ import {render} from 'react-dom';
 import {Router, browserHistory} from 'react-router';
 import {routes} from './router/app-router.jsx';
 
+import './_common.scss';
 import './app.scss';
 
 render(

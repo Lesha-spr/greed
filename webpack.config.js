@@ -1,8 +1,9 @@
 'use strict';
 
 const path = require('path');
-const NODE_ENV = process.env.NODE_ENV || 'dev';
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const NODE_ENV = process.env.NODE_ENV || 'dev';
 
 module.exports = {
     context: path.join(__dirname + '/public/src'),
@@ -30,7 +31,8 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common',
             minChunks: 2
-        })
+        }),
+        new ExtractTextPlugin('[name].css', {allChunks: true})
     ],
 
     resolve: {
@@ -53,7 +55,7 @@ module.exports = {
 
             {
                 test: /\.scss$/,
-                loaders: ['style', 'css', 'autoprefixer?browsers=last 3 versions', 'resolve-url', 'sass?sourceMap']
+                loader: ExtractTextPlugin.extract('css?sourceMap!autoprefixer?browsers=last 3 versions!resolve-url!sass?sourceMap')
             },
 
             {
