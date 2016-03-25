@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {IndexLink} from 'react-router';
 import Menu from './../menu/menu.react.jsx';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import './_admin-root.scss';
 
 class AdminRoot extends Component {
     constructor(props) {

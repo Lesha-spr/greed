@@ -9,6 +9,7 @@ import ProductsActions from './../../actions/products/products.actions.js';
 import ProductsStore from './../../stores/products/products.store.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import connectToStores from 'alt-utils/lib/connectToStores';
+import './_products.scss';
 
 export class ProductsUnwrapped extends Component {
     static getStores(props) {

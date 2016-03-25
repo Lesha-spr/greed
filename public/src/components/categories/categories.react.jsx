@@ -3,6 +3,7 @@ import CategoriesActions from './../../actions/categories/categories.actions.js'
 import CategoriesStore from './../../stores/categories/categories.store.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import connectToStores from 'alt-utils/lib/connectToStores';
+import './_categories.scss';
 
 class Categories extends Component {
     static getStores(props) {
