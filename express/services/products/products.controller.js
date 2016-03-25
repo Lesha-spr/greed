@@ -4,7 +4,6 @@ const Product = require('./product.model.js');
 const parseForm = require('./../../helpers/multipartyPromise/multipartyPromise.js');
 const upload = require('./../../helpers/cloudinaryUploaderPromise/cloudinaryUploaderPromise.js').upload;
 const path = require('path');
-const fsp = require('fs-promise');
 const config = require('./../../config/index');
 const root = require('app-root-path');
 
