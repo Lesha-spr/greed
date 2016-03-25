@@ -19,38 +19,46 @@ class ProductsActions {
 
     fetch() {
         return dispatch => {
-            API.request().then(response => response.json()).then(data => {
-                dispatch(data);
-            });
+            dispatch();
+        }
+    }
+
+    successFetch(products) {
+        return dispatch => {
+            dispatch(products);
         }
     }
 
     post(formData) {
         return dispatch => {
-            API.request({
-                init: {
-                    method: 'post',
-                    body: formData
-                }
-            }).then(response => response.json()).then(data => {
-                dispatch(data);
-            });
+            dispatch(formData);
+        }
+    }
+
+    successPost(product) {
+        return dispatch => {
+            dispatch(product);
         }
     }
 
     put(formData, product) {
         return dispatch => {
-            API.request({
-                params: {
-                    id: product._id
-                },
-                init: {
-                    method: 'put',
-                    body: formData
-                }
-            }).then(response => response.json()).then(data => {
-                dispatch(data);
+            dispatch({
+                formData,
+                product
             });
+        }
+    }
+
+    successPut(product) {
+        return dispatch => {
+            dispatch(product);
+        }
+    }
+
+    error(error) {
+        return dispatch => {
+            dispatch(error);
         }
     }
 }

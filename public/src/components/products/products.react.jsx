@@ -17,13 +17,7 @@ export class ProductsUnwrapped extends Component {
     }
 
     static getPropsFromStores(props) {
-        let nextProps = ProductsStore.getState().toJS();
-
-        if (nextProps.shouldFetch) {
-            ProductsActions.fetch();
-        }
-
-        return nextProps;
+        return ProductsStore.getState().toJS();
     }
 
     constructor(props) {

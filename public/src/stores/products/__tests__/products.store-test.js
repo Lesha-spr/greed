@@ -9,7 +9,7 @@ const initialState = {
     products: [],
     product: {},
     isOpenModal: false,
-    shouldFetch: false
+    shouldFetch: true
 };
 
 describe('ProductsStore', () => {
@@ -58,7 +58,7 @@ describe('ProductsStore', () => {
     });
 
     it('should listen for a fetch action', () => {
-        let action = ProductsActions.FETCH;
+        let action = ProductsActions.SUCCESS_FETCH;
         let data = [{product: 1}, {product: 2}];
 
         alt.dispatcher.dispatch({action, data});
@@ -70,7 +70,7 @@ describe('ProductsStore', () => {
     });
 
     it('should listen for a post action', () => {
-        let action = ProductsActions.POST;
+        let action = ProductsActions.SUCCESS_POST;
         let data = {};
 
         alt.dispatcher.dispatch({action, data});
@@ -78,7 +78,7 @@ describe('ProductsStore', () => {
     });
 
     it('should listen for a put action', () => {
-        let action = ProductsActions.PUT;
+        let action = ProductsActions.SUCCESS_PUT;
         let data = {};
 
         alt.dispatcher.dispatch({action, data});
