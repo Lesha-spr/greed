@@ -19,7 +19,8 @@ class ProductsAlertUnwrapped extends Component {
 
     render() {
         return <form onSubmit={this.onSubmit}>
-            <h3>Are you sure you want to delete {this.props.product.title}?</h3>
+            <h3>Delete product</h3>
+            <p>Are you sure you want to delete <b>&laquo;{this.props.product.title}&raquo;</b>?</p>
             <div className='button-group'>
                 <button type='submit' className='alert button'>Delete</button>
                 <a className='secondary button' onClick={ProductsActions.toggleModal.bind(ProductsActions, false)}>Cancel</a>

@@ -20,6 +20,6 @@
   }
 
   @include breakpoint(small) {
-    @extend .reveal.large;
+    @extend .reveal.medium;
   }
 }
