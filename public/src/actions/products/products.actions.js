@@ -16,7 +16,8 @@ class ProductsActions {
             'put',
             'successPut',
             'error',
-            'querySearch'
+            'querySearch',
+            'clearQuery'
         );
     }
 }

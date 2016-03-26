@@ -32,6 +32,10 @@ export class ProductsUnwrapped extends Component {
         ProductsActions.fetch();
     }
 
+    componentWillUnmount() {
+        ProductsActions.clearQuery();
+    }
+
     render() {
         let products = this.props.showQuery ? this.props.queryProducts : this.props.products;
         let modal = this.props.alert ? <ProductsAlert product={this.props.product}/> : <ProductsEdit product={this.props.product}/>;
