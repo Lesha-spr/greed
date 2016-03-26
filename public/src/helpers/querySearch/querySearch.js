@@ -30,7 +30,7 @@ const rec = (query, schema, collection, match) => {
                             return JSON.stringify(objectSort(value[schemaKey])) === JSON.stringify(objectSort(query[queryKey]));
                         }
 
-                        return value[schemaKey] === query[queryKey];
+                        return value[schemaKey].toLowerCase().indexOf(query[queryKey].toLowerCase()) > -1;
                     }
 
                     return false;

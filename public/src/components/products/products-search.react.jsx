@@ -1,21 +1,29 @@
 import React, {Component, PropTypes} from 'react';
 import ProductsActions from './../../actions/products/products.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import debounce from 'lodash.debounce';
 
 class ProductsSearchUnwrapped extends Component {
     constructor(props) {
         super(props);
 
-        this.onChange = this.onChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.onChange = debounce(this.onChange.bind(this), 300);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
+    handleChange(event) {
+        event.persist();
+
+        this.onChange(event);
+    }
+
     onChange(event) {
-        //ProductsActions
+        ProductsActions.querySearch(event.target.value);
     }
 
     render() {
-        return <input type='search' onChange={this.onChange} placeholder='Search'/>;
+        return <input type='search' onChange={this.handleChange} placeholder='Search'/>;
     }
 }
 

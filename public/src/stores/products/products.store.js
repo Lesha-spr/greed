@@ -9,7 +9,9 @@ export class ProductsStore {
     constructor() {
         this.state = Immutable.Map({
             products: Immutable.List(),
+            queryProducts: Immutable.List(),
             shouldFetch: true,
+            showQuery: false,
             isOpenModal: false,
             alert: false,
             product: {}
@@ -69,7 +71,15 @@ export class ProductsStore {
     }
 
     onQuerySearch(query) {
-        console.log(query);
+        let schema = {
+            title: true
+        };
+
+        let products = querySearch({
+            title: query
+        }, schema, this.state.toJS().products);
+
+        this.setState(this.state.set('queryProducts', Immutable.fromJS(products)).set('showQuery', Boolean(query)));
     }
 }
 

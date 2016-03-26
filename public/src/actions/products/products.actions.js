@@ -15,7 +15,8 @@ class ProductsActions {
             'successPost',
             'put',
             'successPut',
-            'error'
+            'error',
+            'querySearch'
         );
     }
 }
