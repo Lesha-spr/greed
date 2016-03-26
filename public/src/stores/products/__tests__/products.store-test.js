@@ -10,7 +10,9 @@ const initialState = {
     product: {},
     isOpenModal: false,
     alert: false,
-    shouldFetch: true
+    shouldFetch: true,
+    showQuery: false,
+    queryProducts: []
 };
 
 describe('ProductsStore', () => {
@@ -73,5 +75,14 @@ describe('ProductsStore', () => {
 
         alt.dispatcher.dispatch({action, data});
         expect(WrappedProductsStore.getState().toJS().shouldFetch).toBe(true);
+    });
+
+    it('should clear query', () => {
+        let action = ProductsActions.CLEAR_QUERY;
+        let data = {};
+
+        alt.dispatcher.dispatch({action, data});
+        expect(WrappedProductsStore.getState().toJS().queryProducts.length).toBe(0);
+        expect(WrappedProductsStore.getState().toJS().showQuery).toBe(false);
     });
 });
