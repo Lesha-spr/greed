@@ -21,10 +21,7 @@ module.exports = class ProductController {
         this.res = res;
 
         Product.find()
-            .then(this._sendRes)
-            .catch(err => {
-                console.log(err);
-            });
+            .then(this._sendRes);
     }
 
     post(req, res, next) {
@@ -57,10 +54,7 @@ module.exports = class ProductController {
         Product.findOne({_id: req.params.id})
             .then(this._destroyFile)
             .then(this._removeProduct)
-            .then(this._sendRes)
-            .catch(err => {
-                console.log(err);
-            });
+            .then(this._sendRes);
     }
 
     _sendRes(data) {
