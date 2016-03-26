@@ -12,7 +12,9 @@ const product = {
     title: 'title',
     price: 10,
     //category: 'category',
-    image: 'link'
+    image: {
+        secure_url: 'url'
+    }
 };
 
 describe('ProductsEdit', () => {

@@ -1,11 +1,15 @@
-var DEFAULTS = {
+const DEFAULTS = {
     PERCENTAGE_LIMIT: 100
 };
 
-var roll = function(chest, key) {
-    var i = chest.length;
-    var rolling = [];
-    var percentage = 0;
+const getRandomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) + min;
+};
+
+module.exports = (chest, key) => {
+    let i = chest.length;
+    let rolling = [];
+    let percentage = 0;
 
     while (i--) {
         var j = 0;
@@ -21,11 +25,5 @@ var roll = function(chest, key) {
         }
     }
 
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
-
     return rolling[getRandomInt(0, rolling.length - 1)];
 };
-
-module.exports = roll;

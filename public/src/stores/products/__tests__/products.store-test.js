@@ -9,6 +9,7 @@ const initialState = {
     products: [],
     product: {},
     isOpenModal: false,
+    alert: false,
     shouldFetch: true
 };
 
@@ -33,28 +34,22 @@ describe('ProductsStore', () => {
     it('should listen for a upsertProduct action', () => {
         let action = ProductsActions.UPSERT_PRODUCT;
         let data = {
-            product: {
-                _id: 'id',
-                title: 'title',
-                price: 100,
-                category: 'category',
-                image: '/link/to/image'
-            },
-            isOpenModal: true
+            _id: 'id',
+            title: 'title',
+            price: 100,
+            category: 'category',
+            image: '/link/to/image'
         };
 
         alt.dispatcher.dispatch({action, data});
         expect(WrappedProductsStore.getState().toJS().isOpenModal).toBe(true);
-        expect(WrappedProductsStore.getState().toJS().product).toEqual(data.product);
+        expect(WrappedProductsStore.getState().toJS().product).toEqual(data);
 
-        data = {
-            product: {},
-            isOpenModal: false
-        };
+        data = {};
 
         alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS().isOpenModal).toBe(false);
-        expect(WrappedProductsStore.getState().toJS().product).toEqual(data.product);
+        expect(WrappedProductsStore.getState().toJS().isOpenModal).toBe(true);
+        expect(WrappedProductsStore.getState().toJS().product).toEqual(data);
     });
 
     it('should listen for a fetch action', () => {
