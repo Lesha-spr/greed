@@ -13,11 +13,11 @@
   }
 
   &-leave {
-    @include mui-zoom($state: in, $from: 1, $to: 0, $duration: 200ms);
-    @extend .mui-enter;
+    @include mui-zoom($state: out, $from: 1, $to: 0, $duration: 200ms);
+    @extend .mui-leave;
 
     &-active {
-      @extend .mui-enter-active;
+      @extend .mui-leave-active;
     }
   }
 }
