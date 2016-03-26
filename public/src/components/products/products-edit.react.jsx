@@ -29,13 +29,21 @@ class ProductsEdit extends Component {
 
     onSubmit(event) {
         let formData = new FormData(event.target);
-        let data = serialize(event.target, {hash: true});
-        let method = this.props.product._id ? 'put' : 'post';
 
         event.preventDefault();
 
-        ProductsActions[method](formData, data);
-        ProductsActions.toggleModal(false);
+        if (this.props.product._id) {
+            let data = serialize(event.target, {hash: true});
+
+            ProductsActions.put({
+                formData,
+                data
+            });
+        } else {
+            ProductsActions.post(formData);
+        }
+
+        ProductsActions.closeModal();
     }
 
     render() {
@@ -83,12 +91,12 @@ class ProductsEdit extends Component {
                     <div className='medium-6 columns'>
                         <div className='button-group'>
                             <Button className='success button' type='submit' value='Submit'/>
-                            <button className='alert button' type='reset' onClick={ProductsActions.toggleModal.bind(ProductsActions, false)}>Cancel</button>
+                            <button className='alert button' type='reset' onClick={ProductsActions.closeModal}>Cancel</button>
                         </div>
                     </div>
                 </div>
             </Form>
-            <button className='close-button' type='button' onClick={ProductsActions.toggleModal.bind(ProductsActions, false)}>
+            <button className='close-button' type='button' onClick={ProductsActions.closeModal}>
                 <span aria-hidden='true'>&times;</span>
             </button>
         </div>;

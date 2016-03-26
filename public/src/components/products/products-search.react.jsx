@@ -11,7 +11,7 @@ class ProductsSearchUnwrapped extends Component {
     }
 
     onChange(event) {
-
+        //ProductsActions
     }
 
     render() {

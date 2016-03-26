@@ -14,7 +14,7 @@ class ProductsAlertUnwrapped extends Component {
         event.preventDefault();
 
         ProductsActions.delete(this.props.product);
-        ProductsActions.toggleModal(false);
+        ProductsActions.closeModal();
     }
 
     render() {
@@ -23,9 +23,9 @@ class ProductsAlertUnwrapped extends Component {
             <p>Are you sure you want to delete <b>&laquo;{this.props.product.title}&raquo;</b>?</p>
             <div className='button-group'>
                 <button type='submit' className='alert button'>Delete</button>
-                <a className='secondary button' onClick={ProductsActions.toggleModal.bind(ProductsActions, false)}>Cancel</a>
+                <a className='secondary button' onClick={ProductsActions.closeModal}>Cancel</a>
             </div>
-            <button className='close-button' type='button' onClick={ProductsActions.toggleModal.bind(ProductsActions, false)}>
+            <button className='close-button' type='button' onClick={ProductsActions.closeModal}>
                 <span aria-hidden='true'>&times;</span>
             </button>
         </form>;

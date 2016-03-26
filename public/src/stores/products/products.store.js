@@ -14,12 +14,13 @@ export class ProductsStore {
             alert: false,
             product: {}
         });
+
         this.registerAsync(ProductsSource);
         this.bindActions(ProductsActions);
     }
 
-    onToggleModal(isOpenModal) {
-        this.setState(this.state.set('alert', isOpenModal).set('isOpenModal', isOpenModal));
+    onCloseModal() {
+        this.setState(this.state.set('alert', false).set('isOpenModal', false));
     }
 
     onAlertProduct(product) {
@@ -40,8 +41,8 @@ export class ProductsStore {
         this.setState(this.state.set('products', Immutable.fromJS(products)).set('shouldFetch', false));
     }
 
-    onPut(data) {
-        this.getInstance().performPut(data.formData, data.product);
+    onPut(product) {
+        this.getInstance().performPut(product.formData, product.data);
     }
 
     onSuccessPut() {

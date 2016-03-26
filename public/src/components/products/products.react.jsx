@@ -39,7 +39,7 @@ export class ProductsUnwrapped extends Component {
             <h3>Products</h3>
             <ProductsTopBar/>
             <hr/>
-            <Modal onRequestClose={ProductsActions.toggleModal.bind(ProductsActions, false)} isOpen={this.props.isOpenModal} style={modalStyles}>
+            <Modal onRequestClose={ProductsActions.closeModal} isOpen={this.props.isOpenModal} style={modalStyles}>
                 {modal}
             </Modal>
             <ReactCSSTransitionGroup className='row small-up-1 medium-up-2 large-up-3' transitionName='mui-zoom' transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={500}>

@@ -6,7 +6,17 @@ class ProductsItem extends Component {
     constructor(props) {
         super(props);
 
+        this.alertProduct = this.alertProduct.bind(this);
+        this.upsertProduct = this.upsertProduct.bind(this);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+
+    alertProduct() {
+        ProductsActions.alertProduct(this.props.product);
+    }
+
+    upsertProduct() {
+        ProductsActions.upsertProduct(this.props.product);
     }
 
     render() {
@@ -14,8 +24,8 @@ class ProductsItem extends Component {
             <div className='callout'>
                 <h5>{this.props.product.title}</h5>
                 <div className='button-group'>
-                    <button className='button success' onClick={ProductsActions.upsertProduct.bind(ProductsActions, this.props.product)}>Edit</button>
-                    <button className='button alert' onClick={ProductsActions.alertProduct.bind(ProductsActions, this.props.product)}>Delete</button>
+                    <button className='button success' onClick={this.upsertProduct}>Edit</button>
+                    <button className='button alert' onClick={this.alertProduct}>Delete</button>
                 </div>
                 <div className='stat'>{this.props.product.price} &#8381;</div>
                 <hr/>

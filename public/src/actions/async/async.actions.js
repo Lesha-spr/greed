@@ -1,8 +1,10 @@
 import alt from './../../alt';
 
 class AsyncActions {
-    toggle(pending) {
-        return pending;
+    constructor() {
+        this.generateActions(
+            'toggle'
+        );
     }
 }
 

@@ -18,14 +18,9 @@ describe('ProductsStore', () => {
         expect(WrappedProductsStore.getState().toJS()).toEqual(initialState);
     });
 
-    it('should listen for a toggleModal action', () => {
-        let action = ProductsActions.TOGGLE_MODAL;
-        let data = true;
-
-        alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS().isOpenModal).toBe(true);
-
-        data = false;
+    it('should listen for a closeModal action', () => {
+        let action = ProductsActions.CLOSE_MODAL;
+        let data = {};
 
         alt.dispatcher.dispatch({action, data});
         expect(WrappedProductsStore.getState().toJS().isOpenModal).toBe(false);
