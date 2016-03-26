@@ -4,7 +4,12 @@
 
 .mui-zoom {
   &-enter, &-appear {
-    @include mui-zoom($state: in, $from: 0.85, $to: 1, $duration: 100ms);
+    @include mui-zoom(
+      $state: in,
+      $from: 0.85,
+      $to: 1,
+      $duration: 100ms
+    );
     @extend .mui-enter;
 
     &-active {
@@ -13,7 +18,12 @@
   }
 
   &-leave {
-    @include mui-zoom($state: out, $from: 1, $to: 0, $duration: 200ms);
+    @include mui-zoom(
+      $state: out,
+      $from: 1,
+      $to: 0,
+      $duration: 200ms
+    );
     @extend .mui-leave;
 
     &-active {
