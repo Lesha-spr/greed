@@ -40,6 +40,9 @@ class ProductsEdit extends Component {
 
     render() {
         let id = this.props.product._id ? <input type='hidden' name='_id' value={this.props.product._id}/> : null;
+        let imageLabel = this.state.image
+            || (this.props.product.image && this.props.product.image.public_id &&`${this.props.product.image.public_id}.${this.props.product.image.format}`)
+            || 'Choose Product Image';
 
         return <div>
             <h3>Add Product</h3>
@@ -71,7 +74,7 @@ class ProductsEdit extends Component {
                         </label>
                     </div>
                     <div className='medium-6 columns'>
-                        <label htmlFor='file'>{this.state.image || (this.props.product.image && this.props.product.image.replace(config.outputImagePath, '')) || 'Choose Product Image'}</label>
+                        <label htmlFor='file'>{imageLabel}</label>
                         <label htmlFor='file' className='button'>Upload file</label>
                         <Input name='image' onChange={this.onChangeFile} type='file' id='file' className='show-for-sr'/>
                     </div>
@@ -98,7 +101,7 @@ ProductsEdit.defaultProps = {
         title: '',
         price: '',
         category: '',
-        image: ''
+        image: {}
     }
 };
 

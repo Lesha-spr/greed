@@ -10,7 +10,7 @@ const schema = new Schema({
         required: true
     },
     image: {
-        type: String,
+        type: Schema.Types.Mixed,
         required: true
     },
     price: {

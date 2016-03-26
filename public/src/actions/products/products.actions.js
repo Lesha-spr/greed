@@ -8,12 +8,15 @@ class ProductsActions {
         }
     }
 
+    alertProduct(product) {
+        return dispatch => {
+            dispatch(product);
+        }
+    }
+
     upsertProduct(product = {}) {
         return dispatch => {
-            dispatch({
-                product,
-                isOpenModal: true
-            });
+            dispatch(product);
         }
     }
 
@@ -53,6 +56,18 @@ class ProductsActions {
     successPut(product) {
         return dispatch => {
             dispatch(product);
+        }
+    }
+
+    delete(product) {
+        return dispatch => {
+            dispatch(product);
+        }
+    }
+
+    successDelete() {
+        return dispatch => {
+            dispatch();
         }
     }
 

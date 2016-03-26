@@ -2,7 +2,7 @@
 
 const Product = require('./product.model.js');
 const parseForm = require('./../../helpers/multipartyPromise/multipartyPromise.js');
-const upload = require('./../../helpers/cloudinaryUploaderPromise/cloudinaryUploaderPromise.js').upload;
+const cloudinaryAPI = require('./../../helpers/cloudinaryUploaderPromise/cloudinaryUploaderPromise.js');
 const path = require('path');
 const config = require('./../../config/index');
 const root = require('app-root-path');
@@ -40,6 +40,16 @@ module.exports = class ProductController {
         });
     }
 
+    delete(req, res, next) {
+        Product.findOne({_id: req.params.id}).then(product => {
+            cloudinaryAPI.delete(product.image.public_id).then(() => {
+                Product.remove({_id: req.params.id}).then(data => {
+                    res.json(data);
+                });
+            });
+        });
+    }
+
     _serveMultipartForm(req) {
         return new Promise((resolve, reject) => {
             parseForm(req).then(data => {
@@ -72,8 +82,8 @@ module.exports = class ProductController {
     _uploadSingeFile(formData, name, file) {
         return new Promise((resolve, reject) => {
             if (file.size) {
-                upload(file.path).then(result => {
-                    formData[name].push(result.secure_url);
+                cloudinaryAPI.upload(file.path).then(result => {
+                    formData[name].push(result);
 
                     resolve(result);
                 });

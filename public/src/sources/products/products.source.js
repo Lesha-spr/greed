@@ -50,5 +50,21 @@ export const ProductsSource = {
 
         success: ProductsActions.successPut,
         error: ProductsActions.error
+    },
+
+    performDelete: {
+        remote(state, product) {
+            return API.request({
+                params: {
+                    id: product._id
+                },
+                init: {
+                    method: 'delete'
+                }
+            }).then(response => response.json());
+        },
+
+        success: ProductsActions.successDelete,
+        error: ProductsActions.error
     }
 };

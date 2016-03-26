@@ -12,5 +12,13 @@ module.exports = {
                 resolve(result);
             }, options || {});
         });
+    },
+
+    delete: (file, options) => {
+        return new Promise((resolve, reject) => {
+            cloudinary.uploader.destroy(file, result => {
+                resolve(result);
+            }, options || {});
+        });
     }
 };

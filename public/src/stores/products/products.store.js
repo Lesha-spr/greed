@@ -11,6 +11,7 @@ export class ProductsStore {
             products: Immutable.List(),
             shouldFetch: true,
             isOpenModal: false,
+            alert: false,
             product: {}
         });
         this.registerAsync(ProductsSource);
@@ -18,13 +19,15 @@ export class ProductsStore {
     }
 
     onToggleModal(isOpenModal) {
-        this.setState(this.state.set('isOpenModal', isOpenModal));
+        this.setState(this.state.set('alert', isOpenModal).set('isOpenModal', isOpenModal));
     }
 
-    onUpsertProduct(data) {
-        let {product, isOpenModal} = data;
+    onAlertProduct(product) {
+        this.setState(this.state.set('product', product).set('alert', true).set('isOpenModal', true));
+    }
 
-        this.setState(this.state.set('product', product).set('isOpenModal', isOpenModal));
+    onUpsertProduct(product) {
+        this.setState(this.state.set('product', product).set('isOpenModal', true));
     }
 
     onFetch() {
@@ -38,9 +41,7 @@ export class ProductsStore {
     }
 
     onPut(data) {
-        if (!this.getInstance().isLoading()) {
-            this.getInstance().performPut(data.formData, data.product);
-        }
+        this.getInstance().performPut(data.formData, data.product);
     }
 
     onSuccessPut() {
@@ -49,12 +50,19 @@ export class ProductsStore {
     }
 
     onPost(formData) {
-        if (!this.getInstance().isLoading()) {
-            this.getInstance().performPost(formData);
-        }
+        this.getInstance().performPost(formData);
     }
 
     onSuccessPost() {
+        this.setState(this.state.set('shouldFetch', true));
+        this.getInstance().performFetch();
+    }
+
+    onDelete(product) {
+        this.getInstance().performDelete(product);
+    }
+
+    onSuccessDelete() {
         this.setState(this.state.set('shouldFetch', true));
         this.getInstance().performFetch();
     }

@@ -9,6 +9,7 @@ let router = Router();
 router
     .get('/', productsCtrl.get.bind(productsCtrl))
     .post('/', productsCtrl.post.bind(productsCtrl))
-    .put('/:id', productsCtrl.put.bind(productsCtrl));
+    .put('/:id', productsCtrl.put.bind(productsCtrl))
+    .delete('/:id', productsCtrl.delete.bind(productsCtrl));
 
 module.exports = router;
