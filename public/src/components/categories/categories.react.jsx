@@ -35,7 +35,7 @@ class Categories extends Component {
                 </div>
             </div>
             <section className='row'>
-                {this.props.categories.map(category => <article>{category}</article>)}
+                {this.props.categories.map(category => <article key={category._id}>{category.title}</article>)}
             </section>
         </div>;
     }

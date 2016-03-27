@@ -40,7 +40,9 @@ export class ProductsStore {
     }
 
     onSuccessFetch(products) {
-        this.setState(this.state.set('products', Immutable.fromJS(products)).set('shouldFetch', false));
+        let queryProducts = this._populateQueryProducts(products);
+
+        this.setState(this.state.set('products', Immutable.fromJS(products)).set('shouldFetch', false).set('queryProducts', Immutable.fromJS(queryProducts)));
     }
 
     onPut(product) {
@@ -84,6 +86,20 @@ export class ProductsStore {
 
     onClearQuery() {
         this.setState(this.state.set('queryProducts', Immutable.List()).set('showQuery', false));
+    }
+
+    _populateQueryProducts(products) {
+        let queryProducts = this.state.toJS().queryProducts;
+
+        queryProducts.forEach(queryProduct => {
+            products.forEach(product => {
+                if (queryProduct._id === product._id) {
+                    Object.assign(queryProduct, product);
+                }
+            });
+        });
+
+        return queryProducts;
     }
 }
 

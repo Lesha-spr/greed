@@ -16,7 +16,7 @@ export const ProductsSource = {
         success: ProductsActions.successFetch,
         error: ProductsActions.error,
 
-        shouldFetch(state, force) {
+        shouldFetch(state) {
             return state.toJS().shouldFetch;
         }
     },
