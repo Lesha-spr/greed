@@ -3,7 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const NODE_ENV = process.env.NODE_ENV || 'dev';
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
     context: path.join(__dirname + '/public/src'),
@@ -17,12 +17,12 @@ module.exports = {
         filename: '[name].js'
     },
 
-    watch: NODE_ENV === 'dev',
+    watch: NODE_ENV === 'development',
     watchOptions: {
         aggregateTimeout: 100
     },
 
-    devtool: NODE_ENV === 'dev' ? 'source-map' : null,
+    devtool: NODE_ENV === 'development' ? 'source-map' : null,
 
     plugins: [
         new webpack.DefinePlugin({
@@ -66,7 +66,7 @@ module.exports = {
     }
 };
 
-if (NODE_ENV === 'prod') {
+if (NODE_ENV === 'production') {
     module.exports.plugins.push(
         new webpack.optimize.UglifyJsPlugin({
             compress: {
