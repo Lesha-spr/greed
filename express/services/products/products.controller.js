@@ -1,26 +1,24 @@
 'use strict';
 
-const Product = require('./product.model.js');
-const bindAll = require('lodash.bindall');
+const ProductModelWrapper = require('./product.model.wrapper');
+const _ = require('lodash');
 const parseForm = require('./../../helpers/multipartyPromise/multipartyPromise.js');
 const cloudinaryAPI = require('./../../helpers/cloudinaryUploaderPromise/cloudinaryUploaderPromise.js');
 const path = require('path');
 const config = require('./../../config/index');
 const root = require('app-root-path');
 
-module.exports = class ProductController {
+module.exports = class ProductsController {
     constructor() {
-        this.req = null;
         this.res = null;
-        this.next = null;
 
-        bindAll(this, '_sendRes', '_uploadStatic', '_uploadFiles', '_destroyFile', '_saveProduct', '_updateProduct', '_removeProduct');
+        _.bindAll(this, '_sendRes', '_uploadStatic', '_uploadFiles', '_destroyFile', '_saveProduct', '_updateProduct', '_removeProduct');
     }
 
     get(req, res, next) {
         this.res = res;
 
-        Product.find()
+        ProductModelWrapper.find()
             .then(this._sendRes)
             .catch(err => {
                 console.log(err);
@@ -54,7 +52,7 @@ module.exports = class ProductController {
     delete(req, res, next) {
         this.res = res;
 
-        Product.findOne({_id: req.params.id})
+        ProductModelWrapper.findOne({_id: req.params.id})
             .then(this._destroyFile)
             .then(this._removeProduct)
             .then(this._sendRes)
@@ -72,7 +70,7 @@ module.exports = class ProductController {
 
         data = this._prepareData(data);
 
-        product = new Product(data);
+        product = ProductModelWrapper.create(data);
 
         return product.save();
     }
@@ -80,11 +78,11 @@ module.exports = class ProductController {
     _updateProduct(data) {
         data = this._prepareData(data);
 
-        return Product.update({_id: data._id}, data);
+        return ProductModelWrapper.update({_id: data._id}, data);
     }
 
     _removeProduct(product) {
-        return Product.remove({_id: product._id});
+        return ProductModelWrapper.remove({_id: product._id});
     }
 
     _parseForm(req) {

@@ -2,6 +2,7 @@ jest.unmock('./../WebResource.js');
 jest.unmock('./../__mock__/WebResource-mock.js');
 jest.unmock('parse-route');
 
+import 'babel-polyfill';
 import 'whatwg-fetch';
 import {WebResource} from './../WebResource.js';
 import mockInstance from './../__mock__/WebResource-mock.js';
@@ -22,9 +23,9 @@ describe('WebApi', () => {
         expect(mockInstance.request() instanceof Promise).toBe(true);
     });
 
-    pit('should resolve promise with mock data', () => {
-        return mockInstance.request().then(data => {
-            expect(data.mock).toBe(true);
-        });
+    pit('should resolve promise with mock data', async () => {
+        const data = await mockInstance.request();
+
+        expect(data.mock).toBe(true);
     });
 });

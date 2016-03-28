@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ProductsActions from './../../actions/products/products.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import debounce from 'lodash.debounce';
+import {debounce} from 'lodash';
 
 class ProductsSearchUnwrapped extends Component {
     constructor(props) {

@@ -1,9 +1,9 @@
 'use strict';
 
 const Router = require('express').Router;
-const ProductController = require('./products.controller.js');
+const ProductsController = require('./products.controller.js');
 
-const productsCtrl = new ProductController();
+const productsCtrl = new ProductsController();
 let router = Router();
 
 router
