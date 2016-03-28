@@ -18,18 +18,29 @@ describe('ProductsController', () => {
         expect(instance.res).toBe(null);
     });
 
-    pit('should call find model method', async () => {
+    pit('should call find model method and then send response', async () => {
         let expectData = [{a: 1}, {a: 2}];
 
-        ProductModelWrapper.find = jest.fn(() => {
-            return new Promise((resolve, reject) => {
-                resolve(expectData);
-            });
+        ProductModelWrapper.query = jest.fn(() => {
+            return Promise.resolve(expectData);
         });
 
         await instance.get();
 
-        expect(ProductModelWrapper.find).toBeCalled();
+        expect(ProductModelWrapper.query).toBeCalledWith('find');
         expect(instance._sendRes).toBeCalledWith(expectData);
+    });
+
+    pit('should throw exception', async () => {
+        let expectData = {};
+
+        ProductModelWrapper.query = jest.fn(() => {
+            return Promise.reject(expectData);
+        });
+
+        await instance.get();
+
+        expect(ProductModelWrapper.query).toBeCalled();
+        expect(instance._sendRes.mock.calls.length).toBe(0);
     });
 });

@@ -2,26 +2,14 @@
 
 const Product = require('./product.model');
 
-class ProductModelWrapper {
+module.exports = {
     create(data) {
         return new Product(data);
-    }
+    },
 
-    find() {
-        return Product.find.apply(Product, arguments);
-    }
+    query(method) {
+        let args = arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : undefined;
 
-    findOne() {
-        return Product.findOne.apply(Product, arguments);
+        return Product[method].apply(Product, args);
     }
-
-    remove() {
-        return Product.remove.apply(Product, arguments);
-    }
-
-    update() {
-        return Product.update.apply(Product, arguments)
-    }
-}
-
-module.exports = new ProductModelWrapper();
+};

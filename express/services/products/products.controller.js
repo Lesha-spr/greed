@@ -18,7 +18,7 @@ module.exports = class ProductsController {
     get(req, res, next) {
         this.res = res;
 
-        ProductModelWrapper.find()
+        ProductModelWrapper.query('find')
             .then(this._sendRes)
             .catch(err => {
                 console.log(err);
@@ -52,7 +52,7 @@ module.exports = class ProductsController {
     delete(req, res, next) {
         this.res = res;
 
-        ProductModelWrapper.findOne({_id: req.params.id})
+        ProductModelWrapper.query('findOne', {_id: req.params.id})
             .then(this._destroyFile)
             .then(this._removeProduct)
             .then(this._sendRes)
@@ -78,11 +78,11 @@ module.exports = class ProductsController {
     _updateProduct(data) {
         data = this._prepareData(data);
 
-        return ProductModelWrapper.update({_id: data._id}, data);
+        return ProductModelWrapper.query('update', {_id: data._id}, data);
     }
 
     _removeProduct(product) {
-        return ProductModelWrapper.remove({_id: product._id});
+        return ProductModelWrapper.query('remove', {_id: product._id});
     }
 
     _parseForm(req) {
