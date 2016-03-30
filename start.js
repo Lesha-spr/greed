@@ -1,8 +1,7 @@
-const nodemon = require('nodemon');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 if (NODE_ENV === 'development') {
-    nodemon({
+    require('nodemon')({
         script: './bin/www',
         restartable: 'rs',
         ignore: [
@@ -20,9 +19,7 @@ if (NODE_ENV === 'development') {
             NODE_ENV: 'development'
         },
         ext: 'js json'
-    });
-
-    nodemon.on('start', function() {
+    }).on('start', function() {
         console.log('App has started');
     }).on('quit', function() {
         console.log('App has quit');
