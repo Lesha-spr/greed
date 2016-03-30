@@ -107,7 +107,7 @@ module.exports = class ProductsController {
 
         return new Promise((resolve, reject) => {
             Promise.all(uploadPromises).then(() => {
-                //resolve(data.formData);
+                resolve(data.formData);
             });
         });
     }
