@@ -1,7 +1,6 @@
 'use strict';
 
 const multiparty = require('multiparty');
-const fs = require('fs');
 
 const parseForm = (req) => {
     return new Promise((resolve, reject) => {

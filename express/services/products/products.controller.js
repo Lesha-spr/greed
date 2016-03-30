@@ -94,7 +94,7 @@ module.exports = class ProductsController {
                 };
 
                 resolve(data);
-            });
+            }).catch(reject);
         });
     }
 
@@ -108,7 +108,7 @@ module.exports = class ProductsController {
         return new Promise((resolve, reject) => {
             Promise.all(uploadPromises).then(() => {
                 resolve(data.formData);
-            });
+            }).catch(reject);
         });
     }
 
@@ -128,7 +128,7 @@ module.exports = class ProductsController {
         return new Promise((resolve, reject) => {
             cloudinaryAPI.delete(product.image.public_id).then(() => {
                 resolve(product);
-            });
+            }).catch(reject);
         });
     }
 
@@ -139,7 +139,7 @@ module.exports = class ProductsController {
                     formData[name].push(result);
 
                     resolve(result);
-                });
+                }).catch(reject);
             } else {
                 resolve();
             }
