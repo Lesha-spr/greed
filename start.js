@@ -16,7 +16,7 @@ if (NODE_ENV === 'development') {
             'express/'
         ],
         env: {
-            NODE_ENV: 'development'
+            NODE_ENV: NODE_ENV
         },
         ext: 'js json'
     }).on('start', function() {
