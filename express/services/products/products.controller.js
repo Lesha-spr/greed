@@ -107,7 +107,7 @@ module.exports = class ProductsController {
 
         return new Promise((resolve, reject) => {
             Promise.all(uploadPromises).then(() => {
-                resolve(data.formData);
+                //resolve(data.formData);
             });
         });
     }
@@ -118,7 +118,7 @@ module.exports = class ProductsController {
         formData[name] = [];
 
         data.files[name].forEach(file => {
-            promises.push(this._uploadSingeFile(formData, name, file));
+            promises.push(this._uploadSingleFile(formData, name, file));
         });
 
         return promises;
@@ -132,7 +132,7 @@ module.exports = class ProductsController {
         });
     }
 
-    _uploadSingeFile(formData, name, file) {
+    _uploadSingleFile(formData, name, file) {
         return new Promise((resolve, reject) => {
             if (file.size) {
                 cloudinaryAPI.upload(file.path).then(result => {
