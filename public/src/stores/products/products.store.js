@@ -1,5 +1,5 @@
 import alt from './../../alt';
-import querySearch from '../../helpers/querySearch/querySearch.js';
+import querySearch from 'query-search';
 import ProductsActions from './../../actions/products/products.actions.js';
 import {ProductsSource} from './../../sources/products/products.source.js';
 import immutable from 'alt-utils/lib/ImmutableUtil';
