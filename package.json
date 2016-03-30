@@ -5,7 +5,7 @@
   "author": "Oleksii An",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node start",
     "test": "jest",
     "postinstall": "webpack"
   },
@@ -58,6 +58,7 @@
     "lodash.debounce": "^4.0.3",
     "motion-ui": "^1.2.2",
     "node-sass": "^3.4.2",
+    "nodemon": "^1.9.1",
     "object-sort": "0.0.6",
     "parse-route": "0.0.1",
     "qs": "^6.1.0",
