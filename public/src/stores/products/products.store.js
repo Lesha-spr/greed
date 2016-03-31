@@ -9,7 +9,7 @@ export class ProductsStore {
     constructor() {
         this.state = Immutable.Map({
             products: Immutable.List(),
-            showQuery: false,
+            query: '',
             queryProducts: Immutable.List(),
             shouldFetch: true,
             isOpenModal: false,
@@ -81,11 +81,11 @@ export class ProductsStore {
             title: query
         }, schema, this.state.toJS().products);
 
-        this.setState(this.state.set('queryProducts', Immutable.fromJS(products)).set('showQuery', Boolean(query)));
+        this.setState(this.state.set('queryProducts', Immutable.fromJS(products)).set('query', query));
     }
 
     onClearQuery() {
-        this.setState(this.state.set('queryProducts', Immutable.List()).set('showQuery', false));
+        this.setState(this.state.set('queryProducts', Immutable.List()).set('query', ''));
     }
 
     _populateQueryProducts(products) {

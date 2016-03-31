@@ -37,7 +37,7 @@ export class ProductsUnwrapped extends Component {
     }
 
     render() {
-        let products = this.props.showQuery ? this.props.queryProducts : this.props.products;
+        let products = this.props.query ? this.props.queryProducts : this.props.products;
         let modal = this.props.alert ? <ProductsAlert product={this.props.product}/> : <ProductsEdit product={this.props.product}/>;
 
         return <div className='products'>
@@ -47,7 +47,7 @@ export class ProductsUnwrapped extends Component {
             <Modal onRequestClose={ProductsActions.closeModal} isOpen={this.props.isOpenModal} style={modalStyles}>
                 {modal}
             </Modal>
-            {this.props.showQuery && !products.length ? <h4>Not found</h4> : null}
+            {this.props.query && !products.length ? <h4>Not found by <b>&laquo;{this.props.query}&raquo;</b></h4> : null}
             <ReactCSSTransitionGroup className='row small-up-1 medium-up-2 large-up-3' transitionName='mui-zoom' transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={500}>
                 {products.map(product => <ProductsItem key={product._id} product={product}/>)}
             </ReactCSSTransitionGroup>
