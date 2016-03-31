@@ -1,10 +1,9 @@
 @import "~susy/sass/susy";
-@import "~foundation-sites/scss/util/util";
-@import "foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @import "~motion-ui/motion-ui";
 
 @import "foundation/reveal";
+@import "foundation/settings";
 
 @include foundation-everything;
 @include motion-ui-transitions;
