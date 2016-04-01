@@ -2,8 +2,17 @@
 
 .menu {
 
-  .active {
-    background: $primary-color;
-    color: white;
+  &.menu_main {
+    a {
+      &:hover {
+        background: rgba(#000, 0.05);
+      }
+
+      &.active {
+        background: $primary-color;
+        color: white;
+      }
+
+    }
   }
 }

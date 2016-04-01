@@ -4,7 +4,7 @@ import './_menu.scss';
 
 class Menu extends Component {
     render() {
-        return <ul className="menu vertical">
+        return <ul className="menu menu_main vertical">
             <li><Link to='/admin/start/products' activeClassName='active'>Products</Link></li>
             <li><Link to='/admin/start/categories' activeClassName='active'>Categories</Link></li>
             <li><Link to='/admin/start/boxes' activeClassName='active'>Boxes</Link></li>

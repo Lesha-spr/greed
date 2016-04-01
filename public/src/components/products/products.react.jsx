@@ -48,7 +48,7 @@ export class ProductsUnwrapped extends Component {
                 {modal}
             </Modal>
             {this.props.query && !products.length ? <h4>Not found by <b>&laquo;{this.props.query}&raquo;</b></h4> : null}
-            <ReactCSSTransitionGroup className='row small-up-1 medium-up-2 large-up-3' transitionName='mui-zoom' transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={500}>
+            <ReactCSSTransitionGroup className='row small-up-2 medium-up-3 large-up-4' transitionName='mui-zoom' transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={500}>
                 {products.map(product => <ProductsItem key={product._id} product={product}/>)}
             </ReactCSSTransitionGroup>
         </div>;

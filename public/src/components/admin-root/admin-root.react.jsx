@@ -19,7 +19,7 @@ class AdminRoot extends Component {
                 </div>
             </div>
             <div className='row'>
-                <div className='large-3 columns sticky-container'>
+                <div className='large-3 columns'>
                     <Menu/>
                 </div>
                 <div className='large-9 columns'>
