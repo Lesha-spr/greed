@@ -7,14 +7,21 @@ export class ProductsTopBarUnwrapped extends Component {
     constructor(props) {
         super(props);
 
+        this.onClick = this.onClick.bind(this);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+
+    onClick(event) {
+        event.preventDefault();
+
+        ProductsActions.upsertProduct({});
     }
 
     render() {
         return <div className='top-bar'>
             <div className='top-bar-left'>
                 <ul className='menu' role='menubar'>
-                    <li><a onClick={ProductsActions.upsertProduct}><i className='fi-plus'></i> Add product</a></li>
+                    <li><a onClick={this.onClick}><i className='fi-plus'></i> Add product</a></li>
                 </ul>
             </div>
             <div className='top-bar-right'>

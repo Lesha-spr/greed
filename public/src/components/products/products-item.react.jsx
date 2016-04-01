@@ -11,11 +11,15 @@ class ProductsItem extends Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
-    alertProduct() {
+    alertProduct(event) {
+        event.preventDefault();
+
         ProductsActions.alertProduct(this.props.product);
     }
 
-    upsertProduct() {
+    upsertProduct(event) {
+        event.preventDefault();
+
         ProductsActions.upsertProduct(this.props.product);
     }
 
@@ -34,5 +38,15 @@ class ProductsItem extends Component {
         </section>;
     }
 }
+
+ProductsItem.propTypes = {
+    product: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        image: PropTypes.shape({
+            secure_url: PropTypes.string.isRequired
+        })
+    }).isRequired
+};
 
 export default ProductsItem;

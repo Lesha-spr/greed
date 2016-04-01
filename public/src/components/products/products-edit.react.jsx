@@ -103,14 +103,16 @@ class ProductsEdit extends Component {
     }
 }
 
-ProductsEdit.defaultProps = {
-    product: {
-        _id: '',
-        title: '',
-        price: '',
-        category: '',
-        image: {}
-    }
+ProductsEdit.propTypes = {
+    product: PropTypes.shape({
+        _id: PropTypes.string,
+        title: PropTypes.string,
+        //category: PropTypes.string,
+        price: PropTypes.number,
+        image: PropTypes.shape({
+            public_id: PropTypes.string
+        })
+    })
 };
 
 export default ProductsEdit;

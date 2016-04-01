@@ -32,6 +32,16 @@ class ProductsAlertUnwrapped extends Component {
     }
 }
 
+ProductsAlertUnwrapped.propTypes = {
+    product: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        image: PropTypes.shape({
+            public_id: PropTypes.string.isRequired
+        })
+    }).isRequired
+};
+
 let ProductsAlert = ProductsAlertUnwrapped;
 
 export default ProductsAlert;
