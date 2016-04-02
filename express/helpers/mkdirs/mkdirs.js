@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const config = require('./../../config/index');
+const config = require('./../../config/private');
 const root = require('app-root-path');
 
 module.exports = (() => {

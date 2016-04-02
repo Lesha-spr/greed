@@ -3,9 +3,9 @@
 const ProductModelWrapper = require('./product.model.wrapper');
 const _ = require('lodash');
 const parseForm = require('./../../helpers/multipartyPromise/multipartyPromise.js');
-const cloudinaryAPI = require('./../../helpers/cloudinaryUploaderPromise/cloudinaryUploaderPromise.js');
+const cloudinary = require('./../../helpers/cloudinary/cloudinary.js');
 const path = require('path');
-const config = require('./../../config/index');
+const config = require('./../../config/private');
 const root = require('app-root-path');
 
 module.exports = class ProductsController {
@@ -126,7 +126,7 @@ module.exports = class ProductsController {
 
     _destroyFile(product) {
         return new Promise((resolve, reject) => {
-            cloudinaryAPI.delete(product.image.public_id).then(() => {
+            cloudinary.delete(product.image.public_id).then(() => {
                 resolve(product);
             }).catch(reject);
         });
@@ -135,7 +135,7 @@ module.exports = class ProductsController {
     _uploadSingleFile(formData, name, file) {
         return new Promise((resolve, reject) => {
             if (file.size) {
-                cloudinaryAPI.upload(file.path).then(result => {
+                cloudinary.upload(file.path).then(result => {
                     formData[name].push(result);
 
                     resolve(result);

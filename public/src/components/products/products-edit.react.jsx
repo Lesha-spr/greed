@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import ProductsActions from './../../actions/products/products.actions.js';
 import {Form, Input, Select, Button} from 'react-validation';
 import serialize from 'form-serialize';
-import config from './../../../../express/config';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class ProductsEdit extends Component {

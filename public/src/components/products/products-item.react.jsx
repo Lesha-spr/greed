@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ProductsActions from './../../actions/products/products.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import cloudinary from './../../helpers/cloudinary/cloudinary.js';
 
 class ProductsItem extends Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class ProductsItem extends Component {
                 </div>
                 <div className='stat'>{this.props.product.price} &#8381;</div>
                 <hr/>
-                <img className='thumbnail' src={this.props.product.image.secure_url} alt={this.props.product.title}/>
+                <img className='thumbnail' src={cloudinary.url(this.props.product.image.public_id, {width: 400, height: 300, crop: 'fill'})} alt={this.props.product.title}/>
             </div>
         </section>;
     }
