@@ -26,8 +26,8 @@ class ProductsItem extends Component {
     render() {
         return <section className='column'>
             <div className='callout'>
-                <h5>{this.props.product.title}</h5>
-                <div className='button-group stacked-for-small'>
+                <h6>{this.props.product.title}</h6>
+                <div className='button-group stacked-for-small small'>
                     <button className='button success' onClick={this.upsertProduct}>Edit</button>
                     <button className='button alert' onClick={this.alertProduct}>Delete</button>
                 </div>
