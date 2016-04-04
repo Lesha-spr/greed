@@ -1,5 +1,5 @@
 import ProductsActions from './../../actions/products/products.actions.js';
-import {API} from './../../APIs/products/products.api.js';
+import {API} from './products.api.js';
 
 export const ProductsSource = {
     performFetch: {

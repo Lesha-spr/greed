@@ -1,5 +1,5 @@
 import CategoriesActions from './../../actions/categories/categories.actions.js';
-import {API} from './../../APIs/categories/categories.api.js';
+import {API} from './categories.api.js';
 
 export const CategoriesSource = {
     performFetch: {

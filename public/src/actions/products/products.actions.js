@@ -1,5 +1,4 @@
 import alt from './../../alt';
-import {API} from './../../APIs/products/products.api.js';
 
 class ProductsActions {
     constructor() {
