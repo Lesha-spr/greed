@@ -28,7 +28,6 @@ export const CategoriesSource = {
                     method: 'post',
                     body: JSON.stringify(data),
                     headers: {
-                        'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     }
                 }
@@ -37,5 +36,5 @@ export const CategoriesSource = {
 
         success: CategoriesActions.successPost,
         error: CategoriesActions.error
-    },
+    }
 };
