@@ -18,7 +18,7 @@ export class DialogStore {
     }
 
     onClose() {
-        this.setState(this.state.set('isOpen', false));
+        this.setState(this.state.set('isOpen', false).set('content', null));
     }
 }
 
