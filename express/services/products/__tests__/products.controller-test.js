@@ -15,15 +15,13 @@ describe('ProductsController', () => {
     });
 
     it('should initialize with null res', () => {
-        expect(instance.res).toBe(null);
+        expect(instance.res).toBeNull();
     });
 
     pit('should throw exception', async () => {
         let expectData = {};
 
-        instance.model.query = jest.fn(() => {
-            return Promise.reject(expectData);
-        });
+        instance.model.query = jest.fn(() => Promise.reject(expectData));
 
         await instance.get();
 
@@ -50,9 +48,7 @@ describe('ProductsController', () => {
     pit('should resolve get flow', async () => {
         let expectData = [{a: 1}, {a: 2}];
 
-        instance.model.query = jest.fn(() => {
-            return Promise.resolve(expectData);
-        });
+        instance.model.query = jest.fn(() => Promise.resolve(expectData));
 
         await instance.get();
 
@@ -61,17 +57,11 @@ describe('ProductsController', () => {
     });
 
     pit('should resolve post flow', async () => {
-        instance._parseForm = jest.fn(() => {
-            return Promise.resolve();
-        });
+        instance._parseForm = jest.fn(() => Promise.resolve());
 
-        instance._uploadStatic = jest.fn(() => {
-            return Promise.resolve();
-        });
+        instance._uploadStatic = jest.fn(() => Promise.resolve());
 
-        instance._saveProduct = jest.fn(() => {
-            return Promise.resolve();
-        });
+        instance._saveProduct = jest.fn(() => Promise.resolve());
 
         await instance.post();
 
@@ -83,17 +73,9 @@ describe('ProductsController', () => {
     });
 
     pit('should resolve put flow', async () => {
-        instance._parseForm = jest.fn(() => {
-            return Promise.resolve();
-        });
-
-        instance._uploadStatic = jest.fn(() => {
-            return Promise.resolve();
-        });
-
-        instance._updateProduct = jest.fn(() => {
-            return Promise.resolve();
-        });
+        instance._parseForm = jest.fn(() => Promise.resolve());
+        instance._uploadStatic = jest.fn(() => Promise.resolve());
+        instance._updateProduct = jest.fn(() => Promise.resolve());
 
         await instance.put();
 
@@ -111,17 +93,9 @@ describe('ProductsController', () => {
             }
         };
 
-        instance.model.query = jest.fn(() => {
-            return Promise.resolve();
-        });
-
-        instance._destroyFile = jest.fn(() => {
-            return Promise.resolve();
-        });
-
-        instance._removeProduct = jest.fn(() => {
-            return Promise.resolve();
-        });
+        instance.model.query = jest.fn(() => Promise.resolve());
+        instance._destroyFile = jest.fn(() => Promise.resolve());
+        instance._removeProduct = jest.fn(() => Promise.resolve());
 
         await instance.delete(mockReq);
 
@@ -139,9 +113,7 @@ describe('ProductsController', () => {
 
         mockFormData[mockName] = [];
 
-        cloudinary.upload = jest.fn(() => {
-            return Promise.resolve();
-        });
+        cloudinary.upload = jest.fn(() => Promise.resolve());
 
         await instance._uploadSingleFile(mockFormData, mockName, mockFile);
 
@@ -155,9 +127,7 @@ describe('ProductsController', () => {
             }
         };
 
-        cloudinary.delete = jest.fn(() => {
-            return Promise.resolve();
-        });
+        cloudinary.delete = jest.fn(() => Promise.resolve());
 
         await instance._destroyFile(mockProduct);
 
@@ -173,9 +143,7 @@ describe('ProductsController', () => {
 
         mockData.files[mockName] = [1, 2, 3];
 
-        instance._uploadSingleFile = jest.fn(() => {
-            return Promise.resolve();
-        });
+        instance._uploadSingleFile = jest.fn(() => Promise.resolve());
 
         instance._uploadFiles(mockData, mockName, mockFormData);
 
