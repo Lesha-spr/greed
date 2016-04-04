@@ -73,11 +73,11 @@ module.exports = class ProductsController {
     _updateProduct(data) {
         data = this._prepareData(data);
 
-        return this.model.query('findByIdAndUpdate', data._id, data);
+        return this.model.query('findByIdAndUpdate', data._id, data, {new: true});
     }
 
     _removeProduct(product) {
-        return this.model.query('remove', {_id: product._id});
+        return this.model.query('findByIdAndRemove', product._id);
     }
 
     _parseForm(req) {

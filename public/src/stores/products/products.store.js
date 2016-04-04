@@ -42,27 +42,38 @@ export class ProductsStore {
         this.getInstance().performPut(product.formData, product.data);
     }
 
-    onSuccessPut() {
-        this.setState(this.state.set('shouldFetch', true));
-        this.getInstance().performFetch();
+    onSuccessPut(product) {
+        let state = this.state.toJS();
+
+        Object.assign(state.products.find(element => element._id === product._id), product);
+
+        this.setState(Immutable.fromJS(state));
     }
 
     onPost(formData) {
         this.getInstance().performPost(formData);
     }
 
-    onSuccessPost() {
-        this.setState(this.state.set('shouldFetch', true));
-        this.getInstance().performFetch();
+    onSuccessPost(product) {
+        let state = this.state.toJS();
+
+        state.products.push(product);
+
+        this.setState(Immutable.fromJS(state));
     }
 
     onDelete(product) {
         this.getInstance().performDelete(product);
     }
 
-    onSuccessDelete() {
-        this.setState(this.state.set('shouldFetch', true));
-        this.getInstance().performFetch();
+    onSuccessDelete(product) {
+        let state = this.state.toJS();
+        let removedProduct = state.products.find(element => element._id === product._id);
+        let removedIndex = state.products.indexOf(removedProduct);
+
+        state.products.splice(removedIndex, 1);
+
+        this.setState(Immutable.fromJS(state));
     }
 
     onQuerySearch(query) {

@@ -5,14 +5,18 @@ import Immutable from 'immutable';
 import WrappedProductsStore, {ProductsStore as UnwrappedProductsStore} from './../products.store.js';
 import ProductsActions from './../../../actions/products/products.actions.js';
 
-const initialState = {
-    products: [],
-    shouldFetch: true,
-    query: '',
-    queryProducts: []
-};
+let initialState;
 
 describe('ProductsStore', () => {
+    beforeEach(() => {
+        initialState = {
+            products: [],
+            shouldFetch: true,
+            query: '',
+            queryProducts: []
+        };
+    });
+
     it('should initialize with default state', () => {
         expect(WrappedProductsStore.getState().toJS()).toEqual(initialState);
     });
@@ -31,18 +35,24 @@ describe('ProductsStore', () => {
 
     it('should listen for a post action', () => {
         let action = ProductsActions.SUCCESS_POST;
-        let data = {};
+        let data = {
+            _id: 1,
+            title: 'title'
+        };
 
         alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS().shouldFetch).toBe(true);
+        expect(WrappedProductsStore.getState().toJS().products[0]).toEqual(data);
     });
 
     it('should listen for a put action', () => {
         let action = ProductsActions.SUCCESS_PUT;
-        let data = {};
+        let data = {
+            _id: 1,
+            title: 'new title'
+        };
 
         alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS().shouldFetch).toBe(true);
+        expect(WrappedProductsStore.getState().toJS().products[0]).toEqual(data);
     });
 
     it('should clear query', () => {
