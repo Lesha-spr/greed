@@ -15,6 +15,10 @@ export class CategoriesStore {
         this.bindActions(CategoriesActions);
     }
 
+    onUpsertCategory(category) {
+        this.setState(this.state.set('category', category));
+    }
+
     onFetch() {
         if (!this.getInstance().isLoading()) {
             this.getInstance().performFetch();

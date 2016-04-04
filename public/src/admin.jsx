@@ -6,6 +6,8 @@ import {render} from 'react-dom';
 import {Router, browserHistory} from 'react-router';
 import {routes} from './router/admin-router.jsx';
 
+import Dialog from './components/dialog/dialog.react.jsx';
+
 import './app.scss';
 
 render(
@@ -13,4 +15,9 @@ render(
         {routes}
     </Router>,
     document.getElementById('app')
+);
+
+render(
+    <Dialog/>,
+    document.getElementById('dialog')
 );

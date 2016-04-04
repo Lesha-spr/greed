@@ -17,11 +17,16 @@ class Categories extends Component {
     constructor(props) {
         super(props);
 
+        this.onClick = this.onClick.bind(this);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     componentDidMount() {
         CategoriesActions.fetch();
+    }
+
+    onClick(event) {
+        event.preventDefault();
     }
 
     render() {
@@ -30,7 +35,7 @@ class Categories extends Component {
             <div className='top-bar'>
                 <div className='top-bar-left'>
                     <ul className='menu' role='menubar'>
-                        <li><a><i className='fi-plus'></i> Add category</a></li>
+                        <li><a onClick={this.onClick}><i className='fi-plus'></i> Add category</a></li>
                     </ul>
                 </div>
             </div>

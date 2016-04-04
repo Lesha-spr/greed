@@ -11,26 +11,19 @@ export class ProductsStore {
             products: Immutable.List(),
             query: '',
             queryProducts: Immutable.List(),
-            shouldFetch: true,
-            isOpenModal: false,
-            alert: false,
-            product: {}
+            shouldFetch: true
         });
 
         this.registerAsync(ProductsSource);
         this.bindActions(ProductsActions);
     }
 
-    onCloseModal() {
-        this.setState(this.state.set('alert', false).set('isOpenModal', false));
-    }
-
     onAlertProduct(product) {
-        this.setState(this.state.set('product', product).set('alert', true).set('isOpenModal', true));
+        this.setState(this.state.set('product', product));
     }
 
     onUpsertProduct(product) {
-        this.setState(this.state.set('product', product).set('isOpenModal', true));
+        this.setState(this.state.set('product', product));
     }
 
     onFetch() {

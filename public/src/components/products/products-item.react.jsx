@@ -1,5 +1,8 @@
 import React, {Component, PropTypes} from 'react';
+import ProductsEdit from './products-edit.react.jsx';
+import ProductsAlert from './product-alert.react.jsx';
 import ProductsActions from './../../actions/products/products.actions.js';
+import DialogActions from './../../actions/dialog/dialog.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import cloudinary from './../../helpers/cloudinary/cloudinary.js';
 
@@ -15,13 +18,13 @@ class ProductsItem extends Component {
     alertProduct(event) {
         event.preventDefault();
 
-        ProductsActions.alertProduct(this.props.product);
+        DialogActions.open(<ProductsAlert product={this.props.product}/>);
     }
 
     upsertProduct(event) {
         event.preventDefault();
 
-        ProductsActions.upsertProduct(this.props.product);
+        DialogActions.open(<ProductsEdit product={this.props.product}/>);
     }
 
     render() {

@@ -17,7 +17,7 @@ module.exports = class ProductsController {
     get(req, res, next) {
         this.res = res;
 
-        this.model.query('find')
+        return this.model.query('find')
             .then(this._sendResponse)
             .catch(err => {
                 console.log(err);
@@ -27,7 +27,7 @@ module.exports = class ProductsController {
     post(req, res, next) {
         this.res = res;
 
-        this._parseForm(req)
+        return this._parseForm(req)
             .then(this._uploadStatic)
             .then(this._saveProduct)
             .then(this._sendResponse)
@@ -39,7 +39,7 @@ module.exports = class ProductsController {
     put(req, res, next) {
         this.res = res;
 
-        this._parseForm(req)
+        return this._parseForm(req)
             .then(this._uploadStatic)
             .then(this._updateProduct)
             .then(this._sendResponse)
@@ -51,7 +51,7 @@ module.exports = class ProductsController {
     delete(req, res, next) {
         this.res = res;
 
-        this.model.query('findById', req.params.id)
+        return this.model.query('findById', req.params.id)
             .then(this._destroyFile)
             .then(this._removeProduct)
             .then(this._sendResponse)

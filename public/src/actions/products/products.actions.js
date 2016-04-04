@@ -3,9 +3,6 @@ import alt from './../../alt';
 class ProductsActions {
     constructor() {
         this.generateActions(
-            'closeModal',
-            'alertProduct',
-            'upsertProduct',
             'fetch',
             'successFetch',
             'delete',

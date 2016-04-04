@@ -65,11 +65,10 @@ describe('ProductsController', () => {
 
         await instance.post();
 
-        await expect(instance._parseForm).toBeCalled();
-        await expect(instance._uploadStatic).toBeCalled();
-        await expect(instance._saveProduct).toBeCalled();
-
-        expect(instance._sendResponse.mock.calls.length).toBe(0);
+        expect(instance._parseForm).toBeCalled();
+        expect(instance._uploadStatic).toBeCalled();
+        expect(instance._saveProduct).toBeCalled();
+        expect(instance._sendResponse).toBeCalled();
     });
 
     pit('should resolve put flow', async () => {
@@ -79,11 +78,10 @@ describe('ProductsController', () => {
 
         await instance.put();
 
-        await expect(instance._parseForm).toBeCalled();
-        await expect(instance._uploadStatic).toBeCalled();
-        await expect(instance._updateProduct).toBeCalled();
-
-        expect(instance._sendResponse.mock.calls.length).toBe(0);
+        expect(instance._parseForm).toBeCalled();
+        expect(instance._uploadStatic).toBeCalled();
+        expect(instance._updateProduct).toBeCalled();
+        expect(instance._sendResponse).toBeCalled();
     });
 
     pit('should resolve delete flow', async () => {
@@ -99,11 +97,8 @@ describe('ProductsController', () => {
 
         await instance.delete(mockReq);
 
-        //await expect(instance._destroyFile).toBeCalled();
-        //await expect(instance._removeProduct).toBeCalled();
-
-        await expect(instance._destroyFile).toBeCalled();
-        console.log(instance._removeProduct.mock.calls);
+        expect(instance._destroyFile).toBeCalled();
+        expect(instance._removeProduct).toBeCalled();
     });
 
     pit('should upload file to cloudinary', async () => {

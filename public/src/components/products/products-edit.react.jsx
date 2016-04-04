@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ProductsActions from './../../actions/products/products.actions.js';
+import DialogActions from './../../actions/dialog/dialog.actions.js';
 import {Form, Input, Select, Button} from 'react-validation';
 import serialize from 'form-serialize';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -42,7 +43,7 @@ class ProductsEdit extends Component {
             ProductsActions.post(formData);
         }
 
-        ProductsActions.closeModal();
+        DialogActions.close();
     }
 
     render() {
@@ -90,12 +91,12 @@ class ProductsEdit extends Component {
                     <div className='medium-6 columns'>
                         <div className='button-group'>
                             <Button className='success button' type='submit' value='Submit'/>
-                            <button className='alert button' type='reset' onClick={ProductsActions.closeModal}>Cancel</button>
+                            <button className='alert button' type='reset' onClick={DialogActions.close}>Cancel</button>
                         </div>
                     </div>
                 </div>
             </Form>
-            <button className='close-button' type='button' onClick={ProductsActions.closeModal}>
+            <button className='close-button' type='button' onClick={DialogActions.close}>
                 <span aria-hidden='true'>&times;</span>
             </button>
         </div>;

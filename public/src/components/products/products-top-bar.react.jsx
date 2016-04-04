@@ -1,4 +1,6 @@
 import React, {Component, PropTypes} from 'react';
+import ProductsEdit from './products-edit.react.jsx';
+import DialogActions from './../../actions/dialog/dialog.actions.js';
 import ProductsSearch from './products-search.react.jsx';
 import ProductsActions from './../../actions/products/products.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -14,7 +16,7 @@ export class ProductsTopBarUnwrapped extends Component {
     onClick(event) {
         event.preventDefault();
 
-        ProductsActions.upsertProduct({});
+        DialogActions.open(<ProductsEdit product={this.props.product}/>);
     }
 
     render() {

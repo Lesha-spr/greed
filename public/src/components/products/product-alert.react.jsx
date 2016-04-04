@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ProductsActions from './../../actions/products/products.actions.js';
+import DialogActions from './../../actions/dialog/dialog.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class ProductsAlertUnwrapped extends Component {
@@ -14,7 +15,7 @@ class ProductsAlertUnwrapped extends Component {
         event.preventDefault();
 
         ProductsActions.delete(this.props.product);
-        ProductsActions.closeModal();
+        DialogActions.close();
     }
 
     render() {
@@ -23,9 +24,9 @@ class ProductsAlertUnwrapped extends Component {
             <p>Are you sure you want to delete <b>&laquo;{this.props.product.title}&raquo;</b>?</p>
             <div className='button-group'>
                 <button type='submit' className='alert button'>Delete</button>
-                <a className='secondary button' onClick={ProductsActions.closeModal}>Cancel</a>
+                <a className='secondary button' onClick={DialogActions.close}>Cancel</a>
             </div>
-            <button className='close-button' type='button' onClick={ProductsActions.closeModal}>
+            <button className='close-button' type='button' onClick={DialogActions.close}>
                 <span aria-hidden='true'>&times;</span>
             </button>
         </form>;

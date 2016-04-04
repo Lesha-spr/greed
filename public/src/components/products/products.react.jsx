@@ -4,8 +4,7 @@ import Modal from 'react-modal';
 import modalStyles from './modalStyles.js';
 import ProductsTopBar from './products-top-bar.react.jsx';
 import ProductsItem from './products-item.react.jsx';
-import ProductsEdit from './products-edit.react.jsx';
-import ProductsAlert from './product-alert.react.jsx';
+import DialogActions from './../../actions/dialog/dialog.actions.js';
 import ProductsActions from './../../actions/products/products.actions.js';
 import ProductsStore from './../../stores/products/products.store.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -38,15 +37,11 @@ export class ProductsUnwrapped extends Component {
 
     render() {
         let products = this.props.query ? this.props.queryProducts : this.props.products;
-        let modal = this.props.alert ? <ProductsAlert product={this.props.product}/> : <ProductsEdit product={this.props.product}/>;
 
         return <div className='products'>
             <h3>Products</h3>
-            <ProductsTopBar/>
+            <ProductsTopBar {...this.props}/>
             <hr/>
-            <Modal onRequestClose={ProductsActions.closeModal} isOpen={this.props.isOpenModal} style={modalStyles}>
-                {modal}
-            </Modal>
             {this.props.query && !products.length ? <h4>Not found by <b>&laquo;{this.props.query}&raquo;</b></h4> : null}
             <ReactCSSTransitionGroup className='row small-up-2 medium-up-3 large-up-4' transitionName='mui-zoom' transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={500}>
                 {products.map(product => <ProductsItem key={product._id} product={product}/>)}
