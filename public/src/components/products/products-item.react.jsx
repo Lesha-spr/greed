@@ -5,7 +5,7 @@ import DialogActions from './../../actions/dialog/dialog.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import cloudinary from './../../helpers/cloudinary/cloudinary.js';
 
-class ProductsItem extends Component {
+export class ProductsItemUnwrapped extends Component {
     constructor(props) {
         super(props);
 
@@ -42,7 +42,7 @@ class ProductsItem extends Component {
     }
 }
 
-ProductsItem.propTypes = {
+ProductsItemUnwrapped.propTypes = {
     product: PropTypes.shape({
         _id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
@@ -51,5 +51,7 @@ ProductsItem.propTypes = {
         })
     }).isRequired
 };
+
+let ProductsItem = ProductsItemUnwrapped;
 
 export default ProductsItem;

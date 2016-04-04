@@ -1,12 +1,14 @@
 import React, {Component, PropTypes} from 'react';
 import CategoriesActions from './../../actions/categories/categories.actions.js';
 import CategoriesStore from './../../stores/categories/categories.store.js';
+import CategoriesTopBar from './categories-top-bar.react.jsx';
+import CategoriesItem from './categories-item.react.jsx';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import connectToStores from 'alt-utils/lib/connectToStores';
 
 import './_categories.scss';
 
-class Categories extends Component {
+export class CategoriesUnwrapped extends Component {
     static getStores(props) {
         return [CategoriesStore];
     }
@@ -33,20 +35,15 @@ class Categories extends Component {
     render() {
         return <div className='categories'>
             <h3>Categories</h3>
-            <div className='top-bar'>
-                <div className='top-bar-left'>
-                    <ul className='menu' role='menubar'>
-                        <li><a onClick={this.onClick}><i className='fi-plus'></i> Add category</a></li>
-                    </ul>
-                </div>
+            <CategoriesTopBar/>
+            <hr/>
+            <div className='row small-up-2 medium-up-3 large-up-4'>
+                {this.props.categories.map(category => <CategoriesItem key={category._id} category={category}/>)}
             </div>
-            <section className='row'>
-                {this.props.categories.map(category => <article key={category._id}>{category.title}</article>)}
-            </section>
         </div>;
     }
 }
 
-Categories = connectToStores(Categories);
+let Categories = connectToStores(CategoriesUnwrapped);
 
 export default Categories;

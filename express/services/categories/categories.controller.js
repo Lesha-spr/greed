@@ -23,7 +23,14 @@ module.exports = class CategoriesController {
             .then(this._sendResponse);
     }
 
-    post() {}
+    post(req, res, next) {
+        this.res = res;
+
+        this.model.query('create', req.body)
+            .then(this._sendResponse).catch(error => {
+                console.log(error);
+            });
+    }
 
     put() {}
 };

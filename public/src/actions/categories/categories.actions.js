@@ -3,9 +3,10 @@ import alt from './../../alt';
 class CategoriesActions {
     constructor() {
         this.generateActions(
-            'upsertCategory',
             'fetch',
             'successFetch',
+            'post',
+            'successPost',
             'error'
         );
     }

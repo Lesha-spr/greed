@@ -5,7 +5,7 @@ import {Form, Input, Select, Button} from 'react-validation';
 import serialize from 'form-serialize';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-class ProductsEdit extends Component {
+export class ProductsEditUnwrapped extends Component {
     constructor(props) {
         super(props);
 
@@ -102,7 +102,7 @@ class ProductsEdit extends Component {
     }
 }
 
-ProductsEdit.propTypes = {
+ProductsEditUnwrapped.propTypes = {
     product: PropTypes.shape({
         _id: PropTypes.string,
         title: PropTypes.string,
@@ -115,9 +115,11 @@ ProductsEdit.propTypes = {
     categories: PropTypes.array
 };
 
-ProductsEdit.defaultProps = {
+ProductsEditUnwrapped.defaultProps = {
     product: {},
     categories: []
 };
+
+let ProductsEdit = ProductsEditUnwrapped;
 
 export default ProductsEdit;

@@ -15,10 +15,6 @@ export class CategoriesStore {
         this.bindActions(CategoriesActions);
     }
 
-    onUpsertCategory(category) {
-        this.setState(this.state.set('category', category));
-    }
-
     onFetch() {
         if (!this.getInstance().isLoading()) {
             this.getInstance().performFetch();
@@ -27,6 +23,15 @@ export class CategoriesStore {
 
     onSuccessFetch(categories) {
         this.setState(this.state.set('categories', Immutable.fromJS(categories)).set('shouldFetch', false));
+    }
+
+    onPost(data) {
+        this.getInstance().performPost(data);
+    }
+
+    onSuccessPost() {
+        this.setState(this.state.set('shouldFetch', true));
+        this.getInstance().performFetch();
     }
 }
 

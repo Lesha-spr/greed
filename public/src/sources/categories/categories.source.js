@@ -19,5 +19,23 @@ export const CategoriesSource = {
         shouldFetch(state) {
             return state.toJS().shouldFetch;
         }
-    }
+    },
+
+    performPost: {
+        remote(state, data) {
+            return API.request({
+                init: {
+                    method: 'post',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                }
+            }).then(response => response.json());
+        },
+
+        success: CategoriesActions.successPost,
+        error: CategoriesActions.error
+    },
 };
