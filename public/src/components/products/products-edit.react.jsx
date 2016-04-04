@@ -115,4 +115,8 @@ ProductsEdit.propTypes = {
     })
 };
 
+ProductsEdit.defaultProps = {
+    product: {}
+};
+
 export default ProductsEdit;
