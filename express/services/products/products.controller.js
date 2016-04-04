@@ -5,9 +5,6 @@ const Product = require('./product.model.js');
 const _ = require('lodash');
 const parseForm = require('./../../helpers/multipartyPromise/multipartyPromise.js');
 const cloudinary = require('./../../helpers/cloudinary/cloudinary.js');
-const path = require('path');
-const config = require('./../../config/private');
-const root = require('app-root-path');
 
 module.exports = class ProductsController {
     constructor() {
@@ -30,7 +27,7 @@ module.exports = class ProductsController {
     post(req, res, next) {
         this.res = res;
 
-        this._parseForm(req, config.imagePath)
+        this._parseForm(req)
             .then(this._uploadStatic)
             .then(this._saveProduct)
             .then(this._sendResponse)
@@ -42,7 +39,7 @@ module.exports = class ProductsController {
     put(req, res, next) {
         this.res = res;
 
-        this._parseForm(req, config.imagePath)
+        this._parseForm(req)
             .then(this._uploadStatic)
             .then(this._updateProduct)
             .then(this._sendResponse)
