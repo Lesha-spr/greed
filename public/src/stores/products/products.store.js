@@ -2,6 +2,7 @@ import alt from './../../alt';
 import querySearch from 'query-search';
 import ProductsActions from './../../actions/products/products.actions.js';
 import {ProductsSource} from './../../sources/products/products.source.js';
+import {remove} from 'lodash';
 import immutable from 'alt-utils/lib/ImmutableUtil';
 import Immutable from 'immutable';
 
@@ -68,10 +69,8 @@ export class ProductsStore {
 
     onSuccessDelete(product) {
         let state = this.state.toJS();
-        let removedProduct = state.products.find(element => element._id === product._id);
-        let removedIndex = state.products.indexOf(removedProduct);
 
-        state.products.splice(removedIndex, 1);
+        remove(state.products, element => element._id === product._id);
 
         this.setState(Immutable.fromJS(state));
     }
