@@ -24,7 +24,7 @@ class ProductsItem extends Component {
     upsertProduct(event) {
         event.preventDefault();
 
-        DialogActions.open(<ProductsEdit product={this.props.product}/>);
+        DialogActions.open(<ProductsEdit product={this.props.product} categories={this.props.categories}/>);
     }
 
     render() {

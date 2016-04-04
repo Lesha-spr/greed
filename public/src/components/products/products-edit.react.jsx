@@ -76,8 +76,7 @@ class ProductsEdit extends Component {
                         <label>Category
                             <Select value={this.props.product.category} name='category'>
                                 <option value=''>Choose Product Category</option>
-                                <option value='Kyiv'>Kyiv</option>
-                                <option value='London'>London</option>
+                                {this.props.categories.map(category => <option key={category._id} value={category._id}>{category.title}</option>)}
                             </Select>
                         </label>
                     </div>
@@ -112,11 +111,13 @@ ProductsEdit.propTypes = {
         image: PropTypes.shape({
             public_id: PropTypes.string
         })
-    })
+    }),
+    categories: PropTypes.array
 };
 
 ProductsEdit.defaultProps = {
-    product: {}
+    product: {},
+    categories: []
 };
 
 export default ProductsEdit;
