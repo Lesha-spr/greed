@@ -5,10 +5,6 @@ module.exports = class ModelWrapper {
         this.Model = Model;
     }
 
-    create(data) {
-        return new this.Model(data);
-    }
-
     query(method) {
         let args = arguments.length > 1 ? Array.prototype.slice.call(arguments, 1) : undefined;
 

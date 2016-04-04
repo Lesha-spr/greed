@@ -54,7 +54,7 @@ module.exports = class ProductsController {
     delete(req, res, next) {
         this.res = res;
 
-        this.model.query('findOne', {_id: req.params.id})
+        this.model.query('findById', req.params.id)
             .then(this._destroyFile)
             .then(this._removeProduct)
             .then(this._sendResponse)
@@ -68,19 +68,15 @@ module.exports = class ProductsController {
     }
 
     _saveProduct(data) {
-        let product;
-
         data = this._prepareData(data);
 
-        product = this.model.create(data);
-
-        return product.save();
+        return this.model.query('create', data);
     }
 
     _updateProduct(data) {
         data = this._prepareData(data);
 
-        return this.model.query('update', {_id: data._id}, data);
+        return this.model.query('findByIdAndUpdate', data._id, data);
     }
 
     _removeProduct(product) {
