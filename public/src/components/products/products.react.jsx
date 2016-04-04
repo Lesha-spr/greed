@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ProductsTopBar from './products-top-bar.react.jsx';
 import ProductsItem from './products-item.react.jsx';
-import DialogActions from './../../actions/dialog/dialog.actions.js';
 import ProductsActions from './../../actions/products/products.actions.js';
 import ProductsStore from './../../stores/products/products.store.js';
 import CategoriesActions from './../../actions/categories/categories.actions.js';

@@ -5,7 +5,6 @@ import Modal from 'react-modal';
 import modalStyles from './modalStyles.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import connectToStores from 'alt-utils/lib/connectToStores';
-import Immutable from 'immutable';
 import classNames from 'classnames';
 
 export class DialogUnwrapped extends Component {

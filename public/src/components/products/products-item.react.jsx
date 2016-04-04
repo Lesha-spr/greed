@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ProductsEdit from './products-edit.react.jsx';
 import ProductsAlert from './product-alert.react.jsx';
-import ProductsActions from './../../actions/products/products.actions.js';
 import DialogActions from './../../actions/dialog/dialog.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import cloudinary from './../../helpers/cloudinary/cloudinary.js';

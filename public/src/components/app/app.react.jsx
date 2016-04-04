@@ -1,10 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import {NavLink} from './../nav-link/nav-link.react.jsx';
-import Menu from './../menu/menu.react.jsx';
 import AsyncStore from './../../stores/async/async.store.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import connectToStores from 'alt-utils/lib/connectToStores';
-import Immutable from 'immutable';
 import classNames from 'classnames';
 import './_app.scss';
 
