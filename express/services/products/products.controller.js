@@ -1,6 +1,7 @@
 'use strict';
 
-const ProductModelWrapper = require('./product.model.wrapper');
+const ModelWrapper = require('./../../helpers/modelWrapper/model-wrapper.js');
+const Product = require('./product.model.js');
 const _ = require('lodash');
 const parseForm = require('./../../helpers/multipartyPromise/multipartyPromise.js');
 const cloudinary = require('./../../helpers/cloudinary/cloudinary.js');
@@ -11,15 +12,16 @@ const root = require('app-root-path');
 module.exports = class ProductsController {
     constructor() {
         this.res = null;
+        this.model = new ModelWrapper(Product);
 
-        _.bindAll(this, '_sendRes', '_uploadStatic', '_uploadFiles', '_destroyFile', '_saveProduct', '_updateProduct', '_removeProduct');
+        _.bindAll(this, '_sendResponse', '_uploadStatic', '_uploadFiles', '_destroyFile', '_saveProduct', '_updateProduct', '_removeProduct');
     }
 
     get(req, res, next) {
         this.res = res;
 
-        ProductModelWrapper.query('find')
-            .then(this._sendRes)
+        this.model.query('find')
+            .then(this._sendResponse)
             .catch(err => {
                 console.log(err);
             });
@@ -31,7 +33,7 @@ module.exports = class ProductsController {
         this._parseForm(req, config.imagePath)
             .then(this._uploadStatic)
             .then(this._saveProduct)
-            .then(this._sendRes)
+            .then(this._sendResponse)
             .catch(err => {
                 console.log(err);
             });
@@ -43,7 +45,7 @@ module.exports = class ProductsController {
         this._parseForm(req, config.imagePath)
             .then(this._uploadStatic)
             .then(this._updateProduct)
-            .then(this._sendRes)
+            .then(this._sendResponse)
             .catch(err => {
                 console.log(err);
             });
@@ -52,16 +54,16 @@ module.exports = class ProductsController {
     delete(req, res, next) {
         this.res = res;
 
-        ProductModelWrapper.query('findOne', {_id: req.params.id})
+        this.model.query('findOne', {_id: req.params.id})
             .then(this._destroyFile)
             .then(this._removeProduct)
-            .then(this._sendRes)
+            .then(this._sendResponse)
             .catch(err => {
                 console.log(err);
             });
     }
 
-    _sendRes(data) {
+    _sendResponse(data) {
         this.res.send(data);
     }
 
@@ -70,7 +72,7 @@ module.exports = class ProductsController {
 
         data = this._prepareData(data);
 
-        product = ProductModelWrapper.create(data);
+        product = this.model.create(data);
 
         return product.save();
     }
@@ -78,11 +80,11 @@ module.exports = class ProductsController {
     _updateProduct(data) {
         data = this._prepareData(data);
 
-        return ProductModelWrapper.query('update', {_id: data._id}, data);
+        return this.model.query('update', {_id: data._id}, data);
     }
 
     _removeProduct(product) {
-        return ProductModelWrapper.query('remove', {_id: product._id});
+        return this.model.query('remove', {_id: product._id});
     }
 
     _parseForm(req) {

@@ -3,7 +3,6 @@ require('babel-polyfill');
 jest.unmock('./../products.controller.js');
 
 const ProductsController = require('./../products.controller.js');
-const ProductModelWrapper = require('./../product.model.wrapper');
 const cloudinary = require('./../../../helpers/cloudinary/cloudinary');
 const _ = require('lodash');
 
@@ -12,37 +11,24 @@ let instance;
 describe('ProductsController', () => {
     beforeEach(() => {
         instance = new ProductsController();
-        instance._sendRes = jest.fn();
+        instance._sendResponse = jest.fn();
     });
 
     it('should initialize with null res', () => {
         expect(instance.res).toBe(null);
     });
 
-    pit('should resolve get flow', async () => {
-        let expectData = [{a: 1}, {a: 2}];
-
-        ProductModelWrapper.query = jest.fn(() => {
-            return Promise.resolve(expectData);
-        });
-
-        await instance.get();
-
-        expect(ProductModelWrapper.query).toBeCalledWith('find');
-        expect(instance._sendRes).toBeCalledWith(expectData);
-    });
-
     pit('should throw exception', async () => {
         let expectData = {};
 
-        ProductModelWrapper.query = jest.fn(() => {
+        instance.model.query = jest.fn(() => {
             return Promise.reject(expectData);
         });
 
         await instance.get();
 
-        expect(ProductModelWrapper.query).toBeCalled();
-        expect(instance._sendRes.mock.calls.length).toBe(0);
+        expect(instance.model.query).toBeCalled();
+        expect(instance._sendResponse.mock.calls.length).toBe(0);
     });
 
     it('should convert data object of arrays to object with 0 indexed props', () => {
@@ -59,6 +45,19 @@ describe('ProductsController', () => {
             prop: 1,
             prop2: 1
         });
+    });
+
+    pit('should resolve get flow', async () => {
+        let expectData = [{a: 1}, {a: 2}];
+
+        instance.model.query = jest.fn(() => {
+            return Promise.resolve(expectData);
+        });
+
+        await instance.get();
+
+        expect(instance.model.query).toBeCalledWith('find');
+        expect(instance._sendResponse).toBeCalledWith(expectData);
     });
 
     pit('should resolve post flow', async () => {
@@ -80,7 +79,7 @@ describe('ProductsController', () => {
         await expect(instance._uploadStatic).toBeCalled();
         await expect(instance._saveProduct).toBeCalled();
 
-        expect(instance._sendRes.mock.calls.length).toBe(0);
+        expect(instance._sendResponse.mock.calls.length).toBe(0);
     });
 
     pit('should resolve put flow', async () => {
@@ -102,7 +101,35 @@ describe('ProductsController', () => {
         await expect(instance._uploadStatic).toBeCalled();
         await expect(instance._updateProduct).toBeCalled();
 
-        expect(instance._sendRes.mock.calls.length).toBe(0);
+        expect(instance._sendResponse.mock.calls.length).toBe(0);
+    });
+
+    pit('should resolve delete flow', async () => {
+        let mockReq = {
+            params: {
+                _id: 'id'
+            }
+        };
+
+        instance.model.query = jest.fn(() => {
+            return Promise.resolve();
+        });
+
+        instance._destroyFile = jest.fn(() => {
+            return Promise.resolve();
+        });
+
+        instance._removeProduct = jest.fn(() => {
+            return Promise.resolve();
+        });
+
+        await instance.delete(mockReq);
+
+        //await expect(instance._destroyFile).toBeCalled();
+        //await expect(instance._removeProduct).toBeCalled();
+
+        await expect(instance._destroyFile).toBeCalled();
+        console.log(instance._removeProduct.mock.calls);
     });
 
     pit('should upload file to cloudinary', async () => {
