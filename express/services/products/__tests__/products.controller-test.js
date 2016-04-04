@@ -4,6 +4,7 @@ jest.unmock('./../products.controller.js');
 
 const ProductsController = require('./../products.controller.js');
 const ProductModelWrapper = require('./../product.model.wrapper');
+const cloudinary = require('./../../../helpers/cloudinary/cloudinary');
 const _ = require('lodash');
 
 let instance;
@@ -45,14 +46,14 @@ describe('ProductsController', () => {
     });
 
     it('should convert data object of arrays to object with 0 indexed props', () => {
-        let data = {
+        let mockData = {
             ignoredProp: [],
             title: ['title'],
             prop: [1, 2, 3],
             prop2: [1, 2, 3]
         };
 
-        expect(instance._prepareData(data)).toEqual({
+        expect(instance._prepareData(mockData)).toEqual({
             title: 'title',
             link: `/admin/start/products/title`,
             prop: 1,
@@ -102,5 +103,55 @@ describe('ProductsController', () => {
         await expect(instance._updateProduct).toBeCalled();
 
         expect(instance._sendRes.mock.calls.length).toBe(0);
+    });
+
+    pit('should upload file to cloudinary', async () => {
+        let mockName = 'name';
+        let mockFormData = {};
+        let mockFile = {size: 1, path: 'some/path'};
+
+        mockFormData[mockName] = [];
+
+        cloudinary.upload = jest.fn(() => {
+            return Promise.resolve();
+        });
+
+        await instance._uploadSingleFile(mockFormData, mockName, mockFile);
+
+        expect(cloudinary.upload).toBeCalledWith('some/path');
+    });
+
+    pit('should destroy file from cloudinary', async () => {
+        let mockProduct = {
+            image: {
+                public_id: 'id'
+            }
+        };
+
+        cloudinary.delete = jest.fn(() => {
+            return Promise.resolve();
+        });
+
+        await instance._destroyFile(mockProduct);
+
+        expect(cloudinary.delete).toBeCalledWith('id');
+    });
+
+    it('should upload 3 files', () => {
+        let mockName = 'name';
+        let mockData = {
+            files: {}
+        };
+        let mockFormData = {};
+
+        mockData.files[mockName] = [1, 2, 3];
+
+        instance._uploadSingleFile = jest.fn(() => {
+            return Promise.resolve();
+        });
+
+        instance._uploadFiles(mockData, mockName, mockFormData);
+
+        expect(instance._uploadSingleFile.mock.calls.length).toBe(3);
     });
 });
