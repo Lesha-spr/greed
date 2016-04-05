@@ -3,7 +3,7 @@ import ProductsEdit from './products-edit.react.jsx';
 import ProductsAlert from './product-alert.react.jsx';
 import DialogActions from './../../actions/dialog/dialog.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import cloudinary from './../../helpers/cloudinary/cloudinary.js';
+import {cl as cloudinary, options} from './../../helpers/cloudinary/cloudinary.js';
 
 export class ProductsItemUnwrapped extends Component {
     constructor(props) {
@@ -36,7 +36,7 @@ export class ProductsItemUnwrapped extends Component {
                 </div>
                 <div className='stat'>{this.props.product.price} &#8381;</div>
                 <hr/>
-                <img className='thumbnail' src={cloudinary.url(this.props.product.image.public_id, {width: 400, height: 300, crop: 'fill'})} alt={this.props.product.title}/>
+                <img className='thumbnail' src={cloudinary.url(this.props.product.image.public_id, Object.assign({}, options, {width: 400, height: 300}))} alt={this.props.product.title}/>
             </div>
         </section>;
     }
