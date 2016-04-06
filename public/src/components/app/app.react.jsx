@@ -32,7 +32,7 @@ export class AppUnwrapped extends Component {
 
 AppUnwrapped.propTypes = {
     pending: PropTypes.bool.isRequired,
-    children: PropTypes.element
+    children: PropTypes.arrayOf(PropTypes.element)
 };
 
 const App = connectToStores(AppUnwrapped);

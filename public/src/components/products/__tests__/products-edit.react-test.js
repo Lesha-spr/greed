@@ -19,11 +19,11 @@ const product = {
 
 describe('ProductsEdit', () => {
     it('should populate props on form controls', () => {
-        let productEdit = TestUtils.renderIntoDocument(
-            <ProductsEdit isOpenModal={true} product={product} />
+        let productsEdit = TestUtils.renderIntoDocument(
+            <ProductsEdit product={product} />
         );
 
-        let form = TestUtils.findRenderedDOMComponentWithClass(productEdit, 'products__upsert');
+        let form = TestUtils.findRenderedDOMComponentWithClass(productsEdit, 'products__upsert');
 
         expect(form.elements._id.value).toBe(product._id);
         expect(form.elements.title.value).toBe(product.title);

@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ProductsEdit from './products-edit.react.jsx';
-import ProductsAlert from './product-alert.react.jsx';
+import ProductsAlert from './products-alert.react.jsx';
 import DialogActions from './../../actions/dialog/dialog.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {cl as cloudinary, options} from './../../helpers/cloudinary/cloudinary.js';
@@ -47,7 +47,7 @@ ProductsItemUnwrapped.propTypes = {
         _id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         image: PropTypes.shape({
-            secure_url: PropTypes.string.isRequired
+            public_id: PropTypes.string.isRequired
         })
     }).isRequired
 };

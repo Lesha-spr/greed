@@ -19,7 +19,7 @@ class ProductsAlertUnwrapped extends Component {
     }
 
     render() {
-        return <form onSubmit={this.onSubmit}>
+        return <form className='product__remove' onSubmit={this.onSubmit}>
             <h3>Delete product</h3>
             <p>Are you sure you want to delete <b>&laquo;{this.props.product.title}&raquo;</b>?</p>
             <div className='button-group'>

@@ -24,7 +24,7 @@ describe('App', () => {
 
     it('should render children', () => {
         let app = TestUtils.renderIntoDocument(
-            <AppUnwrapped>
+            <AppUnwrapped pending={false}>
                 <span className='test'>test child</span>
                 <span className='test'>test child</span>
             </AppUnwrapped>
