@@ -4,7 +4,7 @@ import Menu from './../menu/menu.react.jsx';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import './_admin-root.scss';
 
-class AdminRoot extends Component {
+export class AdminRootUnwrapped extends Component {
     constructor(props) {
         super(props);
 
@@ -29,5 +29,9 @@ class AdminRoot extends Component {
         </div>;
     }
 }
+
+AdminRootUnwrapped.propTypes = {};
+
+const AdminRoot = AdminRootUnwrapped;
 
 export default AdminRoot;

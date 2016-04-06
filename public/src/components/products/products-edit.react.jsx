@@ -120,6 +120,6 @@ ProductsEditUnwrapped.defaultProps = {
     categories: []
 };
 
-let ProductsEdit = ProductsEditUnwrapped;
+const ProductsEdit = ProductsEditUnwrapped;
 
 export default ProductsEdit;

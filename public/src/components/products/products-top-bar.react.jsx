@@ -34,6 +34,19 @@ export class ProductsTopBarUnwrapped extends Component {
     }
 }
 
-let ProductsTopBar = ProductsTopBarUnwrapped;
+ProductsTopBarUnwrapped.propTypes = {
+    product: PropTypes.shape({
+        _id: PropTypes.string,
+        title: PropTypes.string,
+        //category: PropTypes.string,
+        price: PropTypes.number,
+        image: PropTypes.shape({
+            public_id: PropTypes.string
+        })
+    }),
+    categories: PropTypes.array
+};
+
+const ProductsTopBar = ProductsTopBarUnwrapped;
 
 export default ProductsTopBar;

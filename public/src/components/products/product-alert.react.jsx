@@ -43,6 +43,6 @@ ProductsAlertUnwrapped.propTypes = {
     }).isRequired
 };
 
-let ProductsAlert = ProductsAlertUnwrapped;
+const ProductsAlert = ProductsAlertUnwrapped;
 
 export default ProductsAlert;

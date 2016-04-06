@@ -29,6 +29,11 @@ export class DialogUnwrapped extends Component {
     }
 }
 
-let Dialog = connectToStores(DialogUnwrapped);
+DialogUnwrapped.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    content: PropTypes.element
+};
+
+const Dialog = connectToStores(DialogUnwrapped);
 
 export default Dialog;

@@ -27,6 +27,8 @@ class ProductsSearchUnwrapped extends Component {
     }
 }
 
-let ProductsSearch = ProductsSearchUnwrapped;
+ProductsSearchUnwrapped.propTypes = {};
+
+const ProductsSearch = ProductsSearchUnwrapped;
 
 export default ProductsSearch;

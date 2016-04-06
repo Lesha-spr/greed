@@ -30,6 +30,11 @@ export class AppUnwrapped extends Component {
     }
 }
 
-let App = connectToStores(AppUnwrapped);
+AppUnwrapped.propTypes = {
+    pending: PropTypes.bool.isRequired,
+    children: PropTypes.element
+};
+
+const App = connectToStores(AppUnwrapped);
 
 export default App;

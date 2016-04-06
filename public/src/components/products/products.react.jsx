@@ -50,6 +50,13 @@ export class ProductsUnwrapped extends Component {
     }
 }
 
-let Products = connectToStores(ProductsUnwrapped);
+ProductsUnwrapped.propTypes = {
+    query: PropTypes.string.isRequired,
+    queryProducts: PropTypes.array.isRequired,
+    categories: PropTypes.array.isRequired,
+    shouldFetch: PropTypes.bool.isRequired
+};
+
+const Products = connectToStores(ProductsUnwrapped);
 
 export default Products;

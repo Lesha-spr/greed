@@ -5,7 +5,7 @@ import serialize from 'form-serialize';
 import {Form, Input, Select, Button} from 'react-validation';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-class CategoriesEdit extends Component {
+export class CategoriesEditUnwrapped extends Component {
     constructor(props) {
         super(props);
 
@@ -51,8 +51,19 @@ class CategoriesEdit extends Component {
     }
 }
 
-CategoriesEdit.defaultProps = {
-    category: {}
+CategoriesEditUnwrapped.propTypes = {
+    category: PropTypes.shape({
+        _id: PropTypes.string,
+        title: PropTypes.string
+    }),
+    categories: PropTypes.array
 };
+
+CategoriesEditUnwrapped.defaultProps = {
+    category: {},
+    categories: []
+};
+
+const CategoriesEdit = CategoriesEditUnwrapped;
 
 export default CategoriesEdit;

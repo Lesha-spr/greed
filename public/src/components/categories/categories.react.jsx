@@ -44,6 +44,10 @@ export class CategoriesUnwrapped extends Component {
     }
 }
 
-let Categories = connectToStores(CategoriesUnwrapped);
+CategoriesUnwrapped.propTypes = {
+    categories: PropTypes.array.isRequired
+};
+
+const Categories = connectToStores(CategoriesUnwrapped);
 
 export default Categories;

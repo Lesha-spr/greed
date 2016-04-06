@@ -52,6 +52,6 @@ ProductsItemUnwrapped.propTypes = {
     }).isRequired
 };
 
-let ProductsItem = ProductsItemUnwrapped;
+const ProductsItem = ProductsItemUnwrapped;
 
 export default ProductsItem;

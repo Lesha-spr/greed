@@ -28,6 +28,8 @@ export class CategoriesTopBarUnwrapped extends Component {
     }
 }
 
-let CategoriesTopBar = CategoriesTopBarUnwrapped;
+CategoriesTopBarUnwrapped.propTypes = {};
+
+const CategoriesTopBar = CategoriesTopBarUnwrapped;
 
 export default CategoriesTopBar;

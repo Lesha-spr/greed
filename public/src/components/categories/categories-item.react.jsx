@@ -24,6 +24,12 @@ export class CategoriesItemUnwrapped extends Component {
     }
 }
 
-let CategoriesItem = CategoriesItemUnwrapped;
+CategoriesItemUnwrapped.propTypes = {
+    category: PropTypes.shape({
+        title: PropTypes.string.isRequired
+    }).isRequired
+};
+
+const CategoriesItem = CategoriesItemUnwrapped;
 
 export default CategoriesItem;
