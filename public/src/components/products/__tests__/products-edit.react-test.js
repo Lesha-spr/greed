@@ -6,6 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import ProductsEdit from './../products-edit.react.jsx';
+import ProductsActions from './../../../actions/products/products.actions.js';
 
 const product = {
     _id: 'id',
@@ -17,21 +18,47 @@ const product = {
     }
 };
 
+let productsEdit, form, inputId, inputTitle, inputPrice, inputImage;
+
 describe('ProductsEdit', () => {
-    it('should populate props on form controls', () => {
-        let productsEdit = TestUtils.renderIntoDocument(
-            <ProductsEdit product={product} />
+    beforeEach(() => {
+        productsEdit = TestUtils.renderIntoDocument(
+            <ProductsEdit product={product}/>
         );
 
-        let form = TestUtils.findRenderedDOMComponentWithClass(productsEdit, 'products__upsert');
+        form = TestUtils.findRenderedDOMComponentWithClass(productsEdit, 'products__upsert');
+        inputId = form.elements._id;
+        inputTitle = form.elements.title;
+        inputPrice = form.elements.price;
+        inputImage = form.elements.image;
+    });
 
-        expect(form.elements._id.value).toBe(product._id);
-        expect(form.elements.title.value).toBe(product.title);
-        expect(form.elements.price.value).toBe(product.price.toString());
+    it('should populate props on form controls', () => {
+        expect(inputId.value).toBe(product._id);
+        expect(inputTitle.value).toBe(product.title);
+        expect(inputPrice.value).toBe(product.price.toString());
         // TODO: test after categories added
         //expect(form.elements.category.value).toBe(product.category);
 
         // NOTE: hacky cause input[type=file] is secured by browser so we can't set value to it
-        expect(form.elements.image.value).toBe('');
+        expect(inputImage.value).toBe('');
+    });
+
+    it('should call put action on editing product submit', () => {
+        TestUtils.Simulate.submit(form);
+
+        expect(ProductsActions.put).toBeCalled();
+    });
+
+    it('should call post action on new product submit', () => {
+        productsEdit = TestUtils.renderIntoDocument(
+            <ProductsEdit />
+        );
+
+        form = TestUtils.findRenderedDOMComponentWithClass(productsEdit, 'products__upsert');
+
+        TestUtils.Simulate.submit(form);
+
+        expect(ProductsActions.post).toBeCalled();
     });
 });
