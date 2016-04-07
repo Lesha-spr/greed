@@ -21,6 +21,9 @@ const schema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    category: {
+        type: Schema.Types.ObjectId
     }
 });
 

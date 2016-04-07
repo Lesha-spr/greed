@@ -74,7 +74,7 @@ export class ProductsEditUnwrapped extends Component {
                 <div className='row'>
                     <div className='medium-6 columns'>
                         <label>Category
-                            <Select value={this.props.product.category} name='category'>
+                            <Select value={this.props.product.category} validations={[{rule: 'isRequired'}]} name='category'>
                                 <option value=''>Choose Product Category</option>
                                 {this.props.categories.map(category => <option key={category._id} value={category._id}>{category.title}</option>)}
                             </Select>
