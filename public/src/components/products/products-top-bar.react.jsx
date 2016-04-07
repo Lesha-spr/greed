@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ProductsEdit from './products-edit.react.jsx';
+import TopBar from './../top-bar/top-bar.react.jsx';
 import DialogActions from './../../actions/dialog/dialog.actions.js';
 import ProductsSearch from './products-search.react.jsx';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -19,18 +20,12 @@ export class ProductsTopBarUnwrapped extends Component {
     }
 
     render() {
-        return <div className='top-bar'>
-            <div className='top-bar-left'>
-                <ul className='menu' role='menubar'>
-                    <li><a onClick={this.onClick}><i className='fi-plus'></i> Add product</a></li>
-                </ul>
-            </div>
-            <div className='top-bar-right'>
-                <ul className='menu'>
-                    <li><ProductsSearch/></li>
-                </ul>
-            </div>
-        </div>;
+        let menu = {
+            leftItems: [<a onClick={this.onClick}><i className='fi-plus'></i> Add product</a>],
+            rightItems: [<ProductsSearch/>]
+        };
+
+        return <TopBar menu={menu}/>;
     }
 }
 

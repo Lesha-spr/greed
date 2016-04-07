@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import CategoriesEdit from './categories-edit.react.jsx';
+import TopBar from './../top-bar/top-bar.react.jsx';
 import DialogActions from './../../actions/dialog/dialog.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
@@ -18,13 +19,11 @@ export class CategoriesTopBarUnwrapped extends Component {
     }
 
     render() {
-        return <div className='top-bar'>
-            <div className='top-bar-left'>
-                <ul className='menu' role='menubar'>
-                    <li><a onClick={this.onClick}><i className='fi-plus'></i> Add category</a></li>
-                </ul>
-            </div>
-        </div>;
+        let menu = {
+            leftItems: [<a onClick={this.onClick}><i className='fi-plus'></i> Add category</a>]
+        };
+
+        return <TopBar menu={menu}/>;
     }
 }
 

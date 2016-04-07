@@ -1,4 +1,5 @@
 jest.unmock('./../products-top-bar.react.jsx');
+jest.unmock('./../../top-bar/top-bar.react.jsx');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
