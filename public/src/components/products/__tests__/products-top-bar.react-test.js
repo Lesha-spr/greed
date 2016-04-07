@@ -24,6 +24,6 @@ describe('ProductsTopBar component', () => {
 
         TestUtils.Simulate.click(addNew);
 
-        expect(DialogActions.open).toBeCalledWith(<ProductsEdit product={product} categories={categories}/>);
+        expect(DialogActions.open).toBeCalledWith(<ProductsEdit hasExistingCategory={true} product={product} categories={categories}/>);
     });
 });
