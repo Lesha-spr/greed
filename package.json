@@ -92,6 +92,7 @@
       "<rootDir>/node_modules/babel-polyfill",
       "<rootDir>/node_modules/whatwg-fetch",
       "<rootDir>/node_modules/alt",
+      "<rootDir>/node_modules/query-search/node_modules",
       "<rootDir>/public/src/alt",
       "<rootDir>/node_modules/alt-utils",
       "<rootDir>/node_modules/immutable",

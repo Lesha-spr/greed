@@ -19,6 +19,12 @@ export class ProductsEditUnwrapped extends Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
+    componentDidMount() {
+        if (!this.props.hasExistingCategory) {
+            this.refs.category.showError('Chosen category was deleted!');
+        }
+    }
+
     onChangeFile(event) {
         let image = (event.target.files && event.target.files.length) ? event.target.files[0].name : '';
 
@@ -74,7 +80,7 @@ export class ProductsEditUnwrapped extends Component {
                 <div className='row'>
                     <div className='medium-6 columns'>
                         <label>Category
-                            <Select value={this.props.product.category} validations={[{rule: 'isRequired'}]} name='category'>
+                            <Select ref='category' value={this.props.hasExistingCategory ? this.props.product.category : ''} validations={[{rule: 'isRequired'}]} name='category'>
                                 <option value=''>Choose Product Category</option>
                                 {this.props.categories.map(category => <option key={category._id} value={category._id}>{category.title}</option>)}
                             </Select>
@@ -106,7 +112,7 @@ ProductsEditUnwrapped.propTypes = {
     product: PropTypes.shape({
         _id: PropTypes.string,
         title: PropTypes.string,
-        //category: PropTypes.string,
+        category: PropTypes.string,
         price: PropTypes.number,
         image: PropTypes.shape({
             public_id: PropTypes.string

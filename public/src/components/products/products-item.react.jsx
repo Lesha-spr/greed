@@ -3,6 +3,8 @@ import ProductsEdit from './products-edit.react.jsx';
 import ProductsAlert from './products-alert.react.jsx';
 import DialogActions from './../../actions/dialog/dialog.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import {some} from 'lodash';
+import classNames from 'classnames';
 import {cl as cloudinary, options} from './../../helpers/cloudinary/cloudinary.js';
 
 export class ProductsItemUnwrapped extends Component {
@@ -12,6 +14,8 @@ export class ProductsItemUnwrapped extends Component {
         this.alertProduct = this.alertProduct.bind(this);
         this.upsertProduct = this.upsertProduct.bind(this);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+
+        this.hasExistingCategory = true;
     }
 
     alertProduct(event) {
@@ -23,12 +27,22 @@ export class ProductsItemUnwrapped extends Component {
     upsertProduct(event) {
         event.preventDefault();
 
-        DialogActions.open(<ProductsEdit product={this.props.product} categories={this.props.categories}/>);
+        DialogActions.open(<ProductsEdit hasExistingCategory={this.hasExistingCategory} product={this.props.product} categories={this.props.categories}/>);
     }
 
     render() {
+        let _this = this;
+        let callout;
+
+        this.hasExistingCategory = some(this.props.categories, {_id: this.props.product.category});
+
+        callout = classNames({
+            'callout': true,
+            'warning': !_this.hasExistingCategory
+        });
+
         return <section className='column'>
-            <div className='callout'>
+            <div className={callout}>
                 <h6>{this.props.product.title}</h6>
                 <div className='button-group stacked-for-small small'>
                     <button className='button success' onClick={this.upsertProduct}>Edit</button>
@@ -46,6 +60,7 @@ ProductsItemUnwrapped.propTypes = {
     product: PropTypes.shape({
         _id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired,
         image: PropTypes.shape({
             public_id: PropTypes.string.isRequired
         })

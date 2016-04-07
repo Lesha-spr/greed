@@ -12,7 +12,7 @@ const product = {
     _id: 'id',
     title: 'title',
     price: 10,
-    //category: 'category',
+    category: 'category',
     image: {
         public_id: 'id'
     }
@@ -32,7 +32,7 @@ describe('ProductsItem component', () => {
 
         TestUtils.Simulate.click(editButton);
 
-        expect(DialogActions.open).toBeCalledWith(<ProductsEdit product={product}/>);
+        expect(DialogActions.open).toBeCalledWith(<ProductsEdit hasExistingCategory={false} product={product}/>);
     });
 
     it('should open edit dialog with alert component on delete button click', () => {
