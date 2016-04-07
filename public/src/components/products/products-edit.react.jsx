@@ -59,7 +59,7 @@ export class ProductsEditUnwrapped extends Component {
             || 'Choose Product Image';
 
         return <div>
-            <h3>Add Product</h3>
+            <h3>Add/Edit Product</h3>
             <Form className='products__upsert' onSubmit={this.onSubmit} encType='multipart/form-data'>
                 <div className='row'>
                     <div className='medium-6 columns'>
