@@ -1,11 +1,11 @@
+@import "~foundation-sites/scss/util/util";
 @import "./../../common/mixins";
 @import "./../../common/vars";
 
 .app {
   height: 100%;
-}
+  padding-top: rem-calc(20px);
 
-.app {
   &_state_pending {
     filter: blur(3px);
 
