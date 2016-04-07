@@ -9,6 +9,7 @@ let router = Router();
 router
     .get('/', categoriesCtrl.get.bind(categoriesCtrl))
     .post('/', categoriesCtrl.post.bind(categoriesCtrl))
-    .put('/:id', categoriesCtrl.put.bind(categoriesCtrl));
+    .put('/:id', categoriesCtrl.put.bind(categoriesCtrl))
+    .delete('/:id', categoriesCtrl.delete.bind(categoriesCtrl));
 
 module.exports = router;

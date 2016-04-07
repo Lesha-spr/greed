@@ -37,7 +37,7 @@ export class CategoriesUnwrapped extends Component {
             <h3>Categories</h3>
             <CategoriesTopBar/>
             <hr/>
-            <div className='row small-up-2 medium-up-3 large-up-4'>
+            <div className='row small-up-1 medium-up-2 large-up-3'>
                 {this.props.categories.map(category => <CategoriesItem key={category._id} category={category}/>)}
             </div>
         </div>;

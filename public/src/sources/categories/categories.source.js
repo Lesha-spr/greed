@@ -56,5 +56,21 @@ export const CategoriesSource = {
 
         success: CategoriesActions.successPut,
         error: CategoriesActions.error
+    },
+
+    performDelete: {
+        remote(state, category) {
+            return API.request({
+                params: {
+                    id: category._id
+                },
+                init: {
+                    method: 'delete'
+                }
+            }).then(response => response.json());
+        },
+
+        success: CategoriesActions.successDelete,
+        error: CategoriesActions.error
     }
 };

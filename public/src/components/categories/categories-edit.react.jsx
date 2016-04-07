@@ -9,8 +9,16 @@ export class CategoriesEditUnwrapped extends Component {
     constructor(props) {
         super(props);
 
+        this.onClick = this.onClick.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+
+    onClick(event) {
+        event.preventDefault();
+
+        CategoriesActions.delete(this.props.category);
+        DialogActions.close();
     }
 
     onSubmit(event) {
@@ -29,6 +37,10 @@ export class CategoriesEditUnwrapped extends Component {
 
     render() {
         let id = this.props.category._id ? <input type='hidden' name='_id' value={this.props.category._id}/> : null;
+        let deleteButton = this.props.category._id ? <div className='medium-6 columns'>
+            <div>Remove category</div>
+            <button onClick={this.onClick} className='button alert'>Delete</button>
+        </div> : null;
 
         return <div>
             <h3>Add Product</h3>
@@ -40,8 +52,7 @@ export class CategoriesEditUnwrapped extends Component {
                             <Input className='ui-input' value={this.props.category.title} name='title' type='text' placeholder='Title'/>
                         </label>
                     </div>
-                    <div className='medium-6 columns'>
-                    </div>
+                    {deleteButton}
                 </div>
                 <div className='row'>
                     <div className='medium-6 columns'>

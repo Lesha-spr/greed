@@ -9,6 +9,8 @@ class CategoriesActions {
             'successPost',
             'put',
             'successPut',
+            'delete',
+            'successDelete',
             'error'
         );
     }

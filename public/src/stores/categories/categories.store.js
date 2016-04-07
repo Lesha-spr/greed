@@ -1,6 +1,7 @@
 import alt from './../../alt';
 import CategoriesActions from './../../actions/categories/categories.actions.js';
 import {CategoriesSource} from './../../sources/categories/categories.source.js';
+import {remove} from 'lodash';
 import immutable from 'alt-utils/lib/ImmutableUtil';
 import Immutable from 'immutable';
 
@@ -45,6 +46,18 @@ export class CategoriesStore {
         let state = this.state.toJS();
 
         Object.assign(state.categories.find(element => element._id === category._id), category);
+
+        this.setState(Immutable.fromJS(state));
+    }
+
+    onDelete(category) {
+        this.getInstance().performDelete(category);
+    }
+
+    onSuccessDelete(category) {
+        let state = this.state.toJS();
+
+        remove(state.categories, element => element._id === category._id);
 
         this.setState(Immutable.fromJS(state));
     }

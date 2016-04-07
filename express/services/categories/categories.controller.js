@@ -35,9 +35,20 @@ module.exports = class CategoriesController {
     put(req, res, next) {
         this.res = res;
 
-        this.model.query('findByIdAndUpdate', req.body._id, req.body, {new: true})
+        return this.model.query('findByIdAndUpdate', req.body._id, req.body, {new: true})
             .then(this._sendResponse).catch(error => {
                 console.log(error);
+            });
+    }
+
+    delete(req, res, next) {
+        this.res = res;
+
+        console.log(req.params);
+        return this.model.query('findByIdAndRemove', req.params.id)
+            .then(this._sendResponse)
+            .catch(err => {
+                console.log(err);
             });
     }
 };
