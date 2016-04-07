@@ -38,7 +38,7 @@ export class CategoriesEditUnwrapped extends Component {
     render() {
         let id = this.props.category._id ? <input type='hidden' name='_id' value={this.props.category._id}/> : null;
         let deleteButton = this.props.category._id ? <div className='medium-6 columns'>
-            <div>Remove category</div>
+            <label>Remove category</label>
             <button onClick={this.onClick} className='button alert'>Delete</button>
         </div> : null;
 
