@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import App from './../app/app.react.jsx';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import './_root.scss';
 
@@ -10,9 +11,9 @@ class Root extends Component {
     }
 
     render() {
-        return <div>
+        return <App>
             Greed
-        </div>;
+        </App>;
     }
 }
 
