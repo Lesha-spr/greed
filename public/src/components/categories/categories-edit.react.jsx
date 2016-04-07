@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import CategoriesAlert from './categories-alert.react.jsx';
 import CategoriesActions from './../../actions/categories/categories.actions.js';
 import DialogActions from './../../actions/dialog/dialog.actions.js';
 import serialize from 'form-serialize';
@@ -17,8 +18,7 @@ export class CategoriesEditUnwrapped extends Component {
     onClick(event) {
         event.preventDefault();
 
-        CategoriesActions.delete(this.props.category);
-        DialogActions.close();
+        DialogActions.open(<CategoriesAlert category={this.props.category}/>);
     }
 
     onSubmit(event) {
@@ -63,7 +63,7 @@ export class CategoriesEditUnwrapped extends Component {
                     </div>
                 </div>
             </Form>
-            <button className='close-button' type='button' onClick={DialogActions.close}>
+            <button className='close-button' type='reset' onClick={DialogActions.close}>
                 <span aria-hidden='true'>&times;</span>
             </button>
         </div>;
