@@ -3,7 +3,6 @@ import ProductsEdit from './products-edit.react.jsx';
 import ProductsAlert from './products-alert.react.jsx';
 import DialogActions from './../../actions/dialog/dialog.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import {some} from 'lodash';
 import classNames from 'classnames';
 import {cl as cloudinary, options} from './../../helpers/cloudinary/cloudinary.js';
 
@@ -14,8 +13,6 @@ export class ProductsItemUnwrapped extends Component {
         this.alertProduct = this.alertProduct.bind(this);
         this.upsertProduct = this.upsertProduct.bind(this);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-
-        this.hasExistingCategory = true;
     }
 
     alertProduct(event) {
@@ -27,18 +24,16 @@ export class ProductsItemUnwrapped extends Component {
     upsertProduct(event) {
         event.preventDefault();
 
-        DialogActions.open(<ProductsEdit hasExistingCategory={this.hasExistingCategory} product={this.props.product} categories={this.props.categories}/>);
+        DialogActions.open(<ProductsEdit hasExistingCategory={this.props.hasExistingCategory} product={this.props.product} categories={this.props.categories}/>);
     }
 
     render() {
         let _this = this;
         let callout;
 
-        this.hasExistingCategory = some(this.props.categories, {_id: this.props.product.category});
-
         callout = classNames({
             'callout': true,
-            'warning': !_this.hasExistingCategory
+            'warning': !_this.props.hasExistingCategory
         });
 
         return <section className='column'>
