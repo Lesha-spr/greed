@@ -19,7 +19,9 @@ export class CategoriesItemUnwrapped extends Component {
 
     render() {
         return <section className='column'>
-            <a onClick={this.onClick}><i className='fi-page-edit'></i> {this.props.category.title}</a>
+            <div className='callout'>
+                <a onClick={this.onClick}><i className='fi-page-edit'></i> {this.props.category.title}</a>
+            </div>
         </section>;
     }
 }
