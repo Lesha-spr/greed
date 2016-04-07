@@ -1,13 +1,13 @@
 'use strict';
 
 const ModelWrapper = require('./../../helpers/modelWrapper/model-wrapper.js');
-const Category = require('./category.model.js');
+const Box = require('./box.model.js');
 const _ = require('lodash');
 
-module.exports = class CategoriesController {
+module.exports = class BoxesController {
     constructor() {
         this.res = null;
-        this.model = new ModelWrapper(Category);
+        this.model = new ModelWrapper(Box);
 
         _.bindAll(this, '_sendResponse');
     }
@@ -20,14 +20,18 @@ module.exports = class CategoriesController {
         this.res = res;
 
         this.model.query('find')
-            .then(this._sendResponse);
+            .then(this._sendResponse)
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     post(req, res, next) {
         this.res = res;
 
         this.model.query('create', req.body)
-            .then(this._sendResponse).catch(error => {
+            .then(this._sendResponse)
+            .catch(error => {
                 console.log(error);
             });
     }
@@ -36,7 +40,8 @@ module.exports = class CategoriesController {
         this.res = res;
 
         return this.model.query('findByIdAndUpdate', req.body._id, req.body, {new: true})
-            .then(this._sendResponse).catch(error => {
+            .then(this._sendResponse)
+            .catch(error => {
                 console.log(error);
             });
     }

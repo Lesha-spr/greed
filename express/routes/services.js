@@ -7,5 +7,6 @@ let router = Router();
 
 router.use('/products', routers.productsRouter);
 router.use('/categories', routers.categoriesRouter);
+router.use('/boxes', routers.boxesRouter);
 
 module.exports = router;
