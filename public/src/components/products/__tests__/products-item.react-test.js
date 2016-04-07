@@ -18,17 +18,17 @@ const product = {
     }
 };
 
-let productsItem;
+let productsItemRendered;
 
-describe('productsItem', () => {
+describe('ProductsItem component', () => {
     beforeEach(() => {
-        productsItem = TestUtils.renderIntoDocument(
+        productsItemRendered = TestUtils.renderIntoDocument(
             <ProductsItem product={product}/>
         );
     });
 
     it('should open edit dialog with edit component on edit button click', () => {
-        let editButton = TestUtils.findRenderedDOMComponentWithClass(productsItem, 'success');
+        let editButton = TestUtils.findRenderedDOMComponentWithClass(productsItemRendered, 'success');
 
         TestUtils.Simulate.click(editButton);
 
@@ -36,7 +36,7 @@ describe('productsItem', () => {
     });
 
     it('should open edit dialog with alert component on delete button click', () => {
-        let alertButton = TestUtils.findRenderedDOMComponentWithClass(productsItem, 'alert');
+        let alertButton = TestUtils.findRenderedDOMComponentWithClass(productsItemRendered, 'alert');
 
         TestUtils.Simulate.click(alertButton);
 

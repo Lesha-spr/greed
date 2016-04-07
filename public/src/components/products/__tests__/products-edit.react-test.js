@@ -18,15 +18,15 @@ const product = {
     }
 };
 
-let productsEdit, form, inputId, inputTitle, inputPrice, inputImage;
+let productsEditRendered, form, inputId, inputTitle, inputPrice, inputImage;
 
-describe('ProductsEdit', () => {
+describe('ProductsEdit component', () => {
     beforeEach(() => {
-        productsEdit = TestUtils.renderIntoDocument(
+        productsEditRendered = TestUtils.renderIntoDocument(
             <ProductsEdit product={product}/>
         );
 
-        form = TestUtils.findRenderedDOMComponentWithClass(productsEdit, 'products__upsert');
+        form = TestUtils.findRenderedDOMComponentWithClass(productsEditRendered, 'products__upsert');
         inputId = form.elements._id;
         inputTitle = form.elements.title;
         inputPrice = form.elements.price;
@@ -51,11 +51,11 @@ describe('ProductsEdit', () => {
     });
 
     it('should call post action on new product submit', () => {
-        productsEdit = TestUtils.renderIntoDocument(
+        productsEditRendered = TestUtils.renderIntoDocument(
             <ProductsEdit />
         );
 
-        form = TestUtils.findRenderedDOMComponentWithClass(productsEdit, 'products__upsert');
+        form = TestUtils.findRenderedDOMComponentWithClass(productsEditRendered, 'products__upsert');
 
         TestUtils.Simulate.submit(form);
 

@@ -18,17 +18,17 @@ const product = {
     }
 };
 
-let productsAlert;
+let productsAlertRendered;
 
-describe('ProductsAlert', () => {
+describe('ProductsAlert component', () => {
     beforeEach(() => {
-        productsAlert = TestUtils.renderIntoDocument(
+        productsAlertRendered = TestUtils.renderIntoDocument(
             <ProductsAlert product={product}/>
         );
     });
 
     it('should close dialog on close button', () => {
-        let closeButton = TestUtils.findRenderedDOMComponentWithClass(productsAlert, 'close-button');
+        let closeButton = TestUtils.findRenderedDOMComponentWithClass(productsAlertRendered, 'close-button');
 
         TestUtils.Simulate.click(closeButton);
 
@@ -36,7 +36,7 @@ describe('ProductsAlert', () => {
     });
 
     it('should close dialog on cancel button', () => {
-        let cancelButton = TestUtils.findRenderedDOMComponentWithClass(productsAlert, 'secondary');
+        let cancelButton = TestUtils.findRenderedDOMComponentWithClass(productsAlertRendered, 'secondary');
 
         TestUtils.Simulate.click(cancelButton);
 
@@ -44,7 +44,7 @@ describe('ProductsAlert', () => {
     });
 
     it('should call delete action and close dialog on submit', () => {
-        let form = TestUtils.findRenderedDOMComponentWithTag(productsAlert, 'form');
+        let form = TestUtils.findRenderedDOMComponentWithTag(productsAlertRendered, 'form');
 
         TestUtils.Simulate.submit(form);
 

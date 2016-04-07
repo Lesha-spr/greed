@@ -6,17 +6,17 @@ import TestUtils from 'react-addons-test-utils';
 import ProductsSearch from './../products-search.react.jsx';
 import ProductsActions from './../../../actions/products/products.actions.js';
 
-let productsSearch;
+let productsSearchRendered;
 
-describe('productsSearch', () => {
+describe('ProductsSearch component', () => {
     beforeEach(() => {
-        productsSearch = TestUtils.renderIntoDocument(
+        productsSearchRendered = TestUtils.renderIntoDocument(
             <ProductsSearch/>
         );
     });
 
     it('should call querySearch action with input value', () => {
-        let search = TestUtils.findRenderedDOMComponentWithTag(productsSearch, 'input');
+        let search = TestUtils.findRenderedDOMComponentWithTag(productsSearchRendered, 'input');
 
         search.value = 'search';
         TestUtils.Simulate.change(search);

@@ -51,6 +51,7 @@ export class ProductsUnwrapped extends Component {
 }
 
 ProductsUnwrapped.propTypes = {
+    products: PropTypes.array.isRequired,
     query: PropTypes.string.isRequired,
     queryProducts: PropTypes.array.isRequired,
     categories: PropTypes.array.isRequired,
