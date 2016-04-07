@@ -6,6 +6,11 @@
       color: #000;
     }
   }
+
+  &_wide {
+    display: block;
+    width: 100%;
+  }
 }
 
 .ui-control-holder {
