@@ -18,14 +18,22 @@ export class CategoriesEditUnwrapped extends Component {
 
         event.preventDefault();
 
-        CategoriesActions.post(data);
+        if (this.props.category._id) {
+            CategoriesActions.put(data);
+        } else {
+            CategoriesActions.post(data);
+        }
+
         DialogActions.close();
     }
 
     render() {
+        let id = this.props.category._id ? <input type='hidden' name='_id' value={this.props.category._id}/> : null;
+
         return <div>
             <h3>Add Product</h3>
             <Form className='category__upsert' onSubmit={this.onSubmit}>
+                {id}
                 <div className='row'>
                     <div className='medium-6 columns'>
                         <label>Title

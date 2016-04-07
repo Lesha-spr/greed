@@ -29,9 +29,24 @@ export class CategoriesStore {
         this.getInstance().performPost(data);
     }
 
-    onSuccessPost() {
-        this.setState(this.state.set('shouldFetch', true));
-        this.getInstance().performFetch();
+    onSuccessPost(category) {
+        let state = this.state.toJS();
+
+        state.categories.push(category);
+
+        this.setState(Immutable.fromJS(state));
+    }
+
+    onPut(data) {
+        this.getInstance().performPut(data);
+    }
+
+    onSuccessPut(category) {
+        let state = this.state.toJS();
+
+        Object.assign(state.categories.find(element => element._id === category._id), category);
+
+        this.setState(Immutable.fromJS(state));
     }
 }
 

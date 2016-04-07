@@ -7,6 +7,8 @@ class CategoriesActions {
             'successFetch',
             'post',
             'successPost',
+            'put',
+            'successPut',
             'error'
         );
     }

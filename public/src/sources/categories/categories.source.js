@@ -36,5 +36,25 @@ export const CategoriesSource = {
 
         success: CategoriesActions.successPost,
         error: CategoriesActions.error
+    },
+
+    performPut: {
+        remote(state, data) {
+            return API.request({
+                params: {
+                    id: data._id
+                },
+                init: {
+                    method: 'put',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            }).then(response => response.json());
+        },
+
+        success: CategoriesActions.successPut,
+        error: CategoriesActions.error
     }
 };

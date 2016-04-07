@@ -32,5 +32,12 @@ module.exports = class CategoriesController {
             });
     }
 
-    put() {}
+    put(req, res, next) {
+        this.res = res;
+
+        this.model.query('findByIdAndUpdate', req.body._id, req.body, {new: true})
+            .then(this._sendResponse).catch(error => {
+                console.log(error);
+            });
+    }
 };
