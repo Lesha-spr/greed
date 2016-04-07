@@ -89,7 +89,7 @@ export class ProductsEditUnwrapped extends Component {
                     <div className='medium-6 columns'>
                         <label htmlFor='file'>{imageLabel}</label>
                         <label htmlFor='file' className='button'>Upload file</label>
-                        <Input name='image' onChange={this.onChangeFile} type='file' id='file' className='show-for-sr'/>
+                        <Input name='image' validations={this.props.validateFile ? [{rule: 'isRequired'}] : null} onChange={this.onChangeFile} type='file' id='file' className='show-for-sr'/>
                     </div>
                 </div>
                 <div className='row'>

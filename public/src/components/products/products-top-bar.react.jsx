@@ -15,7 +15,7 @@ export class ProductsTopBarUnwrapped extends Component {
     onClick(event) {
         event.preventDefault();
 
-        DialogActions.open(<ProductsEdit hasExistingCategory={true} product={this.props.product} categories={this.props.categories}/>);
+        DialogActions.open(<ProductsEdit hasExistingCategory={true} validateFile={true} product={this.props.product} categories={this.props.categories}/>);
     }
 
     render() {
