@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {IndexLink} from 'react-router';
-import App from './../app/app.react.jsx';
+import AppWrapper from '../app-wrapper/app-wrapper.react.jsx';
 import Menu from './../menu/menu.react.jsx';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import './_admin-root.scss';
+import './_admin.scss';
 
 export class AdminRootUnwrapped extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ export class AdminRootUnwrapped extends Component {
     }
 
     render() {
-        return <App>
+        return <AppWrapper>
             <div className='row'>
                 <div className='large-12 columns'>
                     <h1><IndexLink to='/admin' className='ui-link' activeClassName='ui-link_state_active'>Admin</IndexLink></h1>
@@ -27,7 +27,7 @@ export class AdminRootUnwrapped extends Component {
                     {this.props.children}
                 </div>
             </div>
-        </App>;
+        </AppWrapper>;
     }
 }
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
-import Root from './../components/root/root.react.jsx';
+import App from '../components/app/app.react.jsx';
 
 export const routes = (
-    <Route path='/' component={Root}>
-
+    <Route path='/' component={App}>
+        <IndexRoute/>
     </Route>
 );

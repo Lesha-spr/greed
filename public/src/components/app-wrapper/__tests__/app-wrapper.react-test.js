@@ -1,22 +1,22 @@
-jest.unmock('./../app.react.jsx');
+jest.unmock('./../app-wrapper.react.jsx');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import {AppUnwrapped} from './../app.react.jsx';
+import {AppWrapperUnwrapped} from './../app-wrapper.react.jsx';
 
 const pendingClassName = 'app_state_pending';
 
-describe('App', () => {
+describe('AppWrapper component', () => {
     it('should toggle pending className on async actions', () => {
         let app = TestUtils.renderIntoDocument(
-            <AppUnwrapped pending={true}/>
+            <AppWrapperUnwrapped pending={true}/>
         );
 
         expect(ReactDOM.findDOMNode(app).classList.contains(pendingClassName)).toBe(true);
 
         app = TestUtils.renderIntoDocument(
-            <AppUnwrapped pending={false}/>
+            <AppWrapperUnwrapped pending={false}/>
         );
 
         expect(ReactDOM.findDOMNode(app).classList.contains(pendingClassName)).toBe(false);
@@ -24,10 +24,10 @@ describe('App', () => {
 
     it('should render children', () => {
         let app = TestUtils.renderIntoDocument(
-            <AppUnwrapped pending={false}>
+            <AppWrapperUnwrapped pending={false}>
                 <span className='test'>test child</span>
                 <span className='test'>test child</span>
-            </AppUnwrapped>
+            </AppWrapperUnwrapped>
         );
 
         let children = TestUtils.scryRenderedDOMComponentsWithClass(app, 'test');

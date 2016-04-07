@@ -1,0 +1,19 @@
+@import "~foundation-sites/scss/util/util";
+@import "./../../common/mixins";
+@import "./../../common/vars";
+
+.app {
+  height: 100%;
+  padding-top: rem-calc(20px);
+
+  &_state_pending {
+    filter: blur(3px);
+
+    &:after {
+      content: '';
+      position: fixed;
+      @include trbl;
+      z-index: susy-get(root, $z);
+    }
+  }
+}

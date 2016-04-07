@@ -1,19 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import AsyncStore from './../../stores/async/async.store.js';
+import AppWrapper from '../app-wrapper/app-wrapper.react.jsx';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import connectToStores from 'alt-utils/lib/connectToStores';
-import classNames from 'classnames';
 import './_app.scss';
 
-export class AppUnwrapped extends Component {
-    static getStores(props) {
-        return [AsyncStore];
-    }
-
-    static getPropsFromStores(props) {
-        return AsyncStore.getState().toJS();
-    }
-
+class App extends Component {
     constructor(props) {
         super(props);
 
@@ -21,19 +11,10 @@ export class AppUnwrapped extends Component {
     }
 
     render() {
-        let appClassName = classNames({
-            'app': true,
-            'app_state_pending': this.props.pending
-        });
-
-        return <div className={appClassName}>{this.props.children}</div>;
+        return <AppWrapper>
+            Greed
+        </AppWrapper>;
     }
 }
-
-AppUnwrapped.propTypes = {
-    pending: PropTypes.bool.isRequired
-};
-
-const App = connectToStores(AppUnwrapped);
 
 export default App;
