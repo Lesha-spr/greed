@@ -58,7 +58,7 @@ export class ProductsEditUnwrapped extends Component {
                 <div className='row'>
                     <div className='medium-6 columns'>
                         <label>Title
-                            <Input value={this.props.product.title} className='ui-input' validations={[{rule: 'isRequired'}]} name='title' type='text' placeholder='Title'/>
+                            <Input autoComplete='off' value={this.props.product.title} className='ui-input' validations={[{rule: 'isRequired'}]} name='title' type='text' placeholder='Title'/>
                             {id}
                         </label>
                     </div>
@@ -66,7 +66,7 @@ export class ProductsEditUnwrapped extends Component {
                         <label>Price
                             <div className='input-group'>
                                 <span className='input-group-label'>&#8381;</span>
-                                <Input value={this.props.product.price} validations={[{rule: 'isPrice'}]} name='price' className='input-group-field' type='number' placeholder='Price'/>
+                                <Input autoComplete='off' value={this.props.product.price} validations={[{rule: 'isPrice'}]} name='price' className='input-group-field' type='number' placeholder='Price'/>
                             </div>
                         </label>
                     </div>

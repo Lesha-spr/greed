@@ -3,7 +3,7 @@ import CategoriesAlert from './categories-alert.react.jsx';
 import CategoriesActions from './../../actions/categories/categories.actions.js';
 import DialogActions from './../../actions/dialog/dialog.actions.js';
 import serialize from 'form-serialize';
-import {Form, Input, Select, Button} from 'react-validation';
+import {Form, Input, Button} from 'react-validation';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export class CategoriesEditUnwrapped extends Component {
@@ -49,7 +49,7 @@ export class CategoriesEditUnwrapped extends Component {
                 <div className='row'>
                     <div className='medium-6 columns'>
                         <label>Title
-                            <Input className='ui-input' value={this.props.category.title} name='title' type='text' placeholder='Title'/>
+                            <Input autoComplete='off' className='ui-input' value={this.props.category.title} name='title' type='text' placeholder='Title'/>
                         </label>
                     </div>
                     {deleteButton}
