@@ -11,7 +11,9 @@ export class BoxesUnwrapped extends Component {
     }
 
     static getPropsFromStores(props) {
-        return Object.assign(ProductsStore.getState().toJS());
+        return {
+            productsState: ProductsStore.getState().toJS()
+        }
     }
 
     constructor(props) {

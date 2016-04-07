@@ -18,7 +18,10 @@ export class ProductsUnwrapped extends Component {
     }
 
     static getPropsFromStores(props) {
-        return Object.assign(CategoriesStore.getState().toJS(), ProductsStore.getState().toJS());
+        return {
+            productsState: ProductsStore.getState().toJS(),
+            categoriesState: CategoriesStore.getState().toJS()
+        }
     }
 
     constructor(props) {
@@ -37,26 +40,30 @@ export class ProductsUnwrapped extends Component {
     }
 
     render() {
-        let products = this.props.query ? this.props.queryProducts : this.props.products;
+        let products = this.props.productsState.query ? this.props.productsState.queryProducts : this.props.productsState.products;
 
         return <div className='products'>
             <h3>Products</h3>
-            <ProductsTopBar {...this.props}/>
+            <ProductsTopBar {...this.props.productsState}/>
             <hr/>
-            {this.props.query && !products.length ? <h4>Not found by <b>&laquo;{this.props.query}&raquo;</b></h4> : null}
+            {this.props.productsState.query && !products.length ? <h4>Not found by <b>&laquo;{this.props.productsState.query}&raquo;</b></h4> : null}
             <ReactCSSTransitionGroup className='row small-up-2 medium-up-3 large-up-4' transitionName='mui-zoom' transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={500}>
-                {products.map(product => <ProductsItem key={product._id} hasExistingCategory={some(this.props.categories, {_id: product.category})} product={product} categories={this.props.categories}/>)}
+                {products.map(product => <ProductsItem key={product._id} hasExistingCategory={some(this.props.categoriesState.categories, {_id: product.category})} product={product} categories={this.props.categoriesState.categories}/>)}
             </ReactCSSTransitionGroup>
         </div>;
     }
 }
 
 ProductsUnwrapped.propTypes = {
-    products: PropTypes.array.isRequired,
-    query: PropTypes.string.isRequired,
-    queryProducts: PropTypes.array.isRequired,
-    categories: PropTypes.array.isRequired,
-    shouldFetch: PropTypes.bool.isRequired
+    productsState: PropTypes.shape({
+        products: PropTypes.array.isRequired,
+        query: PropTypes.string.isRequired,
+        queryProducts: PropTypes.array.isRequired,
+        shouldFetch: PropTypes.bool.isRequired
+    }),
+    categoriesState: PropTypes.shape({
+        categories: PropTypes.array.isRequired
+    })
 };
 
 const Products = connectToStores(ProductsUnwrapped);
