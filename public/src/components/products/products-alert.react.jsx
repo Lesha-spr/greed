@@ -3,7 +3,7 @@ import ProductsActions from './../../actions/products/products.actions.js';
 import DialogActions from './../../actions/dialog/dialog.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-class ProductsAlertUnwrapped extends Component {
+export class ProductsAlertUnwrapped extends Component {
     constructor(props) {
         super(props);
 

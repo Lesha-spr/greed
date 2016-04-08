@@ -4,7 +4,7 @@ jest.unmock('react-modal');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import ProductsAlert from './../products-alert.react.jsx';
+import {ProductsAlertUnwrapped} from './../products-alert.react.jsx';
 import ProductsActions from './../../../actions/products/products.actions.js';
 import DialogActions from './../../../actions/dialog/dialog.actions.js';
 
@@ -23,7 +23,7 @@ let productsAlertRendered;
 describe('ProductsAlert component', () => {
     beforeEach(() => {
         productsAlertRendered = TestUtils.renderIntoDocument(
-            <ProductsAlert product={product}/>
+            <ProductsAlertUnwrapped product={product}/>
         );
     });
 
