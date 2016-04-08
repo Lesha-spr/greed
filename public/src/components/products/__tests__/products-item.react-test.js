@@ -18,6 +18,8 @@ const product = {
     }
 };
 
+const categories = [];
+
 const hasExistingCategory = true;
 
 let productsItemRendered;
@@ -25,7 +27,7 @@ let productsItemRendered;
 describe('ProductsItem component', () => {
     beforeEach(() => {
         productsItemRendered = TestUtils.renderIntoDocument(
-            <ProductsItem hasExistingCategory={hasExistingCategory} product={product}/>
+            <ProductsItem hasExistingCategory={hasExistingCategory} product={product} categories={categories}/>
         );
     });
 
@@ -34,7 +36,7 @@ describe('ProductsItem component', () => {
 
         TestUtils.Simulate.click(editButton);
 
-        expect(DialogActions.open).toBeCalledWith(<ProductsEdit hasExistingCategory={true} product={product}/>);
+        expect(DialogActions.open).toBeCalledWith(<ProductsEdit hasExistingCategory={true} product={product} categories={categories}/>);
     });
 
     it('should open edit dialog with alert component on delete button click', () => {

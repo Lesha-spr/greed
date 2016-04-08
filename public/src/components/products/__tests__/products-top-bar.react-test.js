@@ -20,7 +20,7 @@ describe('ProductsTopBar component', () => {
         );
     });
 
-    it('should call querySearch action with input value', () => {
+    it('should call open dialog action on add product button click', () => {
         let addNew = TestUtils.findRenderedDOMComponentWithTag(productsTopBarRendered, 'a');
 
         TestUtils.Simulate.click(addNew);

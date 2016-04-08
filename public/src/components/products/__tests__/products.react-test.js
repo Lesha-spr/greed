@@ -8,23 +8,25 @@ import ProductsActions from './../../../actions/products/products.actions.js';
 import CategoriesActions from './../../../actions/categories/categories.actions.js';
 import DialogActions from './../../../actions/dialog/dialog.actions.js';
 
-const products = [];
-const categories = [];
-const query = '';
-const queryProducts = [];
-const shouldFetch = true;
+const productsState = {
+    products: [],
+    query: '',
+    queryProducts: [],
+    shouldFetch: false
+};
+const categoriesState = {
+    categories: []
+};
 
-let productsRendered;
+let productsComponent, productsRendered;
 
 describe('Products component', () => {
     beforeEach(() => {
-
+        productsComponent = <ProductsUnwrapped productsState={productsState} categoriesState={categoriesState}/>;
     });
 
     it('should fetch products and categories on mount', () => {
-        productsRendered = TestUtils.renderIntoDocument(
-            <ProductsUnwrapped shouldFetch={shouldFetch} products={products} categories={categories} query={query} queryProducts={queryProducts}/>
-        );
+        productsRendered = TestUtils.renderIntoDocument(productsComponent);
 
         expect(ProductsActions.fetch).toBeCalled();
         expect(CategoriesActions.fetch).toBeCalled();
@@ -33,7 +35,7 @@ describe('Products component', () => {
     it('should clear query on unmount', () => {
         let container = document.createElement('div');
 
-        ReactDOM.render(<ProductsUnwrapped shouldFetch={shouldFetch} products={products} categories={categories} query={query} queryProducts={queryProducts}/>, container);
+        ReactDOM.render(productsComponent, container);
         ReactDOM.unmountComponentAtNode(container);
 
         expect(ProductsActions.clearQuery).toBeCalled();

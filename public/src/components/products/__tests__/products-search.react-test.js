@@ -15,7 +15,7 @@ describe('ProductsSearch component', () => {
         );
     });
 
-    it('should call querySearch action with input value', () => {
+    it('should call debounced querySearch action with input value', () => {
         let search = TestUtils.findRenderedDOMComponentWithTag(productsSearchRendered, 'input');
 
         search.value = 'search';
