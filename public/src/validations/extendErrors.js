@@ -1,4 +1,5 @@
-import {extendErrors, validator} from 'react-validation';
+import {extendErrors} from 'react-validation';
+import validator from 'validator';
 
 const defaultHintClassName = 'ui-error-hint';
 const defaultContainerClassName = 'ui-control-holder';
