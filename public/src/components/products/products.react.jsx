@@ -44,7 +44,7 @@ export class ProductsUnwrapped extends Component {
 
         return <div className='products'>
             <h3>Products</h3>
-            <ProductsTopBar {...this.props.productsState}/>
+            <ProductsTopBar {...this.props.categoriesState} {...this.props.productsState}/>
             <hr/>
             {this.props.productsState.query && !products.length ? <h4>Not found by <b>&laquo;{this.props.productsState.query}&raquo;</b></h4> : null}
             <ReactCSSTransitionGroup className='row small-up-2 medium-up-3 large-up-4' transitionName='mui-zoom' transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={500}>
