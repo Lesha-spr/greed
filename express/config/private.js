@@ -11,7 +11,11 @@ const config = {
         api_secret: '-xZbnrqwfqtUE8_k0D001wKJbpQ'
     },
     imagePath: 'public/build/i/',
-    outputImagePath: '/build/i/'
+    outputImagePath: '/build/i/',
+    session: {
+        secret: 'someSecret',
+        key: 'sid'
+    }
 };
 
 module.exports = config;
