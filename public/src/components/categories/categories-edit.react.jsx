@@ -44,7 +44,7 @@ export class CategoriesEditUnwrapped extends Component {
 
         return <div>
             <h3>Add/Edit Category</h3>
-            <Form className='category__upsert' onSubmit={this.onSubmit}>
+            <Form onSubmit={this.onSubmit}>
                 {id}
                 <div className='row'>
                     <div className='medium-6 columns'>

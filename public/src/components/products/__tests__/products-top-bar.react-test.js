@@ -4,7 +4,7 @@ jest.unmock('./../../top-bar/top-bar.react.jsx');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import ProductsTopBar from './../products-top-bar.react.jsx';
+import {ProductsTopBarUnwrapped} from './../products-top-bar.react.jsx';
 import ProductsEdit from './../products-edit.react.jsx';
 import DialogActions from './../../../actions/dialog/dialog.actions.js';
 
@@ -16,7 +16,7 @@ let productsTopBarRendered;
 describe('ProductsTopBar component', () => {
     beforeEach(() => {
         productsTopBarRendered = TestUtils.renderIntoDocument(
-            <ProductsTopBar product={product} categories={categories}/>
+            <ProductsTopBarUnwrapped product={product} categories={categories}/>
         );
     });
 

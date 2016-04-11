@@ -60,7 +60,7 @@ export class ProductsEditUnwrapped extends Component {
 
         return <div>
             <h3>Add/Edit Product</h3>
-            <Form className='products__upsert' onSubmit={this.onSubmit} encType='multipart/form-data'>
+            <Form onSubmit={this.onSubmit} encType='multipart/form-data'>
                 <div className='row'>
                     <div className='medium-6 columns'>
                         <label>Title

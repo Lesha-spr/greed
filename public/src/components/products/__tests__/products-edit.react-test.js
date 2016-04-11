@@ -26,7 +26,7 @@ describe('ProductsEdit component', () => {
             <ProductsEdit product={product}/>
         );
 
-        form = TestUtils.findRenderedDOMComponentWithClass(productsEditRendered, 'products__upsert');
+        form = TestUtils.findRenderedDOMComponentWithTag(productsEditRendered, 'form');
         inputId = form.elements._id;
         inputTitle = form.elements.title;
         inputPrice = form.elements.price;
@@ -55,7 +55,7 @@ describe('ProductsEdit component', () => {
             <ProductsEdit />
         );
 
-        form = TestUtils.findRenderedDOMComponentWithClass(productsEditRendered, 'products__upsert');
+        form = TestUtils.findRenderedDOMComponentWithTag(productsEditRendered, 'form');
 
         TestUtils.Simulate.submit(form);
 
