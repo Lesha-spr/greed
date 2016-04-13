@@ -5,6 +5,9 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Router, browserHistory} from 'react-router';
 import {routes} from './router/admin-router.jsx';
+import FastClick from 'fastclick';
+
+FastClick.attach(document.body);
 
 import Dialog from './components/dialog/dialog.react.jsx';
 
@@ -21,3 +24,5 @@ render(
     <Dialog/>,
     document.getElementById('dialog')
 );
+
+//fastClick.attach(document.body);
