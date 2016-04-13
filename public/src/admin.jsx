@@ -24,5 +24,3 @@ render(
     <Dialog/>,
     document.getElementById('dialog')
 );
-
-//fastClick.attach(document.body);
