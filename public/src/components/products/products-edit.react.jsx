@@ -72,7 +72,7 @@ export class ProductsEditUnwrapped extends Component {
                         <label>Price
                             <div className='input-group'>
                                 <span className='input-group-label'>&#8381;</span>
-                                <Input autoComplete='off' value={this.props.product.price} validations={[{rule: 'isPrice'}]} name='price' className='input-group-field' type='number' placeholder='Price'/>
+                                <Input autoComplete='off' value={this.props.product.price} validations={[{rule: 'isRequired'}, {rule: 'isPrice'}]} name='price' className='input-group-field' type='number' placeholder='Price'/>
                             </div>
                         </label>
                     </div>
