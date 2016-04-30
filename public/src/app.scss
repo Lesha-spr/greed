@@ -3,7 +3,8 @@
 
 @import "foundation/reveal";
 @import "foundation/settings";
-@import "foundation/initialize";
+
+@include foundation-everything($flex: true);
 
 @include motion-ui-transitions;
 @include motion-ui-animations;

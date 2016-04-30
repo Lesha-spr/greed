@@ -48,7 +48,8 @@ export class CategoriesEditUnwrapped extends Component {
                 {id}
                 <div className='row'>
                     <div className='medium-6 columns'>
-                        <label>Title
+                        <label>
+                            Title
                             <Input autoComplete='off' className='ui-input' value={this.props.category.title} validations={[{rule: 'isRequired'}]} name='title' type='text' placeholder='Title'/>
                         </label>
                     </div>

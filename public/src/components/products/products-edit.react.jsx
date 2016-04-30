@@ -63,13 +63,15 @@ export class ProductsEditUnwrapped extends Component {
             <Form onSubmit={this.onSubmit} encType='multipart/form-data'>
                 <div className='row'>
                     <div className='medium-6 columns'>
-                        <label>Title
+                        <label>
+                            Title
                             <Input autoComplete='off' value={this.props.product.title} className='ui-input' validations={[{rule: 'isRequired'}]} name='title' type='text' placeholder='Title'/>
                             {id}
                         </label>
                     </div>
                     <div className='medium-6 columns'>
-                        <label>Price
+                        <label>
+                            Price
                             <div className='input-group'>
                                 <span className='input-group-label'>&#8381;</span>
                                 <Input autoComplete='off' value={this.props.product.price} validations={[{rule: 'isRequired'}, {rule: 'isPrice'}]} name='price' className='input-group-field' type='number' placeholder='Price'/>
@@ -79,7 +81,8 @@ export class ProductsEditUnwrapped extends Component {
                 </div>
                 <div className='row'>
                     <div className='medium-6 columns'>
-                        <label>Category
+                        <label>
+                            Category
                             <Select ref='category' value={this.props.hasExistingCategory ? this.props.product.category : ''} validations={[{rule: 'isRequired'}]} name='category'>
                                 <option value=''>Choose Product Category</option>
                                 {this.props.categories.map(category => <option key={category._id} value={category._id}>{category.title}</option>)}
