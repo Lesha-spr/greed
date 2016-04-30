@@ -1,6 +1,4 @@
-@import "../foundation/settings";
-@import "~foundation-sites/scss/foundation";
-@import "~foundation-sites/scss/components/reveal";
+@import "./../foundation/settings";
 
 @include foundation-reveal;
 
