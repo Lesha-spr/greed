@@ -3,6 +3,7 @@ import AsyncStore from './../../stores/async/async.store.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import classNames from 'classnames';
+
 import './_app-wrapper.scss';
 
 export class AppWrapperUnwrapped extends Component {
@@ -34,6 +35,4 @@ AppWrapperUnwrapped.propTypes = {
     pending: PropTypes.bool.isRequired
 };
 
-const AppWrapper = connectToStores(AppWrapperUnwrapped);
-
-export default AppWrapper;
+export const AppWrapper = connectToStores(AppWrapperUnwrapped);

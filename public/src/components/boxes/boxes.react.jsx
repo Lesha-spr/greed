@@ -34,6 +34,4 @@ export class BoxesUnwrapped extends Component {
     }
 }
 
-let Boxes = connectToStores(BoxesUnwrapped);
-
-export default Boxes;
+export const Boxes = connectToStores(BoxesUnwrapped);

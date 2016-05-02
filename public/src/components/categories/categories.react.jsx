@@ -48,6 +48,4 @@ CategoriesUnwrapped.propTypes = {
     categories: PropTypes.array.isRequired
 };
 
-const Categories = connectToStores(CategoriesUnwrapped);
-
-export default Categories;
+export const Categories = connectToStores(CategoriesUnwrapped);

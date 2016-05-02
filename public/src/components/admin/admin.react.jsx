@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {IndexLink} from 'react-router';
-import AppWrapper from '../app-wrapper/app-wrapper.react.jsx';
+import {AppWrapper} from '../app-wrapper/app-wrapper.react.jsx';
 import Menu from './../menu/menu.react.jsx';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+
 import './_admin.scss';
 
 export class AdminRootUnwrapped extends Component {

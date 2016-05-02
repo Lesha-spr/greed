@@ -66,6 +66,4 @@ export class StatisticsUnwrapped extends Component {
 
 StatisticsUnwrapped.propTypes = {};
 
-const Statistics = StatisticsUnwrapped;
-
-export default Statistics;
+export const Statistics = StatisticsUnwrapped;

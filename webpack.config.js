@@ -11,10 +11,12 @@ module.exports = {
         'app': './app.jsx',
         'admin': './admin.jsx'
     },
+
     output: {
-        path: path.join(__dirname + '/public/build'),
-        publicPath: '/build/',
-        filename: '[name].js'
+        path: __dirname + '/public/build',
+        filename: '[name].js',
+        chunkFilename: '[id].chunk.js',
+        publicPath: '/build/'
     },
 
     watch: NODE_ENV === 'development',
