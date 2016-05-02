@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Link} from 'react-router';
+import Link from 'react-router/lib/Link';
 import {Line} from 'react-chartjs';
 
 const data = {

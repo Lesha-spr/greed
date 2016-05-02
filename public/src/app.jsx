@@ -2,7 +2,8 @@ import 'babel-polyfill';
 import 'whatwg-fetch';
 import React from 'react';
 import {render} from 'react-dom';
-import {Router, browserHistory} from 'react-router';
+import Router from 'react-router/lib/Router.js';
+import browserHistory from 'react-router/lib/browserHistory.js';
 import {routes} from './routes/app-router.jsx';
 import FastClick from 'fastclick';
 

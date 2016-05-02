@@ -1,5 +1,6 @@
 import React from 'react';
-import {Route, IndexRoute} from 'react-router';
+import Route from 'react-router/lib/Route.js';
+import IndexRoute from 'react-router/lib/IndexRoute.js';
 
 // Route Handlers
 import Admin from './../components/admin/admin.react.jsx';

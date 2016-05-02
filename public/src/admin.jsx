@@ -3,7 +3,8 @@ import 'whatwg-fetch';
 import './validations/extendErrors.js';
 import React from 'react';
 import {render} from 'react-dom';
-import {Router, browserHistory} from 'react-router';
+import Router from 'react-router/lib/Router.js';
+import browserHistory from 'react-router/lib/browserHistory.js';
 import {routes} from './routes/admin-router.jsx';
 import FastClick from 'fastclick';
 
