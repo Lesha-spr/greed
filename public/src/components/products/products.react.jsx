@@ -66,4 +66,6 @@ ProductsUnwrapped.propTypes = {
     })
 };
 
-export const Products = connectToStores(ProductsUnwrapped);
+const Products = connectToStores(ProductsUnwrapped);
+
+export default Products;
