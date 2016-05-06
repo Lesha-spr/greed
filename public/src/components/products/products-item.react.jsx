@@ -42,6 +42,7 @@ export class ProductsItemUnwrapped extends Component {
                 <div className='button-group stacked-for-small small'>
                     <button className='button success' onClick={this.upsertProduct}>Edit</button>
                     <button className='button alert' onClick={this.alertProduct}>Delete</button>
+                    <span/>
                 </div>
                 <div className='stat'>{this.props.product.price} &#8381;</div>
                 <hr/>
