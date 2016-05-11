@@ -12,7 +12,7 @@ const renderList = (array) => {
 
 export class TopBarUnwrapped extends Component {
     render() {
-        return <div className='top-bar stacked-for-small'>
+        return <div className='top-bar'>
             <div className='top-bar-left'>
                 {renderList(this.props.menu.leftItems)}
             </div>
