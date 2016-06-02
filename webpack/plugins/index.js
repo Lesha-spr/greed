@@ -10,5 +10,5 @@ module.exports = [
 ];
 
 if (NODE_ENV === 'production') {
-    module.exports.plugins.push(require('./uglify'));
+    module.exports.push(require('./uglify'));
 }
