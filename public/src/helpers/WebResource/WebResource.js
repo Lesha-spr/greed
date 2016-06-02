@@ -14,6 +14,6 @@ export class WebResource {
 
         input = Object.keys(query).length ? `${input}?${qs.stringify(query)}` : input;
 
-        return fetch(input, options.init);
+        return window.fetch(input, options.init);
     }
 }

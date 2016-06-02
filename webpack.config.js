@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV || 'development';
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
     context: path.join(__dirname + '/public/src'),
@@ -34,13 +35,15 @@ module.exports = {
             name: 'common',
             minChunks: 2
         }),
-        new ExtractTextPlugin('[name].css', {allChunks: true})
+        new ExtractTextPlugin('[name].css', {allChunks: true}),
+        new webpack.ProvidePlugin({
+            Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
+            fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+        })
     ],
 
     resolve: {
-        alias: {
-            // Paths here
-        }
+
     },
 
     module: {
@@ -50,14 +53,14 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel',
                 query: {
-                    presets: ['react', 'es2015'],
-                    plugins: ['transform-runtime']
+                    presets: [require.resolve('babel-preset-react'), require.resolve('babel-preset-es2015')],
+                    plugins: [require.resolve('babel-plugin-transform-runtime')]
                 }
             },
 
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('css?sourceMap!autoprefixer?browsers=last 3 versions!resolve-url!sass?sourceMap')
+                loader: ExtractTextPlugin.extract('css?sourceMap!postcss-loader!resolve-url!sass?sourceMap')
             },
 
             {
@@ -65,7 +68,11 @@ module.exports = {
                 loader: 'file?name=[path][name].[ext]'
             }
         ]
-    }
+    },
+
+    postcss: [autoprefixer({
+        browsers: ['last 3 versions']
+    })]
 };
 
 if (NODE_ENV === 'production') {

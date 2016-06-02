@@ -1,5 +1,3 @@
-import 'babel-polyfill';
-import 'whatwg-fetch';
 import './validations/extendErrors.js';
 import React from 'react';
 import {render} from 'react-dom';
