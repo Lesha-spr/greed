@@ -49,6 +49,9 @@
     "cloudinary-core": "^2.0.8",
     "css-loader": "^0.23.1",
     "es6-promise": "^3.2.1",
+    "eslint": "^2.11.1",
+    "eslint-loader": "^1.3.0",
+    "eslint-plugin-react": "^5.1.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "fastclick": "^1.0.6",
     "file-loader": "^0.8.5",
@@ -89,6 +92,7 @@
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules",
       "<rootDir>/public/src/alt"
-    ]
+    ],
+    "testRegex": "__tests__/.*test.js$"
   }
 }

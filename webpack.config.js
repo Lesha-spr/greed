@@ -29,8 +29,10 @@ module.exports = {
     plugins: require('./webpack/plugins'),
 
     module: {
-        loaders: require('./webpack/loaders')
+        loaders: require('./webpack/loaders'),
+        preLoaders: require('./webpack/preloaders')
     },
 
-    postcss: require('./webpack/postcss')
+    postcss: require('./webpack/postcss'),
+    eslint: require('./webpack/eslint/.eslintrc.json')
 };
