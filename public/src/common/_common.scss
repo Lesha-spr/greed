@@ -1,3 +1,5 @@
+@import "mixins";
+
 #app {
   min-height: 100%;
 }
@@ -5,3 +7,5 @@
 .row {
   display: block;
 }
+
+@include sticky-footer('.app');

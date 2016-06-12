@@ -30,8 +30,8 @@ export class AuthUnwrapped extends Component {
 
     render() {
         let forms = {
-            loginForm: <AuthLogin {...this.props.authState}/>,
-            registrationForm: <AuthRegistration {...this.props.authState}/>
+            loginForm: this.props.authState.loginForm ? <AuthLogin {...this.props.authState}/> : null,
+            registrationForm: this.props.authState.registrationForm ? <AuthRegistration {...this.props.authState}/> : null
         };
 
         return <div className='auth'>

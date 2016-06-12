@@ -15,11 +15,15 @@ class App extends Component {
     render() {
         return <DocumentTitle title='Greed'>
             <AppWrapper>
+                <header className='header'>
                     <div className='row'>
                         <div className='columns'>
                             {this.props.children}
                         </div>
                     </div>
+                </header>
+                <main className='main'></main>
+                <footer className='footer'></footer>
             </AppWrapper>
         </DocumentTitle>;
     }

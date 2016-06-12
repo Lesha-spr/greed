@@ -17,19 +17,24 @@ export class AdminRootUnwrapped extends Component {
     render() {
         return <DocumentTitle title='Admin'>
             <AppWrapper>
-                <div className='row'>
-                    <div className='columns'>
-                        <h1><IndexLink to='/admin' className='ui-link' activeClassName='ui-link_state_active'>Admin</IndexLink></h1>
+                <header className='header'>
+                    <div className='row'>
+                        <div className='columns'>
+                            <h1><IndexLink to='/admin' className='ui-link' activeClassName='ui-link_state_active'>Admin</IndexLink></h1>
+                        </div>
                     </div>
-                </div>
-                <div className='row'>
-                    <div className='small-12 large-3 columns'>
-                        <Menu/>
+                </header>
+                <main className='main'>
+                    <div className='row'>
+                        <div className='small-12 large-3 columns'>
+                            <Menu/>
+                        </div>
+                        <div className='small-12 large-9 columns'>
+                            {this.props.children}
+                        </div>
                     </div>
-                    <div className='small-12 large-9 columns'>
-                        {this.props.children}
-                    </div>
-                </div>
+                </main>
+                <footer className='footer'></footer>
             </AppWrapper>
         </DocumentTitle>;
     }

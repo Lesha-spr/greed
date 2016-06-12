@@ -1,0 +1,13 @@
+@import "~foundation-sites/scss/foundation";
+
+.ReactModal {
+  &__Body {
+    &--open {
+      overflow: hidden;
+    }
+  }
+
+  &__Content {
+    margin-bottom: rem-calc(100px);
+  }
+}

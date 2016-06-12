@@ -24,10 +24,6 @@ class AuthRegistrationUnwrapped extends Component {
     }
 
     render() {
-        if (!this.props.showForm || !this.props.registrationForm) {
-            return null;
-        }
-
         return <Form autoComplete='off' onSubmit={this.onSubmit.bind(this)}>
             {this.props.registrationForm.form.fields.map(field => {
                 return <div className='row' key={field.name}>
@@ -51,7 +47,18 @@ class AuthRegistrationUnwrapped extends Component {
     }
 }
 
-AuthRegistrationUnwrapped.propTypes = {};
+AuthRegistrationUnwrapped.propTypes = {
+    registrationForm: PropTypes.shape({
+        form: PropTypes.shape({
+            fields: PropTypes.arrayOf(PropTypes.shape({
+                label: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
+                placeholder: PropTypes.string.isRequired,
+                type: PropTypes.string.isRequired
+            }).isRequired).isRequired
+        }).isRequired
+    }).isRequired
+};
 
 const AuthRegistration = AuthRegistrationUnwrapped;
 

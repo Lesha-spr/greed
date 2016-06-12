@@ -7,6 +7,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import classNames from 'classnames';
 
+import './_dialog.scss';
+
 export class DialogUnwrapped extends Component {
     static getStores(props) {
         return [DialogStore];

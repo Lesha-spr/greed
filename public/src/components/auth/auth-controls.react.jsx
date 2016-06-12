@@ -12,7 +12,7 @@ class AuthControlsUnwrapped extends Component {
     }
 
     render() {
-        return this.props.user ? <AuthUserControls/> : <AuthUnauthorizedControls/>
+        return this.props.user ? <AuthUserControls/> : <AuthUnauthorizedControls/>;
     }
 }
 
