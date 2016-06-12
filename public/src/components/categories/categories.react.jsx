@@ -3,6 +3,7 @@ import CategoriesActions from './../../actions/categories/categories.actions.js'
 import CategoriesStore from './../../stores/categories/categories.store.js';
 import CategoriesTopBar from './categories-top-bar.react.jsx';
 import CategoriesItem from './categories-item.react.jsx';
+import DocumentTitle from 'react-document-title';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import connectToStores from 'alt-utils/lib/connectToStores';
 
@@ -33,14 +34,16 @@ export class CategoriesUnwrapped extends Component {
     }
 
     render() {
-        return <div className='categories'>
-            <h3>Categories</h3>
-            <CategoriesTopBar/>
-            <hr/>
-            <div className='row small-up-1 medium-up-2 large-up-3'>
-                {this.props.categories.map(category => <CategoriesItem key={category._id} category={category}/>)}
+        return <DocumentTitle title='Categories'>
+            <div className='categories'>
+                <h3>Categories</h3>
+                <CategoriesTopBar/>
+                <hr/>
+                <div className='row small-up-1 medium-up-2 large-up-3'>
+                    {this.props.categories.map(category => <CategoriesItem key={category._id} category={category}/>)}
+                </div>
             </div>
-        </div>;
+        </DocumentTitle>;
     }
 }
 

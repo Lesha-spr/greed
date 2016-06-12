@@ -8,6 +8,7 @@ export class MenuUnwrapped extends Component {
             <li><Link to='/admin/products' activeClassName='active'>Products</Link></li>
             <li><Link to='/admin/categories' activeClassName='active'>Categories</Link></li>
             <li><Link to='/admin/boxes' activeClassName='active'>Boxes</Link></li>
+            <li><a href='/' activeClassName='active'>To App Homepage</a></li>
         </ul>;
     }
 }

@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Link from 'react-router/lib/Link';
+import DocumentTitle from 'react-document-title';
 import {Line} from 'react-chartjs';
 
 const data = {
@@ -30,37 +31,39 @@ const data = {
 
 export class StatisticsUnwrapped extends Component {
     render() {
-        return <div>
-            <h3>Statistics</h3>
-            <div className='row'>
-                <div className='small-12 medium-6 large-6 column'>
-                    <div className='callout'>
-                        <h3>Some stats</h3>
-                        <Line data={data} options={{responsive: true}}/>
+        return <DocumentTitle title='Statistics'>
+            <div className='statistics'>
+                <h3>Statistics</h3>
+                <div className='row'>
+                    <div className='small-12 medium-6 large-6 column'>
+                        <div className='callout'>
+                            <h3>Some stats</h3>
+                            <Line data={data} options={{responsive: true}}/>
+                        </div>
+                    </div>
+                    <div className='small-12 medium-6 large-6 column'>
+                        <div className='callout'>
+                            <h3>Some stats</h3>
+                            <Line data={data} options={{responsive: true}}/>
+                        </div>
                     </div>
                 </div>
-                <div className='small-12 medium-6 large-6 column'>
-                    <div className='callout'>
-                        <h3>Some stats</h3>
-                        <Line data={data} options={{responsive: true}}/>
+                <div className='row'>
+                    <div className='small-12 medium-6 large-6 column'>
+                        <div className='callout'>
+                            <h3>Some stats</h3>
+                            <Line data={data} options={{responsive: true}}/>
+                        </div>
+                    </div>
+                    <div className='small-12 medium-6 large-6 column'>
+                        <div className='callout'>
+                            <h3>Some stats</h3>
+                            <Line data={data} options={{responsive: true}}/>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className='row'>
-                <div className='small-12 medium-6 large-6 column'>
-                    <div className='callout'>
-                        <h3>Some stats</h3>
-                        <Line data={data} options={{responsive: true}}/>
-                    </div>
-                </div>
-                <div className='small-12 medium-6 large-6 column'>
-                    <div className='callout'>
-                        <h3>Some stats</h3>
-                        <Line data={data} options={{responsive: true}}/>
-                    </div>
-                </div>
-            </div>
-        </div>;
+        </DocumentTitle>;
     }
 }
 

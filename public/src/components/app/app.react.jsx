@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import DocumentTitle from 'react-document-title';
 import {AppWrapper} from '../app-wrapper/app-wrapper.react.jsx';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
@@ -12,13 +13,15 @@ class App extends Component {
     }
 
     render() {
-        return <AppWrapper>
-            <div className='row'>
-                <div className='columns'>
-                    {this.props.children}
-                </div>
-            </div>
-        </AppWrapper>;
+        return <DocumentTitle title='Greed'>
+            <AppWrapper>
+                    <div className='row'>
+                        <div className='columns'>
+                            {this.props.children}
+                        </div>
+                    </div>
+            </AppWrapper>
+        </DocumentTitle>;
     }
 }
 

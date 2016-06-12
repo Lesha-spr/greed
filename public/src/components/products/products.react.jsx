@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import DocumentTitle from 'react-document-title';
 import ProductsTopBar from './products-top-bar.react.jsx';
 import ProductsItem from './products-item.react.jsx';
 import ProductsActions from './../../actions/products/products.actions.js';
@@ -42,15 +43,17 @@ export class ProductsUnwrapped extends Component {
     render() {
         let products = this.props.productsState.query ? this.props.productsState.queryProducts : this.props.productsState.products;
 
-        return <div className='products'>
-            <h3>Products</h3>
-            <ProductsTopBar {...this.props.categoriesState} {...this.props.productsState}/>
-            <hr/>
-            {this.props.productsState.query && !products.length ? <h4>Not found by <b>&laquo;{this.props.productsState.query}&raquo;</b></h4> : null}
-            <ReactCSSTransitionGroup className='row small-up-2 medium-up-3 large-up-4' transitionName='mui-zoom' transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={500}>
-                {products.map(product => <ProductsItem key={product._id} hasExistingCategory={some(this.props.categoriesState.categories, {_id: product.category})} product={product} categories={this.props.categoriesState.categories}/>)}
-            </ReactCSSTransitionGroup>
-        </div>;
+        return <DocumentTitle title='Products'>
+            <div className='products'>
+                <h3>Products</h3>
+                <ProductsTopBar {...this.props.categoriesState} {...this.props.productsState}/>
+                <hr/>
+                {this.props.productsState.query && !products.length ? <h4>Not found by <b>&laquo;{this.props.productsState.query}&raquo;</b></h4> : null}
+                <ReactCSSTransitionGroup className='row small-up-2 medium-up-3 large-up-4' transitionName='mui-zoom' transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={0} transitionLeaveTimeout={500}>
+                    {products.map(product => <ProductsItem key={product._id} hasExistingCategory={some(this.props.categoriesState.categories, {_id: product.category})} product={product} categories={this.props.categoriesState.categories}/>)}
+                </ReactCSSTransitionGroup>
+            </div>
+        </DocumentTitle>;
     }
 }
 
