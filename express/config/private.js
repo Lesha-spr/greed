@@ -10,11 +10,21 @@ const config = {
         api_key: '358543651425887',
         api_secret: '-xZbnrqwfqtUE8_k0D001wKJbpQ'
     },
-    imagePath: 'public/build/i/',
-    outputImagePath: '/build/i/',
-    session: {
-        secret: 'someSecret',
-        key: 'sid'
+    stormpath: {
+        web: {
+            produces: ['application/json']
+        },
+
+        client: {
+            apiKey: {
+                id: process.env.STORMPATH_CLIENT_APIKEY_ID,
+                secret: process.env.STORMPATH_CLIENT_APIKEY_SECRET
+            }
+        },
+
+        application: {
+            href: process.env.STORMPATH_APPLICATION_HREF
+        }
     }
 };
 

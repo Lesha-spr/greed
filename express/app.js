@@ -2,12 +2,11 @@
 
 const express = require('express');
 const path = require('path');
+const stormpath = require('express-stormpath');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const privateConfig = require('./config/private');
-const session = require('express-session');
 //const morgan = require('./morgan/morgan.js');
 const router = require('./routes/');
 const root = require('app-root-path');
@@ -23,22 +22,10 @@ app.set('view engine', 'jade');
 
 app.use(favicon(`${root}/public/favicon.png`));
 app.use(logger('dev'));
+app.use(stormpath.init(app, privateConfig.stormpath));
 // FIXME: uncomment on prod
 //app.use(morgan);
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(session({
-    secret: privateConfig.session.secret,
-    key: privateConfig.session.key,
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-        path: '/',
-        httpOnly: true,
-        maxAge: null
-    }
-}));
 app.use(express.static(`${root}/public`));
 
 app.use('/', router);

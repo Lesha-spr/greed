@@ -19,3 +19,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@mixin sticky-footer($root: body, $expander: ".main") {
+  #{unquote($root)} {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  #{unquote($expander)} {
+    flex: 1;
+  }
+}

@@ -13,7 +13,11 @@ class App extends Component {
 
     render() {
         return <AppWrapper>
-            Greed
+            <div className='row'>
+                <div className='columns'>
+                    {this.props.children}
+                </div>
+            </div>
         </AppWrapper>;
     }
 }

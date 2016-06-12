@@ -13,9 +13,14 @@ const isPrice = {
     rule: value => Number(value) > 0
 };
 
+const isEmail = {
+    message: 'should be email'
+};
+
 export default extendErrors({
     defaultHintClassName,
     defaultContainerClassName,
     isRequired,
-    isPrice
+    isPrice,
+    isEmail
 });

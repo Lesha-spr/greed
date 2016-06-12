@@ -7,13 +7,24 @@ export class WebResource {
         this.defaults = defaults;
     }
 
+    static checkStatus(response) {
+        if (!response.ok) {
+            return Promise.reject(response);
+        } else {
+            return response;
+        }
+    }
+
     request(options = {}) {
         let query = Object.assign({}, this.defaults.query, options.query);
         let params = Object.assign({}, this.defaults.params, options.params);
+        let init = Object.assign({
+            credentials: 'same-origin'
+        }, options.init || {});
         let input = parseRoute(this.api, params);
 
         input = Object.keys(query).length ? `${input}?${qs.stringify(query)}` : input;
 
-        return window.fetch(input, options.init);
+        return fetch(input, init).then(WebResource.checkStatus);
     }
 }

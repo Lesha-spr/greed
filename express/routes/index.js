@@ -2,18 +2,18 @@
 
 const express = require('express');
 const serviceRouter = require('./services.js');
-const authorization = require('./../helpers/auth/index');
+const stormpath = require('express-stormpath');
 
 let router = express.Router();
 
 router.use('/services', serviceRouter);
 
-router.use('/admin*', authorization, (req, res, next) => {
+router.use('/admin*', stormpath.groupsRequired(['Admin']), (req, res, next) => {
     res.render('admin', {title: 'Admin'});
 });
 
 /* SPA bitch! */
-router.get('*', (req, res, next) => {
+router.use('*', (req, res, next) => {
     res.render('index', {title: 'Greed'});
 });
 
