@@ -1,5 +1,4 @@
 import AuthActions from './../../actions/auth/auth.actions.js';
-import axios from 'axios';
 import {API} from './auth.api.js';
 
 export const AuthSource = {
