@@ -73,12 +73,10 @@ export class AuthStore {
         }
     }
 
-    onSuccessLogin(user) {
-        this.setState(this.state.set('user', user).set('showForm', null).set('error', null));
-    }
-
     onLogout() {
-        this.getInstance().performLogout();
+        if (!this.getInstance().isLoading()) {
+            this.getInstance().performLogout();
+        }
     }
 
     onSuccessLogout() {

@@ -11,7 +11,6 @@ class AuthActions {
             'showLoginForm',
             'showRegistrationForm',
             'login',
-            'successLogin',
             'logout',
             'successLogout',
             'registration',

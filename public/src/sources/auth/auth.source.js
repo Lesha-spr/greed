@@ -96,7 +96,7 @@ export const AuthSource = {
             });
         },
 
-        success: AuthActions.successLogin,
+        success: AuthActions.fetchUser,
         error: AuthActions.error
     },
 

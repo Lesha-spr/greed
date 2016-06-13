@@ -12,7 +12,12 @@ const config = {
     },
     stormpath: {
         web: {
-            produces: ['application/json']
+            produces: ['application/json'],
+            me: {
+                expand: {
+                    groups: true
+                }
+            }
         },
 
         client: {
