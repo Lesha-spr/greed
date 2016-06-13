@@ -30,10 +30,10 @@ class AuthRegistrationUnwrapped extends Component {
         return <Form autoComplete='off' onSubmit={this.onSubmit.bind(this)}>
             {this.props.registrationForm.form.fields.map(field => {
                 return <div className='row' key={field.name}>
-                    <div className='column medium-3'>
-                        <label htmlFor={field.name} className='text-right middle'>{field.label}</label>
+                    <div className='column show-for-medium medium-3'>
+                        <label htmlFor={field.name} className='medium-text-right middle'>{field.label}</label>
                     </div>
-                    <div className='column medium-9'>
+                    <div className='column small-12 medium-9'>
                         <Input id={field.name} autoComplete='off' className='ui-input' validations={[{rule: 'isRequired'}]} name={field.name} type={field.type} placeholder={field.placeholder}/>
                     </div>
                 </div>;

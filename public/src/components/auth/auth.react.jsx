@@ -41,7 +41,7 @@ export class AuthUnwrapped extends Component {
 
         return <div className={classnames}>
             <div className='row'>
-                <div className='column medium-6'>
+                <div className='column small-12 medium-6'>
                     <AuthControls {...this.props.authState}/>
                     {!this.props.authState.user ? forms[this.props.authState.showForm] : null}
                 </div>

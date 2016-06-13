@@ -12,8 +12,8 @@ class AuthUserControlsUnwrapped extends Component {
 
     render() {
         return <div className='button-group'>
-            {inGroup(this.props.account, 'Admin') ? <a href='/admin' className='button hollow'>Admin</a> : null}
-            <button onClick={AuthActions.logout} className='button'>Logout</button>
+            {inGroup(this.props.account, 'Admin') ? <a href='/admin' className='button'><span aria-hidden='true'><i className='fi-key'></i></span>&nbsp;&nbsp;Admin</a> : null}
+            <button onClick={AuthActions.logout} className='button'><span aria-hidden='true'><i className='fi-skull'></i></span>&nbsp;&nbsp;Logout</button>
         </div>;
     }
 }

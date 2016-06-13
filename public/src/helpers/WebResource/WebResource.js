@@ -8,10 +8,12 @@ export class WebResource {
     }
 
     static checkStatus(response) {
+        let json = response.json();
+
         if (!response.ok && (response.status < 200 || response.status >= 300)) {
-            return response.json().then(data => Promise.reject(data)).catch(err => Promise.reject(err));
+            return json.then(data => Promise.reject(data)).catch(error => Promise.reject(error));
         } else {
-            return response.json().catch(err => err);
+            return json.catch(error => error);
         }
     }
 

@@ -1,7 +1,8 @@
 import {extendErrors} from 'react-validation';
 import validator from 'validator';
 
-const defaultHintClassName = 'ui-error-hint';
+const defaultInvalidClassName = 'is-invalid-input';
+const defaultHintClassName = 'form-error is-visible';
 const defaultContainerClassName = 'ui-control-holder';
 
 const isRequired = {
@@ -18,6 +19,7 @@ const isEmail = {
 };
 
 export default extendErrors({
+    defaultInvalidClassName,
     defaultHintClassName,
     defaultContainerClassName,
     isRequired,

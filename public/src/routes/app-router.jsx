@@ -8,6 +8,6 @@ import indexRoute from './app/index.route.js';
 
 export const routes = (
     <Route path='/' component={App}>
-        <IndexRoute getComponent={indexRoute}/>
+
     </Route>
 );

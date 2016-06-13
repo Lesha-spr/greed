@@ -11,7 +11,7 @@ class AuthUnauthorizedControlsUnwrapped extends Component {
 
     render() {
         return <div className='button-group'>
-            <button onClick={AuthActions.fetchLoginForm} className='button success'>Sign in</button>
+            <button onClick={AuthActions.fetchLoginForm} className='button'>Sign in</button>
             <button onClick={AuthActions.fetchRegistrationForm} className='button secondary'>Sign up</button>
         </div>;
     }

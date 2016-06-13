@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import IndexLink from 'react-router/lib/IndexLink.js';
+import Header from './../header/header.react.jsx';
+import Footer from './../footer/footer.react.jsx';
 import DocumentTitle from 'react-document-title';
 import {AppWrapper} from '../app-wrapper/app-wrapper.react.jsx';
 import Menu from './../menu/menu.react.jsx';
@@ -17,13 +19,9 @@ export class AdminRootUnwrapped extends Component {
     render() {
         return <DocumentTitle title='Admin'>
             <AppWrapper>
-                <header className='header'>
-                    <div className='row'>
-                        <div className='columns'>
-                            <h1><IndexLink to='/admin' className='ui-link' activeClassName='ui-link_state_active'>Admin</IndexLink></h1>
-                        </div>
-                    </div>
-                </header>
+                <Header>
+                    <h1><IndexLink to='/admin' className='ui-link' activeClassName='ui-link_state_active'>Admin</IndexLink></h1>
+                </Header>
                 <main className='main'>
                     <div className='row'>
                         <div className='small-12 large-3 columns'>
@@ -34,7 +32,7 @@ export class AdminRootUnwrapped extends Component {
                         </div>
                     </div>
                 </main>
-                <footer className='footer'></footer>
+                <Footer></Footer>
             </AppWrapper>
         </DocumentTitle>;
     }

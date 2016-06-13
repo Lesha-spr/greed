@@ -1,0 +1,12 @@
+@import "./../../foundation/settings";
+
+.footer {
+  padding-top: rem-calc(20px);
+  padding-bottom: rem-calc(20px);
+  background: $black;
+
+  &__copy {
+    text-align: center;
+    color: $white;
+  }
+}

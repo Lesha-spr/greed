@@ -47,7 +47,7 @@ export class CategoriesEditUnwrapped extends Component {
             <Form onSubmit={this.onSubmit}>
                 {id}
                 <div className='row'>
-                    <div className='medium-6 columns'>
+                    <div className='small-12 medium-6 columns'>
                         <label>
                             Title
                             <Input autoComplete='off' className='ui-input' value={this.props.category.title} validations={[{rule: 'isRequired'}]} name='title' type='text' placeholder='Title'/>
@@ -56,7 +56,7 @@ export class CategoriesEditUnwrapped extends Component {
                     {deleteButton}
                 </div>
                 <div className='row'>
-                    <div className='medium-6 columns'>
+                    <div className='small-12 medium-6 columns'>
                         <div className='button-group'>
                             <Button className='success button' type='submit' value='Submit'/>
                             <button className='alert button' type='reset' onClick={DialogActions.close}>Cancel</button>

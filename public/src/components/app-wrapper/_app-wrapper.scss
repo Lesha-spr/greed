@@ -3,7 +3,6 @@
 
 .app {
   min-height: 100%;
-  padding-top: rem-calc(20px);
 
   &_state_pending {
     filter: blur(3px);

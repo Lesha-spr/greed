@@ -62,14 +62,14 @@ export class ProductsEditUnwrapped extends Component {
             <h3>Add/Edit Product</h3>
             <Form onSubmit={this.onSubmit} encType='multipart/form-data'>
                 <div className='row'>
-                    <div className='medium-6 columns'>
+                    <div className='small-12 medium-6 columns'>
                         <label>
                             Title
                             <Input autoComplete='off' value={this.props.product.title} className='ui-input' validations={[{rule: 'isRequired'}]} name='title' type='text' placeholder='Title'/>
                             {id}
                         </label>
                     </div>
-                    <div className='medium-6 columns'>
+                    <div className='small-12 medium-6 columns'>
                         <label>
                             Price
                             <div className='input-group'>
@@ -80,7 +80,7 @@ export class ProductsEditUnwrapped extends Component {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='medium-6 columns'>
+                    <div className='small-12 medium-6 columns'>
                         <label>
                             Category
                             <Select ref='category' value={this.props.hasExistingCategory ? this.props.product.category : ''} validations={[{rule: 'isRequired'}]} name='category'>
@@ -89,14 +89,14 @@ export class ProductsEditUnwrapped extends Component {
                             </Select>
                         </label>
                     </div>
-                    <div className='medium-6 columns'>
+                    <div className='small-12 medium-6 columns'>
                         <label htmlFor='file'>{imageLabel}</label>
                         <label htmlFor='file' className='button'>Upload file</label>
                         <Input name='image' validations={this.props.validateFile ? [{rule: 'isRequired'}] : null} onChange={this.onChangeFile} type='file' id='file' className='show-for-sr'/>
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='medium-6 columns'>
+                    <div className='small-12 medium-6 columns'>
                         <div className='button-group'>
                             <Button className='success button' type='submit' value='Submit'/>
                             <button className='alert button' type='reset' onClick={DialogActions.close}>Cancel</button>
