@@ -10,7 +10,9 @@ export class AuthStore {
             showForm: null,
             user: null,
             loginForm: null,
-            registrationForm: null
+            registrationForm: null,
+            error: null,
+            isFetched: false
         });
 
         this.registerAsync(AuthSource);
@@ -18,7 +20,7 @@ export class AuthStore {
     }
 
     onClear() {
-        this.setState(this.state.set('showForm', null));
+        this.setState(this.state.set('showForm', null).set('error', null));
     }
 
     onFetchUser() {
@@ -26,12 +28,16 @@ export class AuthStore {
     }
 
     onSuccessFetchUser(user) {
-        this.setState(this.state.set('user', user));
+        this.setState(this.state.set('user', user).set('isFetched', true));
+    }
+
+    onErrorFetchUser(error) {
+        this.setState(this.state.set('error', error instanceof Error ? null : error).set('isFetched', true));
     }
 
     onFetchLoginForm() {
         if (!this.getInstance().isLoading()) {
-            this.setState(this.state.set('showForm', 'loginForm'));
+            this.setState(this.state.set('showForm', 'loginForm').set('error', null));
             this.getInstance().performFetchLoginForm();
         }
     }
@@ -42,7 +48,7 @@ export class AuthStore {
 
     onFetchRegistrationForm() {
         if (!this.getInstance().isLoading()) {
-            this.setState(this.state.set('showForm', 'registrationForm'));
+            this.setState(this.state.set('showForm', 'registrationForm').set('error', null));
             this.getInstance().performFetchRegistrationForm();
         }
     }
@@ -58,7 +64,7 @@ export class AuthStore {
     }
 
     onSuccessRegistration() {
-        this.setState(this.state.set('showForm', null));
+        this.setState(this.state.set('showForm', null).set('error', null));
     }
 
     onLogin(user) {
@@ -68,7 +74,7 @@ export class AuthStore {
     }
 
     onSuccessLogin(user) {
-        this.setState(this.state.set('user', user).set('showForm', null));
+        this.setState(this.state.set('user', user).set('showForm', null).set('error', null));
     }
 
     onLogout() {
@@ -80,7 +86,9 @@ export class AuthStore {
     }
 
     onError(error) {
-        console.log(error);
+        if (!(error instanceof Error)) {
+            this.setState(this.state.set('error', error));
+        }
     }
 }
 

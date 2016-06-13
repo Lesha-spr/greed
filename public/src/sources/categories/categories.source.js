@@ -4,7 +4,7 @@ import {API} from './categories.api.js';
 export const CategoriesSource = {
     performFetch: {
         remote() {
-            return API.request().then(response => response.json());
+            return API.request();
         },
 
         local(state) {
@@ -31,7 +31,7 @@ export const CategoriesSource = {
                         'Content-Type': 'application/json'
                     }
                 }
-            }).then(response => response.json());
+            });
         },
 
         success: CategoriesActions.successPost,
@@ -51,7 +51,7 @@ export const CategoriesSource = {
                         'Content-Type': 'application/json'
                     }
                 }
-            }).then(response => response.json());
+            });
         },
 
         success: CategoriesActions.successPut,
@@ -67,7 +67,7 @@ export const CategoriesSource = {
                 init: {
                     method: 'delete'
                 }
-            }).then(response => response.json());
+            });
         },
 
         success: CategoriesActions.successDelete,

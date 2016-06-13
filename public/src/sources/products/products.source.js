@@ -4,7 +4,7 @@ import {API} from './products.api.js';
 export const ProductsSource = {
     performFetch: {
         remote() {
-            return API.request().then(response => response.json());
+            return API.request();
         },
 
         local(state) {
@@ -28,7 +28,7 @@ export const ProductsSource = {
                     method: 'post',
                     body: formData
                 }
-            }).then(response => response.json());
+            });
         },
 
         success: ProductsActions.successPost,
@@ -45,7 +45,7 @@ export const ProductsSource = {
                     method: 'put',
                     body: formData
                 }
-            }).then(response => response.json());
+            });
         },
 
         success: ProductsActions.successPut,
@@ -61,7 +61,7 @@ export const ProductsSource = {
                 init: {
                     method: 'delete'
                 }
-            }).then(response => response.json());
+            });
         },
 
         success: ProductsActions.successDelete,

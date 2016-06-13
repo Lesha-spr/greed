@@ -18,6 +18,7 @@ class AuthActions {
             'successRegistration',
             'fetchUser',
             'successFetchUser',
+            'errorFetchUser',
             'error'
         );
     }

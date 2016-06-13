@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import AuthActions from './../../actions/auth/auth.actions.js';
 import {Form, Input, Button} from 'react-validation';
+import ErrorCallout from './../error/error-callout.react.jsx';
 import serialize from 'form-serialize';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
@@ -24,6 +25,8 @@ class AuthRegistrationUnwrapped extends Component {
     }
 
     render() {
+        let error = this.props.error ? <ErrorCallout {...this.props.error}/> : null;
+
         return <Form autoComplete='off' onSubmit={this.onSubmit.bind(this)}>
             {this.props.registrationForm.form.fields.map(field => {
                 return <div className='row' key={field.name}>
@@ -37,6 +40,7 @@ class AuthRegistrationUnwrapped extends Component {
             })}
             <div className='row'>
                 <div className='column medium-9 medium-offset-3'>
+                    {error}
                     <div className='button-group'>
                         <Button className='button success' type='submit' value='Sign Up'/>
                         <button onClick={this.onClear.bind(this)} className='button alert'>Cancel</button>

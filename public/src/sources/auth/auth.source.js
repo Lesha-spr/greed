@@ -1,4 +1,5 @@
 import AuthActions from './../../actions/auth/auth.actions.js';
+import axios from 'axios';
 import {API} from './auth.api.js';
 
 export const AuthSource = {
@@ -18,7 +19,7 @@ export const AuthSource = {
                     method: 'post',
                     body: JSON.stringify(body)
                 }
-            }).then(response => response.json());
+            });
         },
 
         success: AuthActions.successRegistration,
@@ -40,7 +41,7 @@ export const AuthSource = {
                     headers: headers,
                     method: 'get'
                 }
-            }).then(response => response.json());
+            });
         },
 
         local(state) {
@@ -66,7 +67,7 @@ export const AuthSource = {
                     headers: headers,
                     method: 'get'
                 }
-            }).then(response => response.json());
+            });
         },
 
         local(state) {
@@ -93,7 +94,7 @@ export const AuthSource = {
                     method: 'post',
                     body: JSON.stringify(body)
                 }
-            }).then(response => response.json());
+            });
         },
 
         success: AuthActions.successLogin,
@@ -115,7 +116,7 @@ export const AuthSource = {
                     headers: headers,
                     method: 'get'
                 }
-            }).then(response => response.json());
+            });
         },
 
         local(state) {
@@ -123,7 +124,7 @@ export const AuthSource = {
         },
 
         success: AuthActions.successFetchUser,
-        error: AuthActions.error
+        error: AuthActions.errorFetchUser
     },
 
     performLogout: {
@@ -141,7 +142,7 @@ export const AuthSource = {
                     headers: headers,
                     method: 'post'
                 }
-            }).then(response => response.text());
+            });
         },
 
         success: AuthActions.successLogout,
