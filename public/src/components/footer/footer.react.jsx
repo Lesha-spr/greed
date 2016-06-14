@@ -17,7 +17,7 @@ export class FooterUnwrapped extends Component {
                     {this.props.children}
                     <div className='row'>
                         <div className='column'>
-                            <div className='footer__copy medium-text-left'>&copy; Oleksii An</div>
+                            <div className='footer__copy medium-text-left'><b>An &amp; Kat &amp; Pat</b> &copy;</div>
                         </div>
                     </div>
                 </div>

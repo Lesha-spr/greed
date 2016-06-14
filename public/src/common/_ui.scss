@@ -5,7 +5,7 @@
 
   &_state_active {
     &, &:hover, &:focus {
-      color: $light-gray;
+      color: $white;
     }
   }
 
@@ -27,13 +27,11 @@
   }
 }
 
-.ui-error-hint {
-  position: relative;
-  top: -$input-prefix-padding;
-  color: $alert-color;
-
-  .input-group-label + .ui-control-holder & {
-    position: absolute;
-    top: 100%;
+.input-group {
+  .form-error {
+    &.is-visible {
+      // NOTE: breaks the markup
+      display: none !important;
+    }
   }
 }
