@@ -19,14 +19,6 @@ export class ProductsStore {
         this.bindActions(ProductsActions);
     }
 
-    onAlertProduct(product) {
-        this.setState(this.state.set('product', product));
-    }
-
-    onUpsertProduct(product) {
-        this.setState(this.state.set('product', product));
-    }
-
     onFetch() {
         if (!this.getInstance().isLoading()) {
             this.getInstance().performFetch();
@@ -36,7 +28,10 @@ export class ProductsStore {
     onSuccessFetch(products) {
         let queryProducts = this._populateQueryProducts(products);
 
-        this.setState(this.state.set('products', Immutable.fromJS(products)).set('shouldFetch', false).set('queryProducts', Immutable.fromJS(queryProducts)));
+        this.setState(this.state
+            .set('products', Immutable.fromJS(products))
+            .set('shouldFetch', false)
+            .set('queryProducts', Immutable.fromJS(queryProducts)));
     }
 
     onPut(product) {
@@ -84,11 +79,15 @@ export class ProductsStore {
             title: query
         }, schema, this.state.toJS().products);
 
-        this.setState(this.state.set('queryProducts', Immutable.fromJS(products)).set('query', query));
+        this.setState(this.state
+            .set('queryProducts', Immutable.fromJS(products))
+            .set('query', query));
     }
 
     onClearQuery() {
-        this.setState(this.state.set('queryProducts', Immutable.List()).set('query', ''));
+        this.setState(this.state
+            .set('queryProducts', Immutable.List())
+            .set('query', ''));
     }
 
     _populateQueryProducts(products) {

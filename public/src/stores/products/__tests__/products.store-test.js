@@ -5,62 +5,188 @@ import Immutable from 'immutable';
 import WrappedProductsStore, {ProductsStore as UnwrappedProductsStore} from './../products.store.js';
 import ProductsActions from './../../../actions/products/products.actions.js';
 
-let initialState;
+const defaultState = {
+    products: [],
+    shouldFetch: true,
+    query: '',
+    queryProducts: []
+};
 
 describe('ProductsStore', () => {
-    beforeEach(() => {
-        initialState = {
-            products: [],
-            shouldFetch: true,
-            query: '',
-            queryProducts: []
-        };
-    });
-
     it('should initialize with default state', () => {
-        expect(WrappedProductsStore.getState().toJS()).toEqual(initialState);
+        expect(WrappedProductsStore.getState().toJS()).toEqual(defaultState);
     });
 
-    it('should listen for a fetch action', () => {
-        let action = ProductsActions.SUCCESS_FETCH;
-        let data = [{product: 1}, {product: 2}];
+    describe('#fetch', () => {
+        it('should get to products', () => {
+            let action = ProductsActions.FETCH;
+            let data = {};
 
-        alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS().products).toEqual(data);
+            WrappedProductsStore.performFetch = jest.fn();
 
-        data = [];
-        alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS().products).toEqual(data);
+            spyOn(WrappedProductsStore, 'performFetch');
+
+            alt.dispatcher.dispatch({action, data});
+
+            expect(WrappedProductsStore.performFetch).toHaveBeenCalledWith();
+        });
+
+        it('should set products to state on success fetch', () => {
+            let action = ProductsActions.SUCCESS_FETCH;
+            let data = [{
+                _id: 0,
+                title: 'mock'
+            }, {
+                _id: 1,
+                title: 'mock'
+            }];
+            let state;
+
+            alt.dispatcher.dispatch({action, data});
+
+            state = WrappedProductsStore.getState().toJS();
+
+            expect(state.products).toEqual(data);
+            expect(state.shouldFetch).toEqual(false);
+        });
     });
 
-    it('should listen for a post action', () => {
-        let action = ProductsActions.SUCCESS_POST;
-        let data = {
-            _id: 1,
-            title: 'title'
-        };
+    describe('#put', () => {
+        it('should put to products', () => {
+            let action = ProductsActions.PUT;
+            let data = {
+                data: 'data',
+                formData: 'formData'
+            };
 
-        alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS().products[0]).toEqual(data);
+            WrappedProductsStore.performPut = jest.fn();
+
+            spyOn(WrappedProductsStore, 'performPut');
+
+            alt.dispatcher.dispatch({action, data});
+
+            expect(WrappedProductsStore.performPut).toHaveBeenCalledWith(data.formData, data.data);
+        });
+
+        it('should update product to state on success put', () => {
+            let action = ProductsActions.SUCCESS_PUT;
+            let data = {
+                _id: 0,
+                title: 'mock_updated'
+            };
+            let state;
+
+            alt.dispatcher.dispatch({action, data});
+
+            state = WrappedProductsStore.getState().toJS();
+
+            expect(state.products.find(element => element._id === data._id).title).toEqual(data.title);
+        });
     });
 
-    it('should listen for a put action', () => {
-        let action = ProductsActions.SUCCESS_PUT;
-        let data = {
-            _id: 1,
-            title: 'new title'
-        };
+    describe('#post', () => {
+        it('should post to products', () => {
+            let action = ProductsActions.POST;
+            let data = {
+                _id: 2,
+                title: 'mock'
+            };
 
-        alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS().products[0]).toEqual(data);
+            WrappedProductsStore.performPost = jest.fn();
+
+            spyOn(WrappedProductsStore, 'performPost');
+
+            alt.dispatcher.dispatch({action, data});
+
+            expect(WrappedProductsStore.performPost).toHaveBeenCalledWith(data);
+        });
+
+        it('should set products to state on success post', () => {
+            let action = ProductsActions.SUCCESS_POST;
+            let data = {
+                _id: 2,
+                title: 'mock'
+            };
+            let state;
+
+            alt.dispatcher.dispatch({action, data});
+
+            state = WrappedProductsStore.getState().toJS();
+
+            expect(state.products[state.products.length - 1]).toEqual(data);
+        });
     });
 
-    it('should clear query', () => {
-        let action = ProductsActions.CLEAR_QUERY;
-        let data = {};
+    describe('#delete', () => {
+        it('should delete to products', () => {
+            let action = ProductsActions.DELETE;
+            let data = {
+                _id: 1,
+                title: 'mock_deleted'
+            };
 
-        alt.dispatcher.dispatch({action, data});
-        expect(WrappedProductsStore.getState().toJS().queryProducts.length).toBe(0);
-        expect(WrappedProductsStore.getState().toJS().query).toBe('');
+            WrappedProductsStore.performDelete = jest.fn();
+
+            spyOn(WrappedProductsStore, 'performDelete');
+
+            alt.dispatcher.dispatch({action, data});
+
+            expect(WrappedProductsStore.performDelete).toHaveBeenCalledWith(data);
+        });
+
+        it('should delete category in state on success delete', () => {
+            let action = ProductsActions.SUCCESS_DELETE;
+            let data = {
+                _id: 1,
+                title: 'mock_deleted'
+            };
+            let state;
+
+            alt.dispatcher.dispatch({action, data});
+
+            state = WrappedProductsStore.getState().toJS();
+
+            expect(state.products.find(element => element._id === data._id)).toBeUndefined();
+        });
+    });
+
+    describe('#querySearch', () => {
+        it('should set products collection on empty search', () => {
+            let action = ProductsActions.QUERY_SEARCH;
+            let data = '';
+            let state;
+
+            alt.dispatcher.dispatch({action, data});
+
+            state = WrappedProductsStore.getState().toJS();
+
+            expect(state.queryProducts).toEqual(state.products);
+        });
+
+        it('should set reduced products collection on query search', () => {
+            let action = ProductsActions.QUERY_SEARCH;
+            let data = 'mock_updated';
+            let state;
+
+            alt.dispatcher.dispatch({action, data});
+
+            state = WrappedProductsStore.getState().toJS();
+
+            expect(state.queryProducts).not.toEqual(state.products);
+            expect(state.query).toBe(data);
+        });
+
+        it('should clear query products on clear action', () => {
+            let action = ProductsActions.CLEAR_QUERY;
+            let data = {};
+            let state;
+
+            alt.dispatcher.dispatch({action, data});
+
+            state = WrappedProductsStore.getState().toJS();
+
+            expect(state.queryProducts.length).toBe(0);
+            expect(state.query).toBe('');
+        });
     });
 });

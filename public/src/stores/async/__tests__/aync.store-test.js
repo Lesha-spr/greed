@@ -5,23 +5,26 @@ import Immutable from 'immutable';
 import WrappedAsyncStore, {AsyncStore as UnwrappedAsyncStore} from './../async.store.js';
 import AsyncActions from './../../../actions/async/async.actions.js';
 
-const defaultState = {pending: false};
-const pendingState = {pending: true};
+const defaultState = {
+    pending: false
+};
 
 describe('AsyncStore', () => {
     it('should initialize with default state', () => {
         expect(WrappedAsyncStore.getState().toJS()).toEqual(defaultState);
     });
 
-    it('should listen for a toggle action', () => {
-        let action = AsyncActions.TOGGLE;
-        let data = true;
+    describe('#toggle', () => {
+        it('should set pending flag to state', () => {
+            let action = AsyncActions.TOGGLE;
+            let data = true;
 
-        alt.dispatcher.dispatch({action, data});
-        expect(WrappedAsyncStore.getState().toJS()).toEqual(pendingState);
+            alt.dispatcher.dispatch({action, data});
+            expect(WrappedAsyncStore.getState().toJS().pending).toBe(true);
 
-        data = false;
-        alt.dispatcher.dispatch({action, data});
-        expect(WrappedAsyncStore.getState().toJS()).toEqual(defaultState);
+            data = false;
+            alt.dispatcher.dispatch({action, data});
+            expect(WrappedAsyncStore.getState().toJS().pending).toBe(false);
+        });
     });
 });
