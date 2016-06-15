@@ -21,7 +21,7 @@ export const AuthSource = {
             });
         },
 
-        success: AuthActions.successRegistration,
+        success: AuthActions.clear,
         error: AuthActions.error
     },
 

@@ -18,7 +18,12 @@ class AuthUserControlsUnwrapped extends Component {
     }
 }
 
-AuthUserControlsUnwrapped.propTypes = {};
+AuthUserControlsUnwrapped.propTypes = {
+    account: PropTypes.shape({
+        fullName: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired
+    })
+};
 
 const AuthUserControls = AuthUserControlsUnwrapped;
 

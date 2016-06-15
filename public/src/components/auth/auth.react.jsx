@@ -50,6 +50,14 @@ export class AuthUnwrapped extends Component {
     }
 }
 
+AuthUnwrapped.propTypes = {
+    authState: PropTypes.shape({
+        user: PropTypes.shape(),
+        isFetched: PropTypes.bool.isRequired,
+        showForm: PropTypes.oneOf([null, 'loginForm', 'registrationForm'])
+    }).isRequired
+};
+
 const Auth = connectToStores(AuthUnwrapped);
 
 export default Auth;

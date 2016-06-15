@@ -63,10 +63,6 @@ export class AuthStore {
         }
     }
 
-    onSuccessRegistration() {
-        this.setState(this.state.set('showForm', null).set('error', null));
-    }
-
     onLogin(user) {
         if (!this.getInstance().isLoading()) {
             this.getInstance().performLogin(user);
