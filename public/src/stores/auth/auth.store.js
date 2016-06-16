@@ -1,6 +1,7 @@
 import alt from './../../alt';
 import AuthActions from './../../actions/auth/auth.actions.js';
 import {AuthSource} from './../../sources/auth/auth.source.js';
+import User from './../../helpers/user/user.js';
 import immutable from 'alt-utils/lib/ImmutableUtil';
 import Immutable from 'immutable';
 
@@ -28,7 +29,7 @@ export class AuthStore {
     }
 
     onSuccessFetchUser(user) {
-        this.setState(this.state.set('user', user).set('isFetched', true));
+        this.setState(this.state.set('user', new User(user)).set('isFetched', true));
     }
 
     onErrorFetchUser(error) {

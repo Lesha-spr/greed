@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import AuthActions from './../../actions/auth/auth.actions.js';
-import inGroup from './../../helpers/inGroup/inGroup.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class AuthUserControlsUnwrapped extends Component {
@@ -12,16 +11,20 @@ class AuthUserControlsUnwrapped extends Component {
 
     render() {
         return <div className='button-group'>
-            {inGroup(this.props.account, 'Admin') ? <a href='/admin' className='button'><span aria-hidden='true'><i className='fi-key'></i></span>&nbsp;&nbsp;Admin</a> : null}
+            {this.props.user.isEnabled() && this.props.user.isAdmin() ? <a href='/admin' className='button'><span aria-hidden='true'><i className='fi-key'></i></span>&nbsp;&nbsp;Admin</a> : null}
             <button onClick={AuthActions.logout} className='button'><span aria-hidden='true'><i className='fi-skull'></i></span>&nbsp;&nbsp;Logout</button>
         </div>;
     }
 }
 
 AuthUserControlsUnwrapped.propTypes = {
-    account: PropTypes.shape({
-        fullName: PropTypes.string.isRequired,
-        email: PropTypes.string.isRequired
+    user: PropTypes.shape({
+        account: PropTypes.shape({
+            fullName: PropTypes.string.isRequired,
+            email: PropTypes.string.isRequired
+        }),
+        isEnabled: PropTypes.func.isRequired,
+        isAdmin: PropTypes.func.isRequired
     })
 };
 
