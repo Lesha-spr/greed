@@ -4,4 +4,9 @@
   min-height: 100%;
 }
 
+.main {
+  padding-top: rem-calc(20px);
+  padding-bottom: rem-calc(20px);
+}
+
 @include sticky-footer('.app');
