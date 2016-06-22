@@ -1,10 +1,9 @@
 'use strict';
 
 const cloudinary = require('cloudinary');
-const privateConfig = require('./../../config/private');
-const publicConfig = require('./../../config/public');
+const config = require('./../../config/private');
 
-cloudinary.config(Object.assign({}, privateConfig.cloudinary, publicConfig.cloudinary));
+cloudinary.config(config.cloudinary);
 
 module.exports = {
     upload: (file, options) => {
