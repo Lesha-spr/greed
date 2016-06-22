@@ -23,7 +23,7 @@ describe('ProductsController', () => {
 
         instance.model.query = jest.fn(() => Promise.reject(expectData));
 
-        await instance.get();
+        await instance.get({});
 
         expect(instance.model.query).toBeCalled();
         expect(instance._sendResponse.mock.calls.length).toBe(0);
@@ -50,7 +50,7 @@ describe('ProductsController', () => {
 
         instance.model.query = jest.fn(() => Promise.resolve(expectData));
 
-        await instance.get();
+        await instance.get({});
 
         expect(instance.model.query).toBeCalledWith('find');
         expect(instance._sendResponse).toBeCalledWith(expectData);
