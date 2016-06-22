@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const stormpath = require('express-stormpath');
 const favicon = require('serve-favicon');
@@ -20,13 +21,16 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(compression());
 app.use(favicon(`${root}/public/favicon.png`));
 app.use(logger('dev'));
 app.use(stormpath.init(app, privateConfig.stormpath));
 // FIXME: uncomment on prod
 //app.use(morgan);
 app.use(bodyParser.json());
-app.use(express.static(`${root}/public`));
+app.use(express.static(`${root}/public`, {
+    maxage: '365 days'
+}));
 
 app.use('/', router);
 

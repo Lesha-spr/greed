@@ -2,6 +2,7 @@
 
 const ModelWrapper = require('./../../helpers/modelWrapper/model-wrapper.js');
 const Box = require('./box.model.js');
+const apicache = require('apicache');
 const _ = require('lodash');
 
 module.exports = class BoxesController {
@@ -19,6 +20,8 @@ module.exports = class BoxesController {
     get(req, res, next) {
         this.res = res;
 
+        req.apicacheGroup = 'Boxes';
+
         this.model.query('find')
             .then(this._sendResponse)
             .catch(err => {
@@ -28,6 +31,8 @@ module.exports = class BoxesController {
 
     post(req, res, next) {
         this.res = res;
+
+        apicache.clear('Boxes');
 
         this.model.query('create', req.body)
             .then(this._sendResponse)
@@ -39,6 +44,8 @@ module.exports = class BoxesController {
     put(req, res, next) {
         this.res = res;
 
+        apicache.clear('Boxes');
+
         return this.model.query('findByIdAndUpdate', req.body._id, req.body, {new: true})
             .then(this._sendResponse)
             .catch(error => {
@@ -48,6 +55,8 @@ module.exports = class BoxesController {
 
     delete(req, res, next) {
         this.res = res;
+
+        apicache.clear('Boxes');
 
         return this.model.query('findByIdAndRemove', req.params.id)
             .then(this._sendResponse)

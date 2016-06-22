@@ -6,6 +6,11 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classNames from 'classnames';
 import {cl as cloudinary, options} from './../../helpers/cloudinary/cloudinary.js';
 
+const DEFAULTS = {
+    IMAGE_WIDTH: 400,
+    IMAGE_HEIGHT: 300
+};
+
 export class ProductsItemUnwrapped extends Component {
     constructor(props) {
         super(props);
@@ -45,7 +50,7 @@ export class ProductsItemUnwrapped extends Component {
                 </div>
                 <div className='stat'>{this.props.product.price} &#8381;</div>
                 <hr/>
-                <img className='thumbnail' src={cloudinary.url(this.props.product.image.public_id, Object.assign({}, options, {width: 400, height: 300}))} alt={this.props.product.title}/>
+                <img className='thumbnail' width={DEFAULTS.IMAGE_WIDTH} height={DEFAULTS.IMAGE_HEIGHT} src={cloudinary.url(this.props.product.image.public_id, Object.assign({}, options, {width: DEFAULTS.IMAGE_WIDTH, height: DEFAULTS.IMAGE_HEIGHT}))} alt={this.props.product.title}/>
             </div>
         </section>;
     }

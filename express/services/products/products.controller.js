@@ -2,6 +2,7 @@
 
 const ModelWrapper = require('./../../helpers/modelWrapper/model-wrapper.js');
 const Product = require('./product.model.js');
+const apicache = require('apicache');
 const _ = require('lodash');
 const parseForm = require('./../../helpers/multipartyPromise/multipartyPromise.js');
 const cloudinary = require('./../../helpers/cloudinary/cloudinary.js');
@@ -17,6 +18,8 @@ module.exports = class ProductsController {
     get(req, res, next) {
         this.res = res;
 
+        req.apicacheGroup = 'Products';
+
         return this.model.query('find')
             .then(this._sendResponse)
             .catch(err => {
@@ -26,6 +29,8 @@ module.exports = class ProductsController {
 
     post(req, res, next) {
         this.res = res;
+
+        apicache.clear('Products');
 
         return this._parseForm(req)
             .then(this._uploadStatic)
@@ -39,6 +44,8 @@ module.exports = class ProductsController {
     put(req, res, next) {
         this.res = res;
 
+        apicache.clear('Products');
+
         return this._parseForm(req)
             .then(this._uploadStatic)
             .then(this._updateProduct)
@@ -50,6 +57,8 @@ module.exports = class ProductsController {
 
     delete(req, res, next) {
         this.res = res;
+
+        apicache.clear('Products');
 
         return this.model.query('findById', req.params.id)
             .then(this._destroyFile)
