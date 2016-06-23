@@ -7,7 +7,7 @@ const stormpath = require('express-stormpath');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const privateConfig = require('./config/private');
+const config = require('./config/');
 //const morgan = require('./morgan/morgan.js');
 const router = require('./routes/');
 const root = require('app-root-path');
@@ -24,7 +24,7 @@ app.set('view engine', 'jade');
 app.use(compression());
 app.use(favicon(`${root}/public/favicon.png`));
 app.use(logger('dev'));
-app.use(stormpath.init(app, privateConfig.stormpath));
+app.use(stormpath.init(app, config.stormpath));
 // FIXME: uncomment on prod
 //app.use(morgan);
 app.use(bodyParser.json());

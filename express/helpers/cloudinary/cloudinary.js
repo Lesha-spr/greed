@@ -1,7 +1,7 @@
 'use strict';
 
 const cloudinary = require('cloudinary');
-const config = require('./../../config/private');
+const config = require('./../../config/');
 
 cloudinary.config(config.cloudinary);
 
