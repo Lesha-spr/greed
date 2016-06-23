@@ -23,7 +23,10 @@ module.exports = class CategoriesController {
         req.apicacheGroup = 'Categories';
 
         this.model.query('find')
-            .then(this._sendResponse);
+            .then(this._sendResponse)
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     post(req, res, next) {
@@ -32,7 +35,8 @@ module.exports = class CategoriesController {
         apicache.clear('Categories');
 
         this.model.query('create', req.body)
-            .then(this._sendResponse).catch(error => {
+            .then(this._sendResponse)
+            .catch(error => {
                 console.log(error);
             });
     }
@@ -43,7 +47,8 @@ module.exports = class CategoriesController {
         apicache.clear('Categories');
 
         return this.model.query('findByIdAndUpdate', req.body._id, req.body, {new: true})
-            .then(this._sendResponse).catch(error => {
+            .then(this._sendResponse)
+            .catch(error => {
                 console.log(error);
             });
     }

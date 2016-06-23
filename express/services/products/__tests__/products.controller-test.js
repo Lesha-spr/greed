@@ -18,7 +18,7 @@ describe('ProductsController', () => {
         expect(instance.res).toBeNull();
     });
 
-    pit('should throw exception', async () => {
+    pit('should not send response on error', async () => {
         let expectData = {};
 
         instance.model.query = jest.fn(() => Promise.reject(expectData));
