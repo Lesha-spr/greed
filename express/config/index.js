@@ -6,7 +6,7 @@ const config = {
         options: {}
     },
     cloudinary: {
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        cloud_name: 'dcyuhoxoi',
         api_key: process.env.CLOUDINARY_APIKEY_ID,
         api_secret: process.env.CLOUDINARY_APIKEY_SECRET
     },
