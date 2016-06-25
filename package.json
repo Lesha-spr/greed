@@ -90,8 +90,10 @@
     "whatwg-fetch": "^0.11.0"
   },
   "jest": {
+    "moduleFileExtensions": ["js", "jsx"],
     "moduleNameMapper": {
-      "^.*\\.scss$": "<rootDir>/stubs/scss-stub.js"
+      "^.+\\.scss$": "<rootDir>/test/scssMock.js",
+      "^.+\\.(gif|ttf|eot|svg)$": "<rootDir>/test/fileMock.js"
     },
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules",
