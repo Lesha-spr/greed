@@ -16,7 +16,10 @@ class ErrorCalloutUnwrapped extends Component {
 }
 
 ErrorCalloutUnwrapped.propTypes = {
-    message: PropTypes.string.isRequired
+    message: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element
+    ]).isRequired
 };
 
 const ErrorCallout = ErrorCalloutUnwrapped;
