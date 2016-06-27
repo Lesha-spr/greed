@@ -4,7 +4,7 @@ import AuthUnauthorizedControls from './auth-unauthorized-controls.react.jsx';
 import AuthActions from './../../actions/auth/auth.actions.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-class AuthControlsUnwrapped extends Component {
+export class AuthControlsUnwrapped extends Component {
     constructor(props) {
         super(props);
 

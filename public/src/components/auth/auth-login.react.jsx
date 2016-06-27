@@ -1,11 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import AuthActions from './../../actions/auth/auth.actions.js';
-import {Form, Input, Button} from 'react-validation';
+import {Form, Button} from 'react-validation';
+import AuthFormFields from './auth-form-fields.react.jsx';
 import ErrorCallout from './../error/error-callout.react.jsx';
 import serialize from 'form-serialize';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-class AuthLoginUnwrapped extends Component {
+export class AuthLoginUnwrapped extends Component {
     constructor(props) {
         super(props);
 
@@ -28,16 +29,7 @@ class AuthLoginUnwrapped extends Component {
         let error = this.props.error ? <ErrorCallout {...this.props.error}/> : null;
 
         return <Form autoComplete='off' onSubmit={this.onSubmit.bind(this)}>
-            {this.props.loginForm.form.fields.map(field => {
-                return <div className='row' key={field.name}>
-                    <div className='column show-for-medium medium-3'>
-                        <label htmlFor={field.name} className='medium-text-right middle'>{field.label}</label>
-                    </div>
-                    <div className='column small-12 medium-9'>
-                        <Input id={field.name} autoComplete='off' className='ui-input' validations={[{rule: 'isRequired'}]} name={field.name} type={field.type} placeholder={field.placeholder}/>
-                    </div>
-                </div>;
-            })}
+            <AuthFormFields fields={this.props.loginForm.form.fields}/>
             <div className='row'>
                 <div className='column medium-9 medium-offset-3'>
                     {error}
