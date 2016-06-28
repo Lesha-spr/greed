@@ -18,7 +18,7 @@ module.exports = {
         publicPath: '/build/'
     },
 
-    watch: NODE_ENV === 'development',
+    watch: (NODE_ENV === 'development' && NODE_ENV !== 'codeship'),
 
     watchOptions: {
         aggregateTimeout: 100
