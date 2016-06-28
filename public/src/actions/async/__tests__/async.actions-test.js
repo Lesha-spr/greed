@@ -16,4 +16,8 @@ describe('AsyncActions', () => {
         expect(alt.dispatcher.dispatch.mock.calls[0][0].data).toBe(true);
         expect(alt.dispatcher.dispatch.mock.calls[1][0].data).toBe(false);
     });
+
+    it('should return true', () => {
+        expect(true).toBe(true);
+    });
 });
