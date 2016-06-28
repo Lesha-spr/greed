@@ -31,7 +31,8 @@
     "mongoose": "^4.3.3",
     "morgan": "^1.6.1",
     "multiparty": "^4.1.2",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "webpack": "^1.12.14"
   },
   "devDependencies": {
     "alt": "^0.18.4",
@@ -86,7 +87,6 @@
     "style-loader": "^0.13.0",
     "susy": "^2.2.9",
     "validator": "^5.2.0",
-    "webpack": "^1.12.14",
     "whatwg-fetch": "^0.11.0"
   },
   "jest": {
