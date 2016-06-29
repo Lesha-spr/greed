@@ -53,7 +53,6 @@ export class ProductsEditUnwrapped extends Component {
     }
 
     render() {
-        let id = this.props.product._id ? <input type='hidden' name='_id' value={this.props.product._id}/> : null;
         let imageLabel = this.state.image
             || (this.props.product.image && this.props.product.image.public_id &&`${this.props.product.image.public_id}.${this.props.product.image.format}`)
             || 'Choose Product Image';
@@ -66,7 +65,7 @@ export class ProductsEditUnwrapped extends Component {
                         <label>
                             Title
                             <Input autoComplete='off' value={this.props.product.title} className='ui-input' validations={[{rule: 'isRequired'}]} name='title' type='text' placeholder='Title'/>
-                            {id}
+                            {this.props.product._id && <input type='hidden' name='_id' value={this.props.product._id}/>}
                         </label>
                     </div>
                     <div className='small-12 medium-6 columns'>

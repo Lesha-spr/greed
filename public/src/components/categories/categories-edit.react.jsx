@@ -36,16 +36,15 @@ export class CategoriesEditUnwrapped extends Component {
     }
 
     render() {
-        let id = this.props.category._id ? <input type='hidden' name='_id' value={this.props.category._id}/> : null;
-        let deleteButton = this.props.category._id ? <div className='medium-6 columns'>
+        let deleteButton = this.props.category._id && <div className='medium-6 columns'>
             <label>Remove category</label>
             <button onClick={this.onClick} className='button alert'>Delete</button>
-        </div> : null;
+        </div>;
 
         return <div>
             <h3>Add/Edit Category</h3>
             <Form onSubmit={this.onSubmit}>
-                {id}
+                {this.props.category._id && <input type='hidden' name='_id' value={this.props.category._id}/>}
                 <div className='row'>
                     <div className='small-12 medium-6 columns'>
                         <label>

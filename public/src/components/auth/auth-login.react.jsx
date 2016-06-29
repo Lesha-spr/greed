@@ -26,13 +26,11 @@ export class AuthLoginUnwrapped extends Component {
     }
 
     render() {
-        let error = this.props.error ? <ErrorCallout {...this.props.error}/> : null;
-
         return <Form autoComplete='off' onSubmit={this.onSubmit.bind(this)}>
             <AuthFormFields fields={this.props.loginForm.form.fields}/>
             <div className='row'>
                 <div className='column medium-9 medium-offset-3'>
-                    {error}
+                    {this.props.error && <ErrorCallout {...this.props.error}/>}
                     <div className='button-group'>
                         <Button className='button success' type='submit' value='Sign In'/>
                         <button onClick={this.onClear.bind(this)} className='button alert'>Cancel</button>

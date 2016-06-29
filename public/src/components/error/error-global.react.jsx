@@ -20,11 +20,7 @@ class ErrorGlobalUnwrapped extends Component {
     }
 
     render() {
-        if (!this.props.error) {
-            return null;
-        }
-
-        return <div className='row'>
+        return this.props.error && <div className='row'>
             <div className='columns'>
                 <ErrorCallout message={this.props.error.message}/>
             </div>

@@ -1,11 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const renderList = (array) => {
-    if (!array || !array.length) {
-        return null;
-    }
-
-    return <ul className='menu' role='menubar'>
+    return array && array.length && <ul className='menu' role='menubar'>
         {array.map((item, key) => <li key={key}>{item}</li>)}
     </ul>
 };
