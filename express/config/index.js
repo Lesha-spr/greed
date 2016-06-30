@@ -1,6 +1,7 @@
 'use strict';
 
 const config = {
+    cdn: process.env.NODE_ENV === 'production' ? `//${process.env.ASSET_DISTRIBUTION_SUBDOMAIN}.cloudfront.net` : '',
     mongoose: {
         uri: process.env.MONGOOSE_URI,
         options: {}

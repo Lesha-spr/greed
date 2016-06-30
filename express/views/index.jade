@@ -1,8 +1,8 @@
 extends layout
 
 block extra_css
-  link(rel='stylesheet' href='/build/app.css')
+  link(rel='stylesheet' href=cdn + '/build/app.css')
 
 block content
   #app
-  script(src='/build/app.js')
+  script(src=cdn + '/build/app.js')

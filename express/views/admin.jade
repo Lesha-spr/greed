@@ -1,9 +1,9 @@
 extends layout
 
 block extra_css
-  link(rel='stylesheet' href='/build/admin.css')
+  link(rel='stylesheet' href=cdn + '/build/admin.css')
 
 block content
   #app
   #dialog
-  script(src='/build/admin.js')
+  script(src=cdn + '/build/admin.js')
