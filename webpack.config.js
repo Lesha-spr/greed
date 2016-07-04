@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const config = require('./express/config');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
@@ -15,7 +16,7 @@ module.exports = {
         path: path.join(__dirname, '/public/build'),
         filename: '[name].js',
         chunkFilename: '[id].chunk.js',
-        publicPath: '/build/'
+        publicPath: config.cdn + '/build/'
     },
 
     watch: (NODE_ENV === 'development' && NODE_ENV !== 'codeship'),
